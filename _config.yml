@@ -1,0 +1,19 @@
+# Site settings
+title: STA 721 Linear Models
+email: clyde@stat.duke.edu
+description: > # this means to ignore newlines until "baseurl:"
+ Multiple linear regression and model building. Exploratory data
+ analysis techniques, variable transformations and selection,
+ parameter estimation and interpretation, prediction, Bayesian
+ hierarchical models, Bayes factors and intrinsic Bayes factors for
+ linear models, and Bayesian model averaging. The concepts of linear
+ models from Bayesian and classical viewpoints. Topics in Markov chain
+ Monte Carlo simulation introduced as required. Prerequisite:
+ Statistics 611 and 601 (co-registration) or equivalent.
+baseurl: "/courses/Fall15/sta721" # the subpath of your site, e.g. /blog/
+url: "http://stat.duke.edu" # the base hostname & protocol for your site
+twitter_username: merliseclyde
+github_username:  merliseclyde
+
+# Build settings
+markdown: kramdown
