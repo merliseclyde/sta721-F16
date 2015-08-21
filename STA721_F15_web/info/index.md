@@ -59,14 +59,14 @@ printing or purchase a hardback version at the Bookstore
 * * *
 
 ### Class meetings:
-* Lectures: Tuesday and Thursday, 1:25 pm - 2:40 pm, Link 111 
+* Lectures: Tuesday and Thursday, 3:05 pm - 4:20 pm, Perkins 071 
 
 * * *
 
 ### <a name="exams"></a>Exams:
 
 * Inclass Midterm:  Tuesday, TBA
-* TakeHome: T, TBA
+* TakeHome: Tuesday, TBA
 * Final: Tuesday, December 8, 7:00 PM - 10:00 PM
 
 * * *
