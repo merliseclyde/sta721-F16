@@ -20,72 +20,37 @@ mathematical statistics at the level of STA 611.
 
 The course goals are as follows:
 
-1. Recognize the importance of data collection, identify limitations in data collection methods, and determine how they affect the scope of inference.
-2. Use statistical software to summarize data numerically and visually, and to perform data analysis.
-3. Have a conceptual understanding of the unified nature of statistical inference.
-4. Apply estimation and testing methods to analyze single variables or the relationship between two variables in order to understand natural phenomena and make data-based decisions.
-5. Model numerical response variables using a single or multiple explanatory variables.
-6. Interpret results correctly, effectively, and in context without relying on statistical jargon.
-7. Critique data-based claims and evaluate data-based decisions.
-8. Complete two research projects: one that focuses on statistical inference and one that focuses on modeling. 
+1. Understand the different philosophical approaches to statistical
+analyses  (Bayesian and frequentists)
+2. Build a solid foundation for the probability theory of Gaussian
+linear models and hierarchical models.
+3. Build appropriate statistical models for data perform data analysis
+using appropriate software, and communicate results without use of
+statistical jargon.
+
+#### Topics
+
+
 
 * * *
 
-### Tips for success:
-
-* Complete the reading before a new unit begins, and then review again after the unit is over.
-* Be an active participant during lectures and office hours.
-* Ask questions - during class or office hours, or by email. Ask me, your TAs, and your classmates.
-* Do all homework  sets - start early and make sure you attempt and understand all questions.
-* Give yourself plenty of time time to prepare a good cheat sheet for exams. This requires going through the material and taking the time to review the concepts that you're not comfortable with.
-* Do not procrastinate - don't let a lecture go by with unanswered
-* questions as it will just make the following class's material even
-* more difficult to follow.  
-
-* * *
-
-### Course structure:
-
-The course is divided into seven learning units. For each unit a set of learning objectives and required and suggested readings, videos, etc. will be posted on the course website. You are expected to watch the videos and/or complete the readings and familiarize yourselves with the learning objectives. We will begin the unit with a readiness assessment: 10 multiple choice questions that you answer using your clickers in class. You will then re-take this assessment in teams. The rest of the class time will be split between discussion of the material and application exercises that you'll complete in teams. Slides and other relevant materials for each class and lab will be available on the
-<!-- REPLACE REPLACE -->
-[schedule](https://stat.duke.edu/courses/Spring15/sta101.001/)
-page before each class. Videos and other relevant prep materials for each unit will be available on the
-<!-- REPLACE REPLACE -->
-[resources](https://stat.duke.edu/courses/Spring15/sta101.001/resources/)
-page. Within each unit you will complement your learning with problem sets and labs, and wrap up each unit with a performance assessment.
-
-* * *
 
 ### Grading:
 
-See [course info](/info/#grading) for grading breakdown.
+
+<div style="padding-left:2em;padding-top:1em;">
+<table style="width:400px;">
+<tr> <td> Homework              </td> <td> 20% </td></tr>
+<tr> <td> Midterm         </td> <td> 25% </td></tr>
+<tr> <td> TakeHome        </td> <td> 205% </td></tr>
+<tr> <td> Final            </td> <td> 25% </td></tr>
+<tr> <td> Participation        </td> <td> 5% </td></tr>
+
+</table>
+</div>
+
 
 Grades may be curved at the end of the semester. Cumulative numerical averages of 90 - 100 are guaranteed at least an A-, 80 - 89 at least a B-, and 70 - 79 at least a C-, however the exact ranges for letter grades will be determined after the final exam. The more evidence there is that the class has mastered the material, the more generous the curve will be.
-
-* * *
-
-### Work load:
-
-You are expected to put in about 4-6 hours of work / week outside of class. Some of you will do well with less time than this, and some of you will need more.
-
-* * *
-
-### Teams:
-
-To construct highly functional teams of learners, you are asked to complete a short survey as well as a pre-test to gauge your previous exposure to statistics and statistical literacy. If you haven't yet done so please complete these items as soon as possible. 
-
-You will be assigned to teams of 3-5 students based on the results of the survey and the pre-test. Once team assignments have been made there is no option for changing teams, other than under extraordinary circumstances. You will work in these teams during application exercises and team portions of the readiness assessments. In addition, your team members will be your first point of contact in this class.
-
-You are encouraged to study with your team members and other classmates. But remember that anything that is not explicitly a team assignment must be your own work. 
-
-* * *
-
-
-### Attendance, participation, and peer evaluation:
-
-You are expected to be present at class meeting and actively participate in the discussion. Your attendance and participation during class, as well as your activity on the discussion forum on Sakai will make up a non-insignificant portion of your grade in this class. While I might sometimes call on you during the class discussion, it is your responsibility to be an active participant without being called on. 
-
-Throughout the semester you will also be asked to complete a few peer evaluations. These will be used to ensure that all team members contribute to the success of the group and to address any potential issues early on. If you feel that there are issues within your team, you are encouraged to discuss it with your team members and to bring it to my or your TA's attention. 
 
 * * *
 
@@ -107,15 +72,19 @@ All assignments will be time stamped and late work will be penalized based on th
 
 * * *
 
-### Labs:
 
-The objective of the labs is to give you hands on experience with data analysis using modern statistical software. The labs will also provide you with tools that you will need to complete the projects successfully. We will use a statistical analysis package called RStudio, which is a front end for the R statistical language.
+### Attendance & Participation:
 
-In class your TAs will give a brief overview of the lab and learning goals, and guide you through some of the exercises. You will start working on the lab during the class session, but note that the labs are designed to take more than just the class time, so you will meet up with your team at a later time to finish the lab before the due date (which will be the following lab session). In order to get credit for a lab report, you must be in the lab session on the day that lab is introduced.
+You are expected to be present at class meeting and actively
+participate in the discussion. Your attendance and participation
+during class, as well as your activity on the discussion forum on
+Sakai will make up 5% of your grade in this class. While I might
+sometimes call on you during the class discussion, it is your
+responsibility to be an active participant without being called on.
 
-*Lowest score will be dropped.*
 
 * * *
+
 
 
 ### Takehome Exam
@@ -133,8 +102,8 @@ Note that you **must score at least 30% of the points on the TakeHome Exam in or
 
 ### Exams:
 
-There will be one midterm and one final in this class. See [course info](/info/#exams) for dates and times of the exams. Exam dates cannot be changed and no make-up exams will be given. If you can't take the exams on these dates you should drop this class. You can't pass the class if you do not take the final exam. 
-You are allowed to use one sheet of notes (``cheat sheet") to the
+There will be one midterm and one final in this class. See [course info](/info/#exams) for dates and times of the exams. 
+You are allowed to use one sheet of notes (``cheat sheet") on the
 midterm and the final. This sheet must be no larger than 8 1/2 x 11,
 and **must be prepared by you**. You may use both sides of the sheet
 and can write as small as you wish.
@@ -154,12 +123,6 @@ Note that it is more efficient to answer most statistical questions ``in person"
 
 * * *
 
-### Other learning resources:
-
-Aside from the [SECC, your TAs and the professor's office hours](/info/#oh), you can also make use of the [Academic Resource Center](http://web.duke.edu/arc). 
-
-* * *
-
 ### Students with disabilities:
 
 Students with disabilities who believe they may need accommodations in this class are encouraged to contact the [Student Disability Access Office](http://www.access.duke.edu/students/requesting/index.php) at (919) 668-1267 as soon as possible to better ensure that such accommodations can be made.
@@ -172,11 +135,6 @@ Duke University is a community dedicated to scholarship, leadership, and service
 
 * * *
 
-### Excused Absences:
-
-Students who miss graded work due to a scheduled varsity trip, religious holiday or short-term illness should fill out an online [NOVAP](http://trinity.duke.edu/academic-requirements?p=notification-of-varsity-athletic-participation-novap), [RHoliday](http://trinity.duke.edu/academic-requirements?p=religious-observance) or [short-term illness](http://trinity.duke.edu/academic-requirements?p=policy-short-term-illness-notification) form respectively. If you cannot complete an assignment on the due date due to a short-term illness, you have **until noon the following day** to complete it at no penalty. Then the regular late work policy will kick in. Those with a personal emergency or bereavement should seek a Dean's Excuse; check with your academic dean for details. 
-
-* * *
 
 ### Policies:
 
@@ -193,8 +151,3 @@ Students who miss graded work due to a scheduled varsity trip, religious holiday
 
 * Use of disallowed materials (textbook, class notes, web references, any form of communication with classmates or other persons, etc.) during exams will not be tolerated. This will result in a 0 on the exam for all students involved, possible failure of the course, and will be reported to the [Office of Student Conduct](http://www.studentaffairs.duke.edu/conduct). If you have any questions about whether something is or is not allowed, ask me beforehand.
 
-* * *
-<!-- REPLACE REPLACE -->
-<a href="../post/sta101s15.pdf" download>
-<!-- REPLACE REPLACE -->
-<img src="../syllabus/pdf.jpg" height="30" width="30"></a> <font size="2">Click on the icon to download printer-friendly PDF of the syllabus.</font>
