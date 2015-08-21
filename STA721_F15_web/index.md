@@ -72,8 +72,7 @@ printing from Springer or purchase a hardback version at the Bookstore.
 * TakeHome: Tuesday, TBA
 * Final: Tuesday, December 8, 7:00 PM - 10:00 PM
 
-Dates for the Midterm and TakeHome may be shifted so please check the
-[Course Calendar](/calendar)
+Due Dates for Assignments are in the [Course Calendar](/calendar)
 * * *
 
 ### <a name="oh"></a>Office Hours:
@@ -92,9 +91,8 @@ Dates for the Midterm and TakeHome may be shifted so please check the
 <table style="width:400px;">
 <tr> <td> Homework              </td> <td> 20% </td></tr>
 <tr> <td> Midterm         </td> <td> 25% </td></tr>
-<tr> <td> TakeHome        </td> <td> 20% </td></tr>
+<tr> <td> TakeHome        </td> <td> 25% </td></tr>
 <tr> <td> Final            </td> <td> 25% </td></tr>
-<tr> <td> Peer Assessment        </td> <td> 5% </td></tr>
 <tr> <td> Participation        </td> <td> 5% </td></tr>
 
 </table>
