@@ -1,6 +1,6 @@
 ---
 layout: page
-title: Computing Resources
+title: R & Computing Resources
 ---
 
 ### R resources:
@@ -26,6 +26,19 @@ title: Computing Resources
 
 ### R Books
 
+* R in a Nutshell (Joseph Adler) [Buy it @ Amazon](http://www.amazon.com/R-Nutshell-In-OReilly/dp/144931208X)
+* ggplot2: Elegant Graphics for Data Analysis (Use R!) [Buy it at Amazon](http://www.amazon.com/ggplot2-Elegant-Graphics-Data-Analysis/dp/0387981403/ref=pd_sim_14_3?ie=UTF8&refRID=0PWK3YY76N4T5G8KQRFF)
+* Advanced R (Chapman & Hall/CRC The R Series) [Buy it @ Amazon](http://www.amazon.com/Advanced-Chapman-Hall-CRC-Series/dp/1466586966)
 
+* * *
 
+### Emacs
+
+Using emacs as an editor for R, C/C++, LaTeX provides a great environment for editing, compiling and debugging - you can even use it as a shell!
+
+* [emacs reference card](https://www.gnu.org/software/emacs/refcards/pdf/refcard.pdf)
+* [Emacs Speaks Statistics](http://ess.r-project.org) is an add-on package for GNU Emacs and XEmacs. It is designed to support editing of scripts and interaction with various statistical analysis programs such as R, S-Plus, SAS, Stata and OpenBUGS/JAGS. Although all users of these statistical analysis programs are welcome to apply ESS, advanced users or professionals who regularly work with text-based statistical analysis scripts, with various statistical languages/programs, or with different operating systems might benefit from it the most.  
+  * [ESS reference card](http://ess.r-project.org/refcard.pdf)
+
+* * *
 
