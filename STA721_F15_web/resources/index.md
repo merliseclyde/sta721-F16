@@ -19,10 +19,10 @@ title: Computing Resources
 * * * 
 ### CRAN Comprehensive R Archive Network
 
-* [R CRAN SITE(https://cran.r-project.org) (downloads, documentation, and more) 
+* [R CRAN SITE](https://cran.r-project.or (downloads, documentation, and more) 
 * FAQs (please read before posting a question!) 
-* Packages (contributed packages for R) 
-* R reference card [pdf (59k, 1 pg)] (J Baron) 
+* [Packages] (contributed packages for R) 
+* R reference card [pdf]( (J Baron) 
 * Writing R extensions [pdf (425k; 69 pgs)] (Explanations of writing packages and calling C from R)
 
 
