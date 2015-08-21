@@ -29,4 +29,9 @@ noita:
         absolute: true
       - name: Links
         url: /links/
-      
+      - name: Forum
+        url: https://piazza.com/duke/fall2015/sta72101f15/home
+        aboslute: true
+social:
+  github: merliseclyde
+  linkedin: merliseclyde
