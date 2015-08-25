@@ -1,0 +1,40 @@
+\message{ !name(intro.tex)}\documentclass[handouts]{beamer}
+%\usepackage[dvips]{color}
+\usepackage{graphicx}
+\usepackage{amsmath,amssymb,array,comment,eucal}
+\input{../macros}
+\usepackage{verbatim}
+
+\usetheme{Warsaw}
+\usecolortheme{orchid}
+\title{Introduction to Linear Models}
+\institute{Merlise Clyde}
+\author{STA721 Linear Models Duke University \\
+Christensen Chapter 1}
+\date{August 27, 2013}
+\logo{duke.eps}
+
+\begin{document}
+
+\message{ !name(intro.tex) !offset(175) }
+  \frametitle{Random Matrix}
+  Likewise $\W = [w_{ij}]$ is a matrix $(r \times s)$ with elements
+  $w_{ij}$ random variables in $\bbR$
+
+Then $\E[\W] = [ \E[w_{ij}] ]$ defined elementwise
+
+\begin{definition}
+  $$\Cov(\Y) = \E[(\Y - \mub)(\Y - \mub)^T] =
+  \begin{array}{ccc}
+    \sigma_1 &  \ldots &\sigma_{1n} \\
+    \vdots &  \sigma_2 \ldots \\
+    \vdots & \ddots & \vdots \\
+    \sigma_{n1} & \ldots & \sigma_n 
+  \end{array} \equiv \Sigma
+$$
+\end{definition}
+\end{frame}
+
+\message{ !name(intro.tex) !offset(485) }
+
+\end{document}
