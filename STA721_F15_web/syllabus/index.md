@@ -28,9 +28,29 @@ linear models and hierarchical models.
 using appropriate software, and communicate results without use of
 statistical jargon.
 
-#### Topics
+#### Topics include (subject to change)
 
 
+* Motivation for Studying Linear Models as Foundation
+* Random Vectors and Matrices
+* Multivariate Normal Distribution Theory
+* Conditional Normal Distribution Theory
+* Linear Models via Coordinate free representations (examples)
+* Maximum Likelihood Estimation & Projections
+* Interval Estimation: Distribution of Quadratic Forms
+* Gauss-Markov Theorem & Optimality of OLS
+* Formulation of Bayesian Inference
+* Subjective and Default Priors
+* Related Shrinkage Methods and Penalized Likelihoods  (Ridge regression, lasso, horseshoe etc)
+* Model Selection (comparison of classical and Bayesian approaches)
+Bayesian Model Averaging 
+
+* Model Checking:  Residual Analysis, Added-Variable Plots,  Cooks-Distance Transformations
+* Bayesian Outliers 
+* Bayesian Robust Methods for Outliers
+* Generalized Linear Model and Weighted Regression
+
+* Hierarchical Models
 
 * * *
 
@@ -42,7 +62,7 @@ statistical jargon.
 <table style="width:400px;">
 <tr> <td> Homework              </td> <td> 20% </td></tr>
 <tr> <td> Midterm         </td> <td> 25% </td></tr>
-<tr> <td> TakeHome        </td> <td> 205% </td></tr>
+<tr> <td> TakeHome        </td> <td> 25% </td></tr>
 <tr> <td> Final            </td> <td> 25% </td></tr>
 <tr> <td> Participation        </td> <td> 5% </td></tr>
 
