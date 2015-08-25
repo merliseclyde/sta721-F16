@@ -24,10 +24,10 @@ review linear algebra, please explore resources under [Links](/links)
 ### Instructional Team:
 
 |------------+---------------------+---------------------|
-|Professor   | [Dr. Merlise Clyde ](http://stat.duke.edu/~clyde) | [clyde@stat.duke.edu](mailto:mine@stat.duke.edu)
+|Professor   | [Dr. Merlise Clyde ](http://stat.duke.edu/~clyde) | [clyde@duke.edu](mailto:clyde@duke.edu)
 |:-----------|:--------------------|:-------------------|
-|TAs         | [Nicole Dazell](http://nicoledalzellduke.weebly.com)     | [nmd16@stat.duke.edu](mailto:) |
-|            | [Kaoru Irie](https://stat.duke.edu/~ki22)       | [ki22@duke.edu](mailto:phillip.lee@duke.edu) |
+|TAs         | [Nicole Dazell](http://nicoledalzellduke.weebly.com)     | [nicole.dalzell@duke.edu](mailto:nicole.dalzell@duke.edu) |
+|            | [Shin Shirota ]    | [shinichiro.shirota@duke.edu](mailto:shinichiro.shirota@duke.edu) |
 |------------+---------------------+---------------------|
 
 * * *
