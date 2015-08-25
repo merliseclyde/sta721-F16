@@ -123,7 +123,7 @@ Note that you **must score at least 30% of the points on the TakeHome Exam in or
 
 ### Exams:
 
-There will be one midterm and one final in this class. See [course info](/info/#exams) for dates and times of the exams. 
+There will be one midterm and one final in this class. See [course info]({{site.baseurl}}/#exams) for dates and times of the exams. 
 You are allowed to use one sheet of notes (``cheat sheet") on the
 midterm and the final. This sheet must be no larger than 8 1/2 x 11,
 and **must be prepared by you**. You may use both sides of the sheet
