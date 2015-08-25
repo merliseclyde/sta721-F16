@@ -13,5 +13,10 @@ push: build
 build:
 	jekyll build
 
+unbind:
+	lsof -wni tcp:4000
+
 serve:
 	jekyll serve --watch --baseurl ''
+
+
