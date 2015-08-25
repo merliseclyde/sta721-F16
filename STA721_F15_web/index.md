@@ -27,7 +27,7 @@ review linear algebra, please explore resources under [Links](/links)
 |Professor   | [Dr. Merlise Clyde ](http://stat.duke.edu/~clyde) | [clyde@duke.edu](mailto:clyde@duke.edu)
 |:-----------|:--------------------|:-------------------|
 |TAs         | [Nicole Dazell](http://nicoledalzellduke.weebly.com)     | [nicole.dalzell@duke.edu](mailto:nicole.dalzell@duke.edu) |
-|            | [Shin Shirota ]    | [shinichiro.shirota@duke.edu](mailto:shinichiro.shirota@duke.edu) |
+|            | Shin Shirota     | [shinichiro.shirota@duke.edu](mailto:shinichiro.shirota@duke.edu) |
 |------------+---------------------+---------------------|
 
 * * *
