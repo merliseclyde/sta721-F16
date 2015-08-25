@@ -32,7 +32,7 @@ review linear algebra, please explore resources under [Links](/links)
 
 * * *
 
-### Required materials:
+### Books \& Materials:
 
 {:.right}
 ![Plane Answers to Complex Questions](images/plane.jpg)
@@ -49,6 +49,11 @@ printing from Springer or purchase a hardback version at the Bookstore.
   Models](http://www.amazon.com/gp/product/052168689X/ref=as_li_qf_sp_asin_il_tl?ie=UTF8&camp=1789&creative=9325&creativeASIN=052168689X&linkCode=as2&tag=andrsblog0f-20&linkId=PX5B5V6ZPCT2UIYV)
   Gelman & Hill (2009)  ISBN-13: 978-0521686891  
 
+* (optional reference) A First Course in Bayesian Statistical Methods,
+Hoff, P. L.  (2009), Springer.  ISBN 978-0-387-92299-7 [get it @
+Duke](http://getitatduke.library.duke.edu/?sid=sersol&SS_jc=TC0000296463&title=A%20First%20Course%20in%20Bayesian%20Statistical%20Methods)
+Used in co-requisite course STA 601.
+
 * Computer: You should have access to a laptop or desktop capable of
   running [R or RStudio](/resources).  We will use R as a programming language
   at later stages for data analysis and use existing packages written
@@ -62,7 +67,9 @@ printing from Springer or purchase a hardback version at the Bookstore.
 * * *
 
 ### Class meetings:
-* Lectures: Tuesday and Thursday, 3:05 pm - 4:20 pm, Perkins 071 
+
+* Lectures: Tuesday and Thursday, 3:05 pm - 4:20 pm, Perkins 071 (Link
+  Classroom 5)
 
 
 * * *

@@ -54,6 +54,13 @@ Resources for JAGS:
 * [rjags on CRAN](https://cran.r-project.org/web/packages/rjags/)
 
 
+### Bayesian References
+
+
+Hoff, P. L.  (2009),  A First Course in Bayesian Statistical Methods,
+Springer.  ISBN 978-0-387-92299-7  [get it @ Duke](http://getitatduke.library.duke.edu/?sid=sersol&SS_jc=TC0000296463&title=A%20First%20Course%20in%20Bayesian%20Statistical%20Methods)
+
+
 * * *
 
 ### Emacs
