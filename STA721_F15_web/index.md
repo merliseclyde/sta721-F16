@@ -52,7 +52,7 @@ printing from Springer or purchase a hardback version at the Bookstore.
 * Computer: You should have access to a laptop or desktop capable of
   running [R or RStudio](/resources).  We will use R as a programming language
   at later stages for data analysis and use existing packages written
-  in R to support the course.  See the [Resources](/resources) page
+  in R to support the course.  See the [Resources]({{site.baseurl}}/resources) page
   for books and other reseources for learning R.
 
 * Calculator: You should bring a calculator to exams. There is no
@@ -72,7 +72,7 @@ printing from Springer or purchase a hardback version at the Bookstore.
 * TakeHome: Tuesday, TBA
 * Final: Tuesday, December 8, 7:00 PM - 10:00 PM
 
-Due Dates for Assignments are in the [Course Calendar](/calendar)
+Due Dates for Assignments are in the [Course Calendar]({{site.baseurl}}/calendar)
 * * *
 
 ### <a name="oh"></a>Office Hours:
