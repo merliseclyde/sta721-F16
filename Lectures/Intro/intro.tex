@@ -1,20 +1,24 @@
-%\documentclass[handout]{beamer}
-\documentclass[]{beamer}
+\documentclass[handout]{beamer}
+%\documentclass[slidestop,compress,mathserif,12pt,t,professionalfonts,xcolor=table]{beamer}
+%\documentclass[]{beamer}
 %\documentclass{beamer}
 %\usepackage[dvips]{color}
 \usepackage{graphicx}
 \usepackage{amsmath,amssymb,array,comment,eucal}
 \input{../macros}
 \usepackage{verbatim}
+%\input{../lec_style.tex}
+\usetheme{default}
+\setbeamercolor{structure}{fg=cyan!90!black}
+%\setbeamercolor*{palette primary}{use=structure,fg=white,bg=gray!60}
+%\setbeamercolor*{palette quaternary}{fg=white,bg=cyan!30!black}
 
-\usetheme{Warsaw}
-\usecolortheme{orchid}
+%\usecolortheme{orchid}
 \title{Introduction to Linear Models}
 \institute{Merlise Clyde}
 \author{STA721 Linear Models Duke University \\
-Wakefield Chapter 1 \& 5 \\
 }
-\date{August 26, 2014}
+\date{August 25, 2015}
 \logo{duke.eps}
 
 \begin{document}
@@ -24,15 +28,19 @@ Wakefield Chapter 1 \& 5 \\
   \frametitle{Coordinates}
 \begin{itemize}
 \item Instructor: Merlise Clyde   \\ 214 Old Chemistry \\
- Office Hours Tues/Thur 4:20-5:20 or by appointment
-\item Teaching Assistant:  Chris Glynn
+ Office Hours MWF 1:00-2:0 or right after class (or by appointment)
+\item Teaching Assistants:  Nicole Dalzell \& Kaoru Irie
 
 \item Course: Theory and Application of linear models from both a
 frequentist (classical) and Bayesian perspective \pause
 \item Prerequisites:   linear algebra and a mathematical statistics
   course covering likelihoods and distribution theory (normal, t, F,
   chi-square, gamma distributions) \pause
-\item Introduce  R programming as needed
+\item Introduce  R programming as needed \pause
+\item Introduce  Bayesian methods, but assume that you are
+  co-registered in 601 or have taken it previously \pause
+\item more info on Course Website
+  \url{http://stat.duke.edu/courses/Fall15/sta721}
 \end{itemize}
   \end{frame}
 
@@ -146,7 +154,8 @@ $$y_i = \beta_0 + \beta_1 x_i + \beta_2 x_i^2 + \epsilon_i \text{  for  } i = 1,
 \Y = & \X \b + \eps \pause
 \end{eqnarray*}
 
-Quadratic in $x$, but linear in $\beta$'s
+Quadratic in $x$, but linear in $\beta$'s, but remainder term is in
+errors $\eps$
 \end{frame}
 \begin{frame} \frametitle{Polynomial Linear Regression}
 Polynomial  Regression:
@@ -263,7 +272,7 @@ uncertainty measures \pause $\Rightarrow$ Likelihood  and Bayesian inference
   \item For small problems, Bayesian methods allow us to incorporate
     prior information which provides better calibrated answers
   \item for problems with complex designs and/or missing data Bayesian
-    methods are often better easier to implement (do not need to rely
+    methods are often easier to implement (do not need to rely
     on asymptotics)
 \item For problems involving hypothesis testing or model selection
   frequentists and Bayesian methods can be strikingly different.
