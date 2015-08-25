@@ -100,7 +100,7 @@ printing from Springer or purchase a hardback version at the Bookstore.
 
 * * *
 
-### Assignments"
+### Assignments:
 
 Assignments and Due dates are in the [Course Calendar]({{site.baseurl}}/calendar)
 
