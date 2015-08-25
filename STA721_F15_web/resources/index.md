@@ -30,6 +30,30 @@ title: R & Computing Resources
 * ggplot2: Elegant Graphics for Data Analysis (Use R!) [Buy it at Amazon](http://www.amazon.com/ggplot2-Elegant-Graphics-Data-Analysis/dp/0387981403/ref=pd_sim_14_3?ie=UTF8&refRID=0PWK3YY76N4T5G8KQRFF)
 * Advanced R (Chapman & Hall/CRC The R Series) [Buy it @ Amazon](http://www.amazon.com/Advanced-Chapman-Hall-CRC-Series/dp/1466586966)
 
+
+* * *
+
+### JAGS
+
+
+JAGS is Just Another Gibbs Sampler.  It is a program for analysis of
+Bayesian hierarchical models using Markov Chain Monte Carlo (MCMC)
+simulation  not wholly unlike BUGS. The name is a misnomer as JAGS
+implements more than just Gibbs Samplers.
+JAGS was written with three aims in mind:
+
+* To have a cross-platform engine for the BUGS language
+* To be extensible, allowing users to write their own functions, distributions and samplers.
+* To be a plaftorm for experimentation with ideas in Bayesian modelling
+
+Resources for JAGS:
+
+* [JAGS website on Sourceforge for Downloads, Manuals, etc](http://mcmc-jags.sourceforge.net)
+* [JAGS News](https://martynplummer.wordpress.com)  Martin Plummer's
+* site for all things JAGS
+* [rjags on CRAN](https://cran.r-project.org/web/packages/rjags/)
+
+
 * * *
 
 ### Emacs
