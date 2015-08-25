@@ -1,3 +1,5 @@
+## Some Examples from Wakefield Chapter 1
+
 library(lasso2)
 data(Prostate)
 attach(Prostate)
@@ -11,7 +13,6 @@ lcp <- Prostate$lcp
 gleason <- Prostate$gleason
 pgg45 <- Prostate$pgg45
 #
-# Fig 1.1
 #
 pdf("prostfig1.pdf",height=4.5,width=7)
 par(mar=c(4,4,2,1)+.1)  # bottom/left/top/right
@@ -33,7 +34,6 @@ plot(pgg45,lpsa,xlab="PGS45",ylab="y")
 lines(lowess(pgg45,lpsa))
 dev.off()
 #
-# Fig 1.2
 #
 pdf("prostfig2.pdf",height=7,width=4.5)
 par(mfrow=c(4,3))
