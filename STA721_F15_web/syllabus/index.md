@@ -28,8 +28,9 @@ linear models and hierarchical models.
 using appropriate software, and communicate results without use of
 statistical jargon.
 
-#### Topics include (subject to change)
+#### Topics
 
+Course topics will be drawn (but subject ot change) from
 
 * Motivation for Studying Linear Models as Foundation
 * Random Vectors and Matrices
@@ -43,14 +44,14 @@ statistical jargon.
 * Subjective and Default Priors
 * Related Shrinkage Methods and Penalized Likelihoods  (Ridge regression, lasso, horseshoe etc)
 * Model Selection (comparison of classical and Bayesian approaches)
-Bayesian Model Averaging 
-
+* Bayes Factors
+* Bayesian Model Averaging 
 * Model Checking:  Residual Analysis, Added-Variable Plots,  Cooks-Distance Transformations
 * Bayesian Outliers 
 * Bayesian Robust Methods for Outliers
 * Generalized Linear Model and Weighted Regression
-
 * Hierarchical Models
+
 
 * * *
 
@@ -107,14 +108,14 @@ responsibility to be an active participant without being called on.
 
 
 
-### Takehome Exam
+### Takehome Data Analysis Problem
 
-The objective of the TakeHome Exam is to give you independent applied
+The objective of the TakeHome is to give you independent applied
 research experience using real data and statistical methods.  You will
 use all (relevant) techniques learned in this class to analyze a
 dataset provided by me.
 
-Further details on the TakeHome Exam will be provided as due dates approach.
+Further details on the TakeHome will be provided as due dates approach.
 
 Note that you **must score at least 30% of the points on the TakeHome Exam in order to pass this class**.
 
