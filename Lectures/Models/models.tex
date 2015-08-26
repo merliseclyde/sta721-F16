@@ -1,0 +1,392 @@
+\documentclass{beamer}
+%\documentclass[handout]{beamer}
+%\usepackage[dvips]{color}
+\usepackage{graphicx}
+\usepackage{amsmath,amssymb,array,comment,eucal}
+\input{../macros}
+\usepackage{verbatim}
+
+\usetheme{Warsaw}
+\usecolortheme{orchid}
+\title{Models \& Estimation}
+\subtitle{Merlise Clyde}
+\author{STA721 Linear Models}
+\institute{Duke University}
+\date{August 28, 2014}
+\logo{duke.eps}
+
+\begin{document}
+\maketitle
+
+\begin{frame}\frametitle{Outline}
+  \tableofcontents
+
+Readings: Christensen Chapter 1-2, Appendix A
+\end{frame}
+%\section{Models}
+\begin{frame}
+  \frametitle{Models}
+Take an random vector $\Y \in \bbR^n$ which is observable and decompose  \pause
+$$ \Y = \alert<2>{\mub} + \alert<3>{\eps}$$
+into  \alert<2>{$\mub \in \bbR^n$ (unknown, fixed)} \pause and
+\alert<3>{$\eps \in \bbR^n$ unobservable error vector (random)}
+\pause
+
+\vspace{18pt}
+Usual assumptions? \pause
+\begin{itemize}
+\item $\E[\eps] = \zero$ \pause  $ \quad \Rightarrow \E[\Y] = \mub$
+  (mean vector) \pause
+\item $\Cov[\eps] = \sigma^2 \I_n$   \pause  $ \quad \Rightarrow
+  \Cov[\Y] = \sigma^2 \I_n$  (errors are uncorrelated) \pause
+\item $\eps \sim \N(\zero, \sigma^2 \I)$ \pause  $ \quad \Rightarrow
+  \Y \sim \N(\mub, \sigma^2 \I)$ \pause
+\end{itemize}
+
+The distribution assumption allows us to right down a likelihood function
+\end{frame}
+
+\begin{frame} \frametitle{Likelihood Functions}
+
+The likelihood function for $\mub, \sigma^2$ is proportional to the
+sampling distribution of the data \pause
+
+\begin{eqnarray*}
+ \cL(\mub, \sigma^2) & \propto & (\alert<3>{2 \pi} \sigma^2)^{-n/2} 
+ \exp{\left\{ - \frac 1 2 \frac{(\Y - \mub)^T (\Y - \mub)}{\sigma^2} 
+\right\}}  \pause \\
+   & \propto & (\sigma^2)^{-n/2} 
+ \exp{\left\{ - \frac 1 2 \frac{\| \Y - \mub \|^2}{\sigma^2} 
+\right\}}  \pause
+\end{eqnarray*}
+Find values of $\muhat$ and $\shat$ that maximize the likelihood
+$\cL(\mub, \sigma^2)$ for $\mub \in \bbR^n$ and $\sigma^2 \in \bbR^+$
+\pause
+
+\vspace{18pt}
+Clearly, $\muhat = \Y$ but $\shat = 0$  is outside the parameter space
+\end{frame}
+%\subsection{Oneway Anova Model}
+\begin{frame}
+  \frametitle{Restrictions on $\mub$}
+Linear model $\mub = \X \b$ for fixed $\X$ ($n \times p$) and some $\b
+\in \bbR^p$  restrict the possible values for $\mub$  \pause
+
+\begin{itemize}
+\item  Oneway Anova Model  $j = 1, \ldots, J$ groups with $n_j$
+  replicates in each group $j$ \pause
+\item {``cell  means'' $Y_{ij} = \mu_j + \epsilon_{ij}$ }
+
+
+$$\mub = {\left[
+  \begin{array}{llll}
+    \one_{n_1} & \zero_{n_1} & \ldots & \zero_{n_1} \\
+    \zero_{n_2} & \one_{n_2} & \ldots & \zero_{n_2} \\
+    \vdots & \vdots & \ddots & \vdots \\
+    \zero_{n_J} & \ldots & \zero_{n_J} & \one_{n_J} \\
+  \end{array}
+   \right] \left(
+     \begin{array}{l}
+\mu_1 \\ \mu_2 \\ \vdots \\ \mu_J 
+    \end{array}
+\right) }$$
+\item $\one_{n_j}$ is a vector of length $n_j$ of ones. 
+\item  $\zero_{n_j}$ is a vector of length $n_jh$ of zeros.
+\end{itemize}
+
+\end{frame}
+\begin{frame}
+  \frametitle{Equivalent Model}
+Linear model $\mub = \X \b$ for fixed $\X$ ($n \times p$) and some $\b
+\in \bbR^p$    \pause
+
+\begin{itemize}
+\item  Oneway Anova Model  $j = 1, \ldots, J$ groups with $n_j$
+  replicates in each group $j$ \pause
+\item 
+{``Treatment effects'' $Y_{ij} = \mu + \tau_j + \epsilon_{ij}$}
+ $$ \mub = {\left[
+  \begin{array}{lllll}
+  \one_{n_1} &  \one_{n_1} & \zero_{n_1} & \ldots & \zero_{n_1} \\
+    \one_{n_2} &  \zero_{n_2} & \one_{n_2} & \ldots & \zero_{n_2} \\
+  \vdots &    \vdots & \vdots & \ddots & \vdots \\
+  \one_{n_J} & \zero_{n_J} & \ldots & \zero_{n_J} & \one_{n_J} \\
+  \end{array}
+   \right] \left(
+     \begin{array}{l}
+\mu \\ \tau_1 \\ \vdots \\ \tau_J 
+    \end{array}
+\right)}
+$$
+ \pause
+\item Equivalent means $\mu_j = \mu + \tau_j$
+\item  Should our inference for $\mub$ depend on how we represent or
+  parameterize $\mub$?
+\end{itemize}
+
+\end{frame}
+
+\begin{frame}
+  \frametitle{Column Space}
+Many equivalent ways to represent the same mean vector -- inference
+should be independent of the coordinate system used \pause
+\begin{itemize}
+\item Let $\X_1, \X_2,\ldots, \X_p \in \bbR^n$  \pause
+\item The set of all linear combinations of $\X_1, \ldots, \X_p$ is
+  the space spanned by $\X_1, \ldots, \X_p \equiv S(\X_1, \ldots,
+  \X_p)$  \pause
+\item Let $\X = [ \X_1\X_2 \ldots \X_p]$ be a $n \times p$ matrix with
+  columns $\X_j$ then the column space of $\X$, $\alert<4>{C(\X) = S(\X_1, \ldots,
+  \X_p)}$ space spanned by the (column) vectors of $\X$ \pause
+\item $\mub \in C(\X): C(\X) = \{\mub \mid \mub \in \bbR^n \text{ such
+    that } \X \b =
+    \mub $ for some $\b \in \bbR^p\}$  (also called the Range of $\X$,
+    $R(\X)$ \pause
+\item $\b$ are the ``coordinates'' of $\mub$  in this space \pause
+\item $C(\X)$ is a subspace of $\bbR^n$
+\end{itemize}
+\end{frame}
+%\section{Vector Spaces \& Subspaces}
+\begin{frame}
+  \frametitle{Vector spaces}
+A collection of vectors $V$ is a real {\bf vector
+  space} if the following conditions hold: for any pair $\x$ and $\y$
+of vectors in $V$ there corresponds a vector $\x + \y$ and scalars
+$\alpha, \beta \in \bbR$ such that: \pause
+\begin{small}
+\begin{enumerate}
+\item $\x + \y = \y + \x$  (vector addition is commutative) \pause
+\item $(\x + \y) + \z = \x + (\y + \z)$ (vector addition is
+  associative) \pause
+\item there exists a unique vector $\zero \in V$ (the origin) such that $\x + \zero =
+ \x$ for every vector $\x$ \pause
+\item for every $\x \in V$, there exists a unique vector $-\x$ such that $\x + 
+(-\x) = \zero$ \pause
+\item $\alpha (\beta \x) = (\alpha \beta) \x $ (multiplication by
+  scalars is associative) \pause
+\item $1 \x = \x$ for every $\x$ \pause 
+\item $\alpha(\x + \y) = \alpha \x + \alpha \y$ (multiplication by
+  scalars is distributive with respect vector addition) \pause
+\item $(\alpha + \beta)\x = \alpha \x + \beta \x$ (multiplication by scalars is 
+distributive with respect to vector addition)
+\end{enumerate}
+  
+\end{small}
+
+\end{frame}
+\begin{frame}
+  \frametitle{Subspaces}
+  \begin{block}{Definition}
+    Let $V$ be a vector space and let $V_0$ be a set with $V_0
+    \subseteq V$.  $V_0$ is a {\it subspace} of $V$ if and only if
+    $V_0$ is a vector space.
+  \end{block} \pause
+
+  \begin{theorem}
+    Let $V$ be a vector space, and let $V_0$ be a non-empty subset of
+    $V$.  If $V_0$ is closed on vector addition and scalar
+    multiplication, then $V_0$ is a subspace of $V$
+  \end{theorem}  \pause
+
+  \begin{theorem}
+    Let $V$ be a vector space, and let $\x_1, \ldots, \x_r$ be vectors
+    in    $V$.  The set of all linear combinations of $\x_1, \ldots, \x_r$
+    is a subspace of $V$.  \pause
+  \end{theorem}
+The Column space of $\X$, $C(\X)$, is a subspace of $\bbR^n$
+\end{frame}
+%\subsection{Basis}
+\begin{frame}
+  \frametitle{Basis}
+  \begin{definition}
+    A finite set of vectors $\{\x_i\}$ is {\it linearly dependent }
+      if there exist scalars $\{a_i \}$ (not all zero) such that 
+ $\sum_i    a_i \x_i = \zero$.
+\pause  Conversely  $\sum_i
+        a_i \x_i = \zero$ implies that $a_i = 0 \, \forall \,  i$ the set is
+        {\it linearly independent}.
+  \end{definition} \pause
+
+  \begin{block}{Definition}
+    If $V_0$ is a subspace of $V$ and if $\{\x_1, \ldots, \x_r \}$ is a
+    linearly independent spanning set for $V_0$, then $\{\x_1, \ldots,
+    \x_r \}$  is a basis for $V_0$
+  \end{block} \pause
+
+  \begin{theorem}
+    If $V_0$ is a subspace of $V$, then all bases for $V_0$ have the
+    same number of vectors
+  \end{theorem} \pause
+Can both the collection of vectors in the cell means 
+and the treatment effects parameterizations be a basis?
+\end{frame}
+\begin{frame} \frametitle{Rank}
+  \begin{definition}
+    The rank of a subspace $V_0$ is the number of elements in a basis
+    for $V_0$ and is written as $r(V_0)$.  Similarly if $\A$ is a
+    matrix, the rank of $C(\A)$ is called the rank of $\A$ and is
+    written $r(\A)$.
+  \end{definition} \pause
+What is the rank of the subspace in the Oneway ANOVA model?
+\end{frame}
+%\subsection{Orthogonality}
+\begin{frame}
+  \frametitle{Orthogonality}
+  \begin{definition}
+An inner product space is a vector space $V$ equipped with an inner product: $\langle
+\cdot, \cdot \rangle$ is a mapping $V \times V \rightarrow \bbR$.  Two vectors are orthogonal if $\langle \x, \y
+    \rangle = 0$, written $\x \perp \y$ \pause   (usual $\x^T\y = 0$)
+  \end{definition}
+  \begin{definition}
+    Two subspaces are orthogonal if $\x \in M$  and $y \in N$ imply
+    that $\x \perp \y$ \pause
+  \end{definition}
+  \begin{definition}
+    Orthonormal basis:  $\{\x_1, \ldots, \x_r$\} is an orthonormal
+    basis  (ONB) for $M$ if $\langle \x_i, \x_j \rangle = 0$ for $i \neq j$ and
+    $\langle \x_i, \x_i \rangle = 1$ for all $i$.  Length $\x = \|
+    \x \| = \sqrt{\langle\x, \x \rangle}$.  Distance of two vectors is 
+$\| \x - \y \|$
+  \end{definition}
+\end{frame}
+\begin{frame} \frametitle{Oneway Anova}
+  Find an orthonormal basis for the oneway ANOVA model.  Is it unique?
+  \pause
+
+\vspace{2in}
+Can also use Gram-Schmidt sequential orthogonalization
+\end{frame}
+\begin{frame}
+  \frametitle{Decomposition}
+  \begin{definition}
+    If $M$ and $N$ are subspaces of $V$ that satisfy
+    \begin{itemize}
+    \item $M \cap N = \{ \zero \}$ \pause
+    \item $M + N = V$ where $M+N = \{ \z \mid \z = \x + \y, \  \x \in
+      M, \y \in N\}$  ($M \oplus N = V$) Direct Sum \pause
+    \end{itemize}
+then $M$ and $N$ are complementary spaces. \pause  $N$ is the
+complement of $M$ \pause
+\end{definition}
+\begin{definition}
+  If $M$ and $N$ are complementary spaces $M + N =\bbR^n$ and $M$ and
+  $N$ are orthogonal subspaces, then $M$ is the orthogonal complement of
+  $N$, $N^{\perp}$. 
+\end{definition} \pause If $\z\in \bbR^n = N+M$, then we can uniquely
+decompose it into a part $\x \in M$ and $\y \in N$ and $r(M) + r(N) =
+n$
+\end{frame}
+%\subsection{Projections}
+\begin{frame} \frametitle{Projections}
+\begin{definition}
+$\P$ is an orthogonal projection operator onto $C(\X)$ if and only if \pause
+  \begin{itemize}
+  \item $\u \in C(\X)$ implies $\P \u = \u$ (projection) \pause
+  \item $\v \perp C(\X)$ implies $\P \v = \zero$ (perpendicular) \pause
+  \end{itemize}
+\end{definition} 
+\begin{itemize}
+\item $C(\X)$ and $C(\X)^\perp$ are complementary spaces \pause
+\item $\y = \u + \v$ for $\y \in \bbR^n$, $\u \in C(\X)$ and $\v \perp
+  C(\X)$  then $\P \y = \P \u + \P \v = \u$ \pause
+\item $\u$ is the orthogonal projection of $\y$ onto $C(\X)$
+
+\end{itemize}
+
+
+
+\end{frame}
+
+\begin{frame} \frametitle{More on Projections}
+\begin{block}{Prop}
+   $\P$ is an orthogonal projection operator on $C(\X)$ then $C(\X) = C(\P)$
+\end{block} \pause
+
+\begin{theorem}
+$\P$ is an orthogonal projection operator on $C(\P)$ if and
+only if  \pause
+\begin{itemize}
+\item $\P = \P^2$  (idempotent)  \pause
+\item $\P = \P^T$ (symmetry)   \pause
+\end{itemize}
+\end{theorem}
+Claim:  If $\X$ is $n \times p$ and $r(\X) = p$ then, $\P_{\X} =
+\X(\X^T\X)^{-1} \X^T$   operator  onto $C(\X)$
+  
+\end{frame}
+\begin{frame} \frametitle{Projections}
+Claim:  If $\X$ is $n \times p$ and $r(\X) = p$ then, $\P_{\X} =
+\X(\X^T\X)^{-1} \X^T$  is an orthogonal projection operator  onto
+$C(\X)$ \pause
+ \begin{itemize}
+\item $\P = \P^2$  (idempotent)  \pause
+  \begin{eqnarray*}
+ \P_X^2 = \P_\X \P_\X & = &\X(\X^T\X)^{-1} \X^T\X(\X^T\X)^{-1} \X^T   \pause \\
+             & = & \X(\X^T\X)^{-1}\X^T \pause\\
+ & = & \P_{\X} \pause
+  \end{eqnarray*}
+
+\item $\P = \P^T$ (symmetry)  \pause
+ \begin{eqnarray*}
+ \P_\X^T  & = & (\X(\X^T\X)^{-1}\X^T)^T \pause \\
+             & = & (\X^T)^T((\X^T\X)^{-1})^T(\X)^T \pause \\
+ & = &  \X(\X^T\X)^{-1}\X^T \pause \\
+ & = & \P_{\X} \pause
+  \end{eqnarray*}
+\item $C(X) = C(\P_X)$  
+\end{itemize}
+\end{frame}
+\begin{frame} \frametitle{Projections}
+  Claim: $\I - \P_\X$ is an orthogonal projection onto $C(\X)^{\perp}$ \pause
+  \begin{itemize}
+  \item idempotent  \pause
+    \begin{eqnarray*}
+(\I - \P_{\X})^2 &= & (\I - \P_\X)(\I - \P_\X)  \pause \\
+& = & \I - \P_\X - \P_\X + \P_\X \P_\X       \pause \\
+& = & \I - \P_\X -\P_\X + \P_\X  \pause\\
+& = & \I - \P_\X  \pause
+    \end{eqnarray*}
+\item Symmetry $\I - \P_\X = (\I - \P_\X)^T$  \pause
+\item $\u \in C(\X)^{\perp} \Rightarrow \u \perp C(\X)$ and  $(\I
+  -\P_\X) \u  = \u$  (projection)  \pause
+\item if $\v \in C(\X)$, $(\I - \P_\X ) \v = \v - \v = 0$ 
+  \end{itemize}
+\end{frame}
+
+\begin{frame} \frametitle{Null Space}
+  \begin{itemize}
+  \item   Column space $C(\X)$   \pause
+  \item  $N(\A)$: Null space of $\A$ is  $\{ \u \mid \A \u = 0 \}$   \pause
+  \item  Null space of $\X^T$ is $(\u \mid \X^T \u = 0 \}$  \pause
+  \item  $ N(\X^T) = C(\X)^\perp$ the orthogonal complement of $C(\X)$  \pause 
+  \item $N(\P_\X) = C(\X)^\perp$   \pause
+  \end{itemize}
+  \begin{eqnarray*}
+\u \in N(\P) & \Rightarrow & \P_\X \u = \zero   \pause\\
+& \Leftrightarrow &    \X(\X^T\X)^{-1} \X^T \u = \zero  \pause  \\
+& \Leftrightarrow & \u^T\X(\X^T\X)^{-1} \X^T   = \zero^T   \pause \\
+& \Leftrightarrow & \u^T\X(\X^T\X)^{-1} \X^T\b   = 0   \pause \\
+& \Leftrightarrow & \u^T\v   = 0  \quad
+   \v \in C(\X)\\ 
+  \end{eqnarray*}
+\end{frame}
+%\section{MLEs}
+\begin{frame} \frametitle{Models Again}
+  \begin{itemize}
+  \item   $\Y \sim \N(\mub, \sigma^2 \I_n)$ with $\mub \in C(\X)$  \pause
+  \item   Claim: Maximum Likelihood Estimator (MLE) of $\mub$ is
+    $\P_\X \Y$  \pause
+\item Log Likelihood:  \pause
+
+$$ \log \cL(\mub, \sigma^2) =
+-\frac{n}{2} \log(\sigma^2) 
+  - \frac 1 2 \frac{\| \Y - \mub \|^2}{\sigma^2} 
+$$  \pause
+\item Decompose $\Y = \P_\X \Y + (\I - \P_\X) \Y$  \pause
+\item Use $\P_\X \mub = \mub$  \pause
+\item and Simplify $$\| \Y - \mub \|^2$$
+  \end{itemize}
+
+\end{frame}
+\end{document}
+
