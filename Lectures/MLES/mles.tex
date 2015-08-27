@@ -1,5 +1,5 @@
-\documentclass{beamer}
-%\documentclass[handout]{beamer}
+%\documentclass{beamer}
+\documentclass[handout]{beamer}
 %\usepackage[dvips]{color}
 \usepackage{graphicx}
 \usepackage{amsmath,amssymb,array,comment,eucal}
@@ -7,22 +7,23 @@
 \usepackage{verbatim}
 
 \usetheme{Warsaw}
+\usecolortheme{orchid}
 \title{Maximum Likelihood Estimation}
 \subtitle{Merlise Clyde}
 \author{STA721 Linear Models}
 \institute{Duke University}
-\date{September 2, 2014}
+\date{August 27, 2015}
 \logo{duke.eps}
 
 \begin{document}
 \maketitle
-
 \begin{frame}\frametitle{Outline}
 Topics
   \begin{itemize}
+ \item Likelihood Function
   \item Projections
   \item Maximum Likelihood Estimates
-  \item Spectral Decomposition
+%  \item Spectral Decomposition
 %  \item Generalized Inverses
 
  % \item Quadratic Forms
@@ -30,32 +31,132 @@ Topics
   \end{itemize}
 
 
-Readings: Continue reading Wakefield 5.6.1  or for more details Christensen Chapter 1-2, Appendix A, and Appendix B
+Readings: Christensen Chapter 1-2, Appendix A, and Appendix B
 \end{frame}
 
+
 %\section{Models}
-\begin{frame} \frametitle{Models \& MLEs}
+\begin{frame}
+  \frametitle{Models}
+Take an random vector $\Y \in \bbR^n$ which is observable and decompose  \pause
+$$ \Y = \alert<2>{\mub} + \alert<3>{\eps}$$
+into  \alert<2>{$\mub \in \bbR^n$ (unknown, fixed)} \pause and
+\alert<3>{$\eps \in \bbR^n$ unobservable error vector (random)}
+\pause
+
+\vspace{18pt}
+Usual assumptions? \pause
+\begin{itemize}
+\item $E[\epsilon_i] = 0 \ \forall i \Leftrightarrow \E[\eps] = \zero$ \pause  $ \quad \Rightarrow \E[\Y] = \mub$
+  (mean vector) \pause
+\item $\epsilon_i$ independent with $\Var(\epsilon_i) = \sigma^2$ and
+  $\Cov(\epsilon_i, \epsilon_j) = 0$  
+\item Matrix version $$\Cov[\eps] \equiv \left[ (\E\left[\epsilon_i -
+  \E[\epsilon_i]\right])(\E\left[\epsilon_j - \E[\epsilon_j]\right])\right]_{ij} = \sigma^2 \I_n$$   \pause  $ \quad \Rightarrow
+  \Cov[\Y] = \sigma^2 \I_n$  (errors are uncorrelated) \pause
+\item $\eps_i \simiid \N(0, \sigma^2)$  implies that $Y_i \ind \N(\mu_i, \sigma^2)$
+\end{itemize}
+
+\end{frame}
+
+\begin{frame} \frametitle{Likelihood Functions}
+
+The likelihood function for $\mub, \sigma^2$ is proportional to the
+sampling distribution of the data \pause
+
+\begin{eqnarray*}
+ \cL(\mub, \sigma^2) & \propto & \prod_{i = 1}^n \frac{1}{\sqrt{(2 \pi
+                                 \sigma^2)}} \exp{- \frac{1}{2}\left\{ \frac{( y_i
+                                 - \mu_i)^2}{\sigma^2} \right\}}
+                                 \pause \\
+ & \propto & (\alert<3>{2 \pi} \sigma^2)^{-n/2} 
+ \exp{\left\{ - \frac 1 2  \frac{ \sum_i(Y_i - \mu_i)^2 )}{\sigma^2} 
+\right\}}  \pause \\
+ & \propto & ( \sigma^2)^{-n/2} 
+ \exp{\left\{ - \frac 1 2 \frac{(\Y - \mub)^T (\Y - \mub)}{\sigma^2} 
+\right\}}  \pause \\
+   & \propto & (\sigma^2)^{-n/2} 
+ \exp{\left\{ - \frac 1 2 \frac{\| \Y - \mub \|^2}{\sigma^2} 
+\right\}} \\ \pause
+  & \propto &  (2 \pi)^{-n/2}
+| \I_n\sigma^2|^{-1/2}  
+ \exp{\left\{ - \frac 1 2 \frac{\| \Y - \mub \|^2}{\sigma^2} 
+\right\}}  \pause
+\end{eqnarray*}
+
+Last line is the density of $\Y \sim \N_n\left(\mu, \sigma^2 \I_n\right)$
+\end{frame}
+
+\begin{frame} \frametitle{MLEs}
+
+Find values of $\muhat$ and $\shat$ that maximize the likelihood
+$\cL(\mub, \sigma^2)$ for $\mub \in \bbR^n$ and $\sigma^2 \in \bbR^+$
+\pause
+  \begin{eqnarray*}
+ \cL(\mub, \sigma^2) 
+    & \propto & (\sigma^2)^{-n/2} 
+ \exp{\left\{ - \frac 1 2 \frac{\| \Y - \mub \|^2}{\sigma^2} 
+\right\}} \\ \pause
+ \cL(\mub, \sigma^2) 
+\log(\cL)   & \propto & -\frac{n}{2} \log(\sigma^2)  - \frac 1 2 \frac{\| \Y - \mub \|^2}{\sigma^2} 
+ \\ \pause
+\end{eqnarray*}
+or equivalently the log likelihood
+
+
+\vspace{18pt}
+Clearly, $\muhat = \Y$ but $\shat = 0$  is outside the parameter space
+\vspace{18pt}
+
+Need restrictions on $\mub = \X\b$
+
+\end{frame}
+
+\begin{frame}
+  \frametitle{Column Space}
+\begin{itemize}
+\item Let $\X_1, \X_2,\ldots, \X_p \in \bbR^n$  \pause
+\item The set of all linear combinations of $\X_1, \ldots, \X_p$ is
+  the space spanned by $\X_1, \ldots, \X_p \equiv S(\X_1, \ldots,
+  \X_p)$  \pause
+\item Let $\X = [ \X_1\X_2 \ldots \X_p]$ be a $n \times p$ matrix with
+  columns $\X_j$ then the column space of $\X$, $\alert<4>{C(\X) = S(\X_1, \ldots,
+  \X_p)}$ space spanned by the (column) vectors of $\X$ \pause
+\item $\mub \in C(\X): C(\X) = \{\mub \mid \mub \in \bbR^n \text{ such
+    that } \X \b =
+    \mub $ for some $\b \in \bbR^p\}$  (also called the Range of $\X$,
+    $R(\X)$) \pause
+\item $\b$ are the ``coordinates'' of $\mub$  in this space \pause
+\item $C(\X)$ is a subspace of $\bbR^n$
+\end{itemize}
+Many equivalent ways to represent the same mean vector -- inference
+should be independent of the coordinate system used \pause
+
+\end{frame}
+%\section{MLEs}
+
+%\section{Models}
+\begin{frame} \frametitle{Projections}
   \begin{itemize}
-  \item   $\Y \sim \N(\mub, \sigma^2 \I_n)$ with $\mub \in C(\X)
-    \Leftrightarrow \mub = \X \b$  \pause
-  \item   Claim: Maximum Likelihood Estimator (MLE) of $\mub$ is
-    $\P_\X \Y$  \pause
+\item $\mub = \X \b$ with $\X$ full rank $\mub \in C(\X)$
+\item $\P_\X = \X (\X^T\X)^{-1} \X^T$
 \item $\P_\X$ is the orthogonal projection operator on the column
-  space of $\X$; e.g. $\X$ full rank $\P_\X = \X (\X^T\X)^{-1} \X^T$
-\item $\P = \P^2$  (idempotent)  \pause
+  space of $\X$; e.g. 
+\item $\P = \P^2$  idempotent (projection)  \pause
   \begin{eqnarray*}
  \P_X^2 = \P_\X \P_\X & = &\X(\X^T\X)^{-1} \X^T\X(\X^T\X)^{-1} \X^T   \pause \\
              & = & \X(\X^T\X)^{-1}\X^T \pause\\
  & = & \P_{\X} \pause
   \end{eqnarray*}
-\item $\P = \P^T$ (symmetry)  \pause
+\item $\P = \P^T$ symmetry (orthogonal) \pause
  \begin{eqnarray*}
  \P_\X^T  & = & (\X(\X^T\X)^{-1}\X^T)^T \pause \\
              & = & (\X^T)^T((\X^T\X)^{-1})^T(\X)^T \pause \\
  & = &  \X(\X^T\X)^{-1}\X^T \pause \\
  & = & \P_{\X} \pause
   \end{eqnarray*}
-\item $C(X) = C(\P_X)$ 
+\item $\P_{\X} \mub = \P_{\X} \X \b = \X(\X^T\X)^{-1}\X^T
+  \X \b = \X\b = \mub$
 \end{itemize}
 \end{frame}
 
@@ -70,15 +171,23 @@ Readings: Continue reading Wakefield 5.6.1  or for more details Christensen Chap
 & = & \I - \P_\X  \pause
     \end{eqnarray*}
 \item Symmetry $\I - \P_\X = (\I - \P_\X)^T$  \pause
-\item $\u \in C(\X)^{\perp} \Rightarrow \u \perp C(\X)$ and  $(\I
-  -\P_\X) \u  = \u$  (projection)  \pause
-\item if $\v \in C(\X)$, $(\I - \P_\X ) \v = \v - \v = 0$ 
+\item $\u \in C(\X)^{\perp} \Rightarrow \u \perp C(\X)$ that is $u \in
+  C(\X)^{\perp}$ and $v \in C(\X)$ then $\u^T\v = 0$
+
+\item $(\I -\P_\X) \u  = \u$  (projection)  \pause
+\item if $\v \in C(\X)$, $(\I - \P_\X ) \v = \v - \v = \zero$ 
   \end{itemize}
 \end{frame}
 
 
 \begin{frame}
   \frametitle{Log Likelihood}
+     $\Y \sim \N(\mub, \sigma^2 \I_n)$ with 
+    $\mub = \X \b$  and $\X$ full column rank \\ \pause
+
+ Claim: Maximum Likelihood Estimator (MLE) of $\mub$ is
+    $\P_\X \Y$  \pause
+
   \begin{itemize}
 \item Log Likelihood:  \pause
 
@@ -88,7 +197,7 @@ $$ \log \cL(\mub, \sigma^2) =
 $$  \pause
 \item Decompose $\Y = \P_\X \Y + (\I - \P_\X) \Y$  \pause
 \item Use $\P_\X \mub = \mub$  \pause
-\item and Simplify $\| \Y - \mub \|^2$
+\item Simplify $\| \Y - \mub \|^2$
   \end{itemize}
 
 \end{frame}
@@ -98,9 +207,9 @@ $$  \pause
   \frametitle{Expand}
 
   \begin{eqnarray*}
-    \| \Y - \mub \|^2 & = & \| \Y  \alert<1>{- \P_\X \Y + \P_x \Y} -
+    \| \Y - \mub \|^2 & = & \|  \alert<1>{ (\I- \P_\X) \Y + \P_x \Y} -
     \mub \|^2 \pause \\
-  & = & \| \Y - \P_\X \Y + \P_x \Y - \alert<2>{\P_\X}\mub \|^2 \pause \\
+  & = & \| (\I - \P_\X) \Y + \P_x \Y - \alert<2>{\P_\X}\mub \|^2 \pause \\
   & = & \alert<3>{\|(\I -\P_\x)}\Y +  \alert<3>{\P_\X}(\Y  - \mub)
   \|^2 \\\pause 
  & = & \alert<4>{\|(\I -\P_\x)\Y \|^2}\pause +  \alert<5>{\|
@@ -197,7 +306,7 @@ on $\X$
   \item Fitted Values  $\Yhat = \P_\X \Y = \X \bhat$ \pause
 \item Residuals $\e = (\I - \P_\X) \Y$ \pause
 \item $\Y = \Yhat + \e$ \pause
-$$\| \Y \|^2 = \| (\I- \P_\X)\Y\|^2 + \| \P_\X \Y \|^2$$ \pause
+$$\| \Y \|^2 = \| \P_\X \Y \|^2 +  \| (\I- \P_\X)\Y\|^2  $$ \pause
   \end{itemize}
   \centerline{\includegraphics[height=2in]{OLS}}
 
@@ -221,7 +330,7 @@ $\E[\e] = \zero$ if $\mub \in C(\X)$ \pause
 & = & (\I - \P_\X) \mub \pause\\
 & = & \zero \pause
     \end{eqnarray*}
-Will not be $\zero$ if $\mub \notin C(\X)$
+Will not be $\zero$ if $\mub \notin C(\X)$  (useful for model checking)
 
 \end{frame}
 
@@ -302,11 +411,14 @@ Use the theorem: \pause
 Therefore an unbiased estimate of $\sigma^2$ is $$\frac{\e^T\e}{n - r(\X)}$$
 \pause
 
-\begin{block}{Trace of a Projection Matrix}
-If $\P$ is an orthogonal projection matrix, then its eigenvalues
-$\lambda_i$ are
-either zero or one with $\tr (\P) = \sum_i(\lambda_i) = r(\P)$
-\end{block}
+If $\X$ is full rank ($r(\X) = p$) and $\P_{\X} = \X(\X^T\X)^{-1} \X^T$ then the 
+
+\begin{eqnarray*}
+\tr(\P_{\X}) & = & \tr( \X(\X^T\X)^{-1} \X^T) \\
+&  = &  \tr(\X^T\X(\X^T\X)^{-1}) \\
+&  = & \tr(\I_p) = p
+\end{eqnarray*}
+
 
 \end{frame}
 \begin{frame}
@@ -360,34 +472,11 @@ $$\P = \sum_{i=1}^r \u_i \u_i^T$$
 sum of $r$ rank 1 projections.
 \end{frame}
 
+\begin{frame}\frametitle{Next Class}
+  
+  distribution theory 
 
-\begin{frame}[fragile]
-  \frametitle{Prostate Example}
-  \begin{small}
-\begin{verbatim}
-> library(lasso2)
-> summary(lm(lcavol ~ ., data=Prostate))
-
-Coefficients:
-             Estimate Std. Error t value Pr(>|t|)    
-(Intercept) -2.260101   1.259683  -1.794   0.0762 .  
-lweight     -0.073166   0.174450  -0.419   0.6759    
-age          0.022736   0.010964   2.074   0.0410 *  
-lbph        -0.087449   0.058084  -1.506   0.1358    
-svi         -0.153591   0.253932  -0.605   0.5468    
-lcp          0.367300   0.081689   4.496 2.10e-05 ***
-gleason      0.190759   0.154283   1.236   0.2196    
-pgg45       -0.007158   0.004326  -1.654   0.1016    
-lpsa         0.572797   0.085790   6.677 2.11e-09 ***
----
-
-Residual standard error: 0.6998 on 88 degrees of freedom
-Multiple R-squared:  0.6769,	Adjusted R-squared:  0.6475 
-F-statistic: 23.04 on 8 and 88 DF,  p-value: < 2.2e-16
-\end{verbatim}
-    
-  \end{small}
-
+  Continue Reading Chapter 1-2 and Appendices A \& B in Christensen
 \end{frame}
 \end{document}
 
@@ -416,7 +505,7 @@ $$ \e \sim \N(\zero_n, \sigma^2 (\I_n - \P_\X))$$
 \begin{frame}
   \frametitle{Generalize Inverses}
 
-A generalize invers of $\A$: $\A^{-}$ satisfies   $\A \A^- \A = \A$
+A generalize inverse of $\A$: $\A^{-}$ satisfies   $\A \A^- \A = \A$
 
 
 Special Case: Moore-Penrose Generalized Inverse  \pause
