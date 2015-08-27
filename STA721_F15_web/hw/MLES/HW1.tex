@@ -25,14 +25,14 @@ Work the following problems from Christensen (C) and Wakefield (W)
 
   \begin{enumerate}
   \item Any $\X$ may be written via a singular value decomposition as
-    $\U \Lambda \V^T$ where $\U$ is a $n \times p$ orthonormal matrix
+    $\U \Lambdab \V^T$ where $\U$ is a $n \times p$ orthonormal matrix
     ($\U^T\U = \I_p$ and columns of $\U$ form an orthonormal basis (ONB) for
-    $C(\X)$), $\Lambda$ is a $p \times p$ diagonal matrix and $\V$ is
+    $C(\X)$), $\Lambdab$ is a $p \times p$ diagonal matrix and $\V$ is
     a $p \times p$ orthogonal matrix ($\V^T\V = \V \V^T = \I_p$. Note
     the difference between {\it orthonormal} and {\it orthogonal}.
     Show that $\P_X$ may be expressed as a function of $\U$ only and
     provide an expression for $\hat{\Y}$.  Similarly, find an
-    expression for $hat{\b}$ in terms of $\U$, $\Lambda$ and $\V$.
+    expression for $\hat{\b}$ in terms of $\U$, $\Lambdab$ and $\V$.
     Your result should only require the inverse of a diagonal matrix!
 \item $\X$ may be written in a (reduced or thinned) QR decomposition as a matrix
   $\Q$ that is a $n \times p$ orthonormal matrix (which forms an ONB
@@ -66,7 +66,7 @@ Work the following problems from Christensen (C) and Wakefield (W)
   the QR method ($O(2 n p^2 - 2p^3/3)$ flops in the function {\tt lm.fit()}
   (which is the workhorse underneath the {\tt lm()} function.  Generalized QR
   algorithms can handle rank deficient case.  The SVD method is the
-  most expensive $O(2 n p^2 + 11 n^3)$ but can handle the rank case.
+  most expensive $O(2 n p^2 + 11 p^3)$ but can handle the rank case.
   There are generalized Cholesky and QR methods for the rank deficient
   case.
 \end{enumerate}
