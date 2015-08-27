@@ -1,0 +1,66 @@
+\documentclass[12pt]{article}
+\usepackage{fullpage, url}
+\pagestyle{empty}
+\begin{document}
+{\bf STA721}
+\vspace{.1in}
+\begin{center}
+{\large \bf Homework 1} \\
+\end{center}
+\vspace{.5in}
+\noindent
+Work the following problems from Christensen (C) and Wakefield (W)
+\begin{enumerate}
+\item 5.8 (W)  (see link to eBook on Calendar)
+\item 1.5.8 (C) (see link to eBook on Calendar)
+
+\item We showed that $P_X = X(X^TX)^{-1}X^T$ was an orthogonal
+  projection on the column space of $X$ and that $\hat{Y} = P_X Y$.
+  While useful for theory, the projection matrix should never be used
+  in practice to find the MLE of $\mu$ due to 1) computational
+  complexity (inverses and matrix multiplication) and instability.  To
+  find $\hat{\beta}$ we also need to solve $X \bets = P_X Y $ which
+  leads to the {\it normal equations}  $(X^TX) \beta = \X^TY$ and
+  solving the system of equations for $\beta$.
+  Instead consider the following for $X$ ($n \times p, p < n$) of rank $p$
+
+  \begin{enumerate}
+  \item Any $X$ may be written via a singular value decomposition as $U
+    \Lambda V^T$ where $U$ is a $n \times p$ orthonormal matrix ($U^TU
+    = I_p$ and columns of $U$ form an orthonormal basis for $C(X)$, 
+    $\Lambda$ is a $p \times p$ diagonal matrix and $V$ is an
+    orthogonal matrix ($V^TV = V V^T = I_p$.   Show that $P_X$ may be
+    expressed as a function of $U$ only and provide an expression for
+    $\hat{Y}$.
+    Similarily, find an expression for $hat{\beta}$ in terms of $U$,
+    $\Lambda$ and $V$.  
+\item $X$ may be written in a (reduced) QR decomposition as a matrix
+  $Q$ that is a $n \times p$ orthonormal matrix and $R$ which is a $p
+  \times p$ upper triangular matrix (i.e all elements below the
+  diagonal are 0) where $X = Q R$. The columnd of $Q$ are an ONB for
+  the $C(X)$. Show that $P_X$
+  may be expressed as a function of $Q$ alone.   Show that  the 
+ the normal equations reduce to $R \beta = Z$ where $Z = Q^T Y$.
+ Because $R$ is upper triangular, show that $\hat{\beta}$ may be
+ obtained be backsolving (and avoiding the usual matrix inverse).   
+\item Any symmetric matrix $A$ may be written via a Cholesky
+  decomposition as $A = L L^T$ where $L$
+  is lower triangular.   If $Z = X^TY$  show that we can solve two
+  triangular systems $L L^T \beta = Z$ by solving for $w$ using  $L w = Z$ using a
+  forward substitution and then for $\hat{\beta}$ using $L^T \beta =
+  w$ avoinding any matrix inversion.
+
+\item Use R to find $Q$ and $U$ for the matrices in problems 1.5.8 in
+  Christensen. Does $Q$ equal $U$?
+\item Prove that the two projection matrices obtained by the SVD and
+  the QR method are the same.  
+
+  \end{enumerate}
+Note:  The Cholesky method is the fastest $O(p n^2 + n^3/3)$ floating
+point operations (flops), but is numerically unstable if the matrix is
+poorly conditioned.  R uses the QR method ($O(2 p n^2 - 2n^3/3)$
+flops.  Generalized QR handles rank deficient case.  The SVD method is
+the most expensive 
+\end{enumerate}
+\end{document}
+
