@@ -1,0 +1,29 @@
+\documentclass[12pt]{article}
+\usepackage{fullpage}
+\usepackage{amsmath,amssymb,array,comment,eucal}
+\pagestyle{empty}
+\input{../../../Lectures/macros}
+\begin{document}
+{\bf STA721 \hfill Homework 2}
+
+\vspace{.5in}
+\noindent
+Work the following problems from Christensen (C) and Wakefield (W)
+\begin{enumerate}
+\item 1.11
+\item 1.4  (see sketch from class notes)
+\item 1.5.3
+\item Suppose $\Sigmab$ is a real $p \times p$ positive semi-definite
+  matrix.  Then the Cholesky decomposition of 
+  $\Sigmab = \L \L^T$ where $\L$ is a lower triangular matrix with
+  real, non-negative elements on the diagonal.
+
+  If you can generate standard normal random variates, $\Z = (z_1,
+  \ldots, z_p)^T$ with $z_i \simiid N(0,1)$, then what is the
+  distribution of $\Y = \mu + \L \Z$ for $\mu \in \bbR^p$?   Explain why it
+  does not matter for generating $\Y$ that the Cholesky decomposition is
+  not unique when $\Sigmab$ is not positive definite.
+
+\end{enumerate}
+\end{document}
+
