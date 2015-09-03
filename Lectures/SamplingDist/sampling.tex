@@ -90,13 +90,13 @@ Then $\hat{\b} \sim \N(\b, \sigma^2 (\X^T\X)^{-1})$
 
   \begin{align*}
     \hat{\beta}_j \mid \beta_j, \sigma^2 & \sim \N(\beta, { \sigma^2}
-                                           [(\X^T\X)^{-1}]_{ii})
+                                           [(\X^T\X)^{-1}]_{jj})
   \end{align*}  \pause
 
 What happens if we substitute $\hat{\sigma}^2 = \e^t\e/(n-r(\X))$ in the above? \pause
 
 $$
-\frac{(\hat{\beta}_j - \beta_j)/ \sigma \sqrt{ [(\X^T\X)^{-1}]_{ii}}}
+\frac{(\hat{\beta}_j - \beta_j)/ \sigma \sqrt{ [(\X^T\X)^{-1}]_{jj}}}
 {\sqrt{\e^T\e/ (\sigma^2 (n - r(\X))} } \eqindis
 \frac{N(0,1)}{\sqrt{\chi_{n-r(\X)}^2/(n - r(\X)}} \sim t(n - r(\X), 0 ,1)
 $$
@@ -120,14 +120,6 @@ See Casella \& Berger or DeGroot \& Schervish for derivation - nice change of va
 
 
 
-\begin{frame}
-  \frametitle{ Fitted Values and Residuals are Independent}
-If  $\Y \sim \N(\X\b, \sigma^2 \I_n)$
-
-Then $\Cov(\hat{\b}, \e) = \zero$ which implies independence 
-\vfill
-
-\end{frame}
 
 
 
@@ -160,8 +152,8 @@ Z_j^2 \sim \chi^2_p$  \pause
 \begin{eqnarray*}
   \varphi_{X}(t) & = & \E[e^{it \sum_j^p
 Z_j^2}] \pause \\
-& = & \prod_{j-1}^p \E[e^{it Z_j^2 }] \pause \\
-& = &  \prod_{j-1}^p (1 - 2 i t)^{-1/2} \pause \\
+& = & \prod_{j=1}^p \E[e^{it Z_j^2 }] \pause \\
+& = &  \prod_{j=1}^p (1 - 2 i t)^{-1/2} \pause \\
 & = & (1 - 2 i t)^{-p/2} \pause
 \end{eqnarray*}
 A  Gamma distribution with shape $p/2$ and rate $1/2$, $G(p/2, 1/2)$ 
@@ -175,9 +167,9 @@ $$
 \begin{frame}
   \frametitle{Quadratic Forms}
   \begin{theorem}
-  Let  $\Y \sim  \N(\mub, \I_n)$ with $\mub \in C(\X)$ then if $\Q$ is
+  Let  $\Y \sim  \N(\mub, \sigma^2 \I_n)$ with $\mub \in C(\X)$ then if $\Q$ is
   a rank $k$ orthogonal  projection on to $C(\X)^{\perp}$,
-$\Y^T \Q \Y \sim \chi^2_k$
+$(\Y^T \Q \Y)/\sigma^2 \sim \chi^2_k$
   \end{theorem}
   \begin{proof}
     For an orthogonal projection  $\Q = \U \Lambdab \U^T 
@@ -208,6 +200,17 @@ $C(\X)^{\perp}$ \pause $$\frac{\e^T\e}{\sigma^2} = \Y^T\frac{(\I_n - \P_\X)}\sig
 \end{block}
 \end{frame}
 
+\begin{frame}
+  \frametitle{ Estimated Coefficients and Residuals are Independent}
+If  $\Y \sim \N(\X\b, \sigma^2 \I_n)$
+
+Then $\Cov(\hat{\b}, \e) = \zero$ which implies independence 
+\vfill
+
+Functions of independent random variables are independent
+(show characteristic functions or densities factor)
+\end{frame}
+
 \begin{frame}\frametitle{Putting it all together}
 $\hat{\b} \sim \N(\b, \sigma^2 (\X^T\X)^{-1})$
   \begin{itemize}
@@ -227,10 +230,10 @@ $$ \frac{(\hat{\beta}_j - \beta_j)/ \sigma [(\X^T\X)^{-1}]_{jj}}
   \begin{itemize}
   \item 
    95\% Confidence interval:  $\hat{\beta}_j \pm t_{\alpha/2}
-   \SE(\hat{\beta}_j$  \pause use {\tt qt(a, df)} for t quantile
+   \SE(\hat{\beta}_j)$  \pause use {\tt qt(a, df)} for $t_a$ quantile
 \item derive from pivotal quantity $t = (\hat{\beta}_j -
   \beta_j)/\SE(\hat{\beta}_j)$ where 
- $P(t \in (t_{\alpha/2}, t_{1 - \alpha/2}))  = \alpha$
+ $P(t \in (t_{\alpha/2}, t_{1 - \alpha/2}))  = 1 -\alpha$
   \end{itemize}
 
 \vfill
@@ -261,16 +264,16 @@ $$ \frac{(\hat{\beta}_j - \beta_j)/ \sigma [(\X^T\X)^{-1}]_{jj}}
   \begin{itemize}
   \item 
   For a ``1'' unit increase in $\X_j$, expect $\Y$ to increase by $\hat{\beta}_j \pm t_{\alpha/2}
-   \SE(\hat{\beta}_j$ 
+   \SE(\hat{\beta}_j)$ 
 \item for log transforms
 $$\Y = \exp(\X\b + \eps) = \prod \exp(\X_j \beta_j) \exp(\eps)$$
-\item if $\X$ is logged  $\X_j = \log(|W_j)$ then look at 2-fold or \%
-  increases in $\W$
+\item if $\X = \log(\W_j)$ then look at 2-fold or \%
+  increases in $\W$ to look at multiplicative increase in median of $\Y$
 \item if{\tt  cavol} increases by 10\%  then we expect {\tt PSA} to increase
-  by $1.10^{(CI)}$  = $( 1.0398, 1.0751)$ or by 3.98 to 7.51 percent
+  by $1.10^{(CI)}$  = $( 1.0398 \%, 1.0751 \%)$ or by 3.98 to 7.51 percent
   \end{itemize}
 For a 10\% increase in cancer volume, we are 95\% confident  that the PSA levels
-will increase by approximately 4 to 7.5\%
+will increase by approximately 4 to 7.5 percent.
 \end{frame}
 \begin{frame}\frametitle{Derivation}
   
