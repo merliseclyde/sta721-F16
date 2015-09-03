@@ -17,10 +17,10 @@
 
     Show that the projection, $\P$, on the column space spanned by
     $\one$ and $\X$ may be written as
-    $\P = \P_{\one} + \P_{\X - \one \xbar}$.  Show that diagonal
+    $\P = \P_{\one} + \P_{\X - \one \xbar^T}$.  Show that diagonal
     elements are
-    $$h_{ii} = \frac{1}{n} + (\x_i-\xbar)^T\left((\X- \one \xbar)^T(\X - \one
-    \xbar)\right)^{-1}(\x_i - \xbar)$$
+    $$h_{ii} = \frac{1}{n} + (\x_i-\xbar)^T\left((\X- \one \xbar^T)^T(\X - \one
+    \xbar^T)\right)^{-1}(\x_i - \xbar)$$
     (Recall all vectors are column vectors).  The $h_{ii}$ are known
     as the leverage values.
 \item Find the sampling distribution of $\hat{\mu}_i$ (the mean
@@ -33,8 +33,9 @@
     $\sigma^2$ does not have a student $t$ distribution with
     $n - p - 1$ degrees of freedom.
 \end{enumerate}
-\begin{enumerate}
 \item  Refer to the Prostate data  from {\tt library(lasso2); data(Prostate)}
+\begin{enumerate}
+
 \item Fit a linear model using {\tt lcavol} (log
   cancer volume) as the response and include all covariates.
   Construct 95\% confidence intervals for 
