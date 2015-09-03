@@ -1,0 +1,282 @@
+\documentclass[handout]{beamer}
+%\documentclass{beamer}
+%\usepackage[dvips]{color}
+\usepackage{graphicx}
+\usepackage{amsmath,amssymb,array,comment,eucal}
+\input{../macros}
+\usepackage{verbatim}
+
+\usetheme{Warsaw}
+\title{Sampling Distributions}
+\subtitle{Merlise Clyde}
+\author{STA721 Linear Models}
+\institute{Duke University}
+\date{September 3, 2015}
+\logo{duke.eps}
+
+\begin{document}
+\maketitle
+
+\begin{frame}\frametitle{Outline}
+Topics 
+  \begin{itemize}
+  \item Normal Theory
+  \item Chi-squared Distributions
+  \item Student $t$ Distributions
+  \end{itemize}
+
+\vspace{24pt}
+Readings:  Christensen Apendix C, Chapter 1-2 
+\end{frame}
+%\section{Models}
+
+\begin{frame}[fragile]
+  \frametitle{Prostate Example}
+  \begin{small}
+\begin{verbatim}
+> library(lasso2); data(Prostate)    # n = 97, 9 variables
+> summary(lm(lpsa ~ ., data=Prostate))
+Coefficients:
+             Estimate Std. Error t value Pr(>|t|)    
+(Intercept)  0.669399   1.296381   0.516  0.60690    
+lcavol       0.587023   0.087920   6.677 2.11e-09 ***
+lweight      0.454461   0.170012   2.673  0.00896 ** 
+age         -0.019637   0.011173  -1.758  0.08229 .  
+lbph         0.107054   0.058449   1.832  0.07040 .  
+svi          0.766156   0.244309   3.136  0.00233 ** 
+lcp         -0.105474   0.091013  -1.159  0.24964    
+gleason      0.045136   0.157464   0.287  0.77506    
+pgg45        0.004525   0.004421   1.024  0.30885    
+---
+Signif. codes:  0 '***' 0.001 '**' 0.01 '*' 0.05 '.' 0.1 ' ' 1
+
+Residual standard error: 0.7084 on 88 degrees of freedom
+Multiple R-squared:  0.6548,	Adjusted R-squared:  0.6234 
+F-statistic: 20.86 on 8 and 88 DF,  p-value: < 2.2e-16
+\end{verbatim}
+    
+\end{small}
+
+\end{frame}
+
+\begin{frame}
+  \frametitle{Summary of Distributions}
+
+Models:  Full  $\Y = \X\b + \eps$ 
+
+Assume $\X$ is full rank with the first column of ones $\one_n$ and $p$ additional predictors $r(\X) = p +1$
+
+   $$\hat{\b} \mid \sigma^2 \sim \N(\b, \sigma^2 (\X^T\X)^{-1})$$
+   $$\frac{\RSS }{\sigma^2} \sim \chi^2_{n - r(\X)}$$
+   $$\frac{\hat{\beta}_j - \beta_j}{\SE(\hat{\beta}_j)} \sim t_{n - r(\X)}$$
+where  $\SE(\hat{\beta})$  is the square root of the  $j$th diagonal element of $\hat{\sigma}^2 (\X^T\X)^{-1}$   and $\hat{\sigma}^2$ is the unbiased estimate of $\sigma^2$
+\end{frame}
+
+\section{Sampling Distribution}
+
+
+
+\begin{frame}
+  \frametitle{Sampling Distribution of $\b$}
+If  $\Y \sim \N(\X\b, \sigma^2 \I_n)$
+
+Then $\hat{\b} \sim \N(\b, \sigma^2 (\X^T\X)^{-1})$
+\vfill
+
+\end{frame}
+
+
+\begin{frame} \frametitle{Unknown $\sigma^2$}
+
+  \begin{align*}
+    \hat{\beta}_j \mid \beta_j, \sigma^2 & \sim \N(\beta, { \sigma^2}
+                                           [(\X^T\X)^{-1}]_{ii})
+  \end{align*}  \pause
+
+What happens if we substitute $\hat{\sigma}^2 = \e^t\e/(n-r(\X))$ in the above? \pause
+
+$$
+\frac{(\hat{\beta}_j - \beta_j)/ \sigma \sqrt{ [(\X^T\X)^{-1}]_{ii}}}
+{\sqrt{\e^T\e/ (\sigma^2 (n - r(\X))} } \eqindis
+\frac{N(0,1)}{\sqrt{\chi_{n-r(\X)}^2/(n - r(\X)}} \sim t(n - r(\X), 0 ,1)
+$$
+
+Need to show that $\e^T\e /\sigma^2$ has a $\chi^2$ distribution and
+is independent of the numerator!
+\end{frame}
+
+\begin{frame}
+  \frametitle{Central Student $t$ Distribution}
+  \begin{definition}
+    Let $Z \sim \N(0, 1)$ and $S \sim \chi^2_p$ with $Z$ and $S$
+    independent, \pause then
+ $$ W = \frac{Z} {\sqrt{S/p}}$$
+has a (central) Student $t$ distribution with $p$ degrees of freedom
+  \end{definition}
+\pause
+ 
+See Casella \& Berger or DeGroot \& Schervish for derivation - nice change of variables and marginalization problem!
+\end{frame}
+
+
+
+\begin{frame}
+  \frametitle{ Fitted Values and Residuals are Independent}
+If  $\Y \sim \N(\X\b, \sigma^2 \I_n)$
+
+Then $\Cov(\hat{\b}, \e) = \zero$ which implies independence 
+\vfill
+
+\end{frame}
+
+
+
+\begin{frame}
+  \frametitle{Chi-Squared Distribution}
+  \begin{Definition}
+    If $Z \sim \N(0,1)$ then $Z^2 \sim \chi^2_1$ (A Chi-squared
+    distribution with one degree of freedom) \pause
+    \begin{itemize}
+    \item Density
+$$
+f(x) = \frac{1}{\Gamma(1/2)} (1/2)^{-1/2} x^{1/2 - 1} e^{-x/2} \qquad x
+> 0
+$$ \pause
+  \item  Characteristic Function
+$$
+\E[e^{itZ^2}] = \varphi(t) = (1 - 2 i t)^{-1/2}
+$$
+  \end{itemize}
+
+\end{Definition}
+\end{frame}
+
+\begin{frame}
+  \frametitle{Chi-Squared Distribution with $p$ Degrees of Freedom}
+If $Z_j \simiid \N(0,1)$ $j = 1, \ldots p$ then $X \equiv \Z^T\Z = \sum_j^p
+Z_j^2 \sim \chi^2_p$  \pause
+
+\begin{block}{Characteristic Function}
+\begin{eqnarray*}
+  \varphi_{X}(t) & = & \E[e^{it \sum_j^p
+Z_j^2}] \pause \\
+& = & \prod_{j-1}^p \E[e^{it Z_j^2 }] \pause \\
+& = &  \prod_{j-1}^p (1 - 2 i t)^{-1/2} \pause \\
+& = & (1 - 2 i t)^{-p/2} \pause
+\end{eqnarray*}
+A  Gamma distribution with shape $p/2$ and rate $1/2$, $G(p/2, 1/2)$ 
+
+$$
+f(x) = \frac{1}{\Gamma(p/2)} (1/2)^{-p/2} x^{p/2 - 1} e^{-x/2} \qquad x
+> 0
+$$
+ \end{block}
+\end{frame}
+\begin{frame}
+  \frametitle{Quadratic Forms}
+  \begin{theorem}
+  Let  $\Y \sim  \N(\mub, \I_n)$ with $\mub \in C(\X)$ then if $\Q$ is
+  a rank $k$ orthogonal  projection on to $C(\X)^{\perp}$,
+$\Y^T \Q \Y \sim \chi^2_k$
+  \end{theorem}
+  \begin{proof}
+    For an orthogonal projection  $\Q = \U \Lambdab \U^T 
+    = \U_k \U_k^T$ where $C(\Q) = C(\U_k)$ and $\U_k^T\U_k = \I_k$
+    (Spectral Theorem) \pause
+    \begin{eqnarray*}
+\Y^T\Q \Y  &=& \Y^T\U_k \U_k^T \Y      \pause \\
+\Z & =  &\U_k^T \Y/ \sigma  \sim \N(\U_k^T\mub, \U_k^T\U_k) \pause \\
+\Z & \sim & \N(\zero, \I_k) \pause \\
+\Z^T\Z & \sim & \chi^2_k \pause 
+    \end{eqnarray*}
+Since $U^T\Y /\sigma \eqindis \Z$, $\frac{\Y^T\Q \Y}{\sigma^2} \sim
+\chi^2_k$
+
+
+  \end{proof}
+\end{frame}
+
+\begin{frame} \frametitle{Residual Sum of Squares Example}
+ 
+\begin{block}{Sum of Squares Error  (SSE)}
+Let $\Y \sim \N(\mub, \sigma^2 \I_n)$ with $\mub \in C(\X)$.
+
+
+Because $\mub \in C(\X)$, $\I - \P_{\X}$ is a projection on
+$C(\X)^{\perp}$ \pause $$\frac{\e^T\e}{\sigma^2} = \Y^T\frac{(\I_n - \P_\X)}\sigma^2 \Y  \sim
+ \chi^2_{n - r(\X)}$$ 
+\end{block}
+\end{frame}
+
+\begin{frame}\frametitle{Putting it all together}
+$\hat{\b} \sim \N(\b, \sigma^2 (\X^T\X)^{-1})$
+  \begin{itemize}
+  \item $(\hat{\beta}_j - \beta_j)/ \sigma [(\X^T\X)^{-1}]_{jj} \sim
+    \N(0,1)$
+\item $\e^T\e/ \sigma^2 \sim \chi^2_{n - r(\X)}$
+\item $\hat{\beta}$ and $\e$ are independent
+$$ \frac{(\hat{\beta}_j - \beta_j)/ \sigma [(\X^T\X)^{-1}]_{jj}}
+{\sqrt{\e^T\e/ ( \sigma^2 (n - r(\X)))}} \sim t(n - r(\X), 0, 1)$$
+  \end{itemize}
+\end{frame}
+
+\begin{frame}
+  \frametitle{Inference}
+\vspace{-.5in}
+
+  \begin{itemize}
+  \item 
+   95\% Confidence interval:  $\hat{\beta}_j \pm t_{\alpha/2}
+   \SE(\hat{\beta}_j$  \pause use {\tt qt(a, df)} for t quantile
+\item derive from pivotal quantity $t = (\hat{\beta}_j -
+  \beta_j)/\SE(\hat{\beta}_j)$ where 
+ $P(t \in (t_{\alpha/2}, t_{1 - \alpha/2}))  = \alpha$
+  \end{itemize}
+
+\vfill
+
+\end{frame}
+\begin{frame}\frametitle{Prostate Example}
+{\tt xtable(confint(prostate.lm))}  from library(MASS) and library(xtable)
+  \begin{table}[ht]
+\centering
+\begin{tabular}{rrr}
+  \hline
+ & 2.5 \% & 97.5 \% \\ 
+  \hline
+(Intercept) & -1.91 & 3.25 \\ 
+  lcavol & 0.41 & 0.76 \\ 
+  lweight & 0.12 & 0.79 \\ 
+  age & -0.04 & 0.00 \\ 
+  lbph & -0.01 & 0.22 \\ 
+  svi & 0.28 & 1.25 \\ 
+  lcp & -0.29 & 0.08 \\ 
+  gleason & -0.27 & 0.36 \\ 
+  pgg45 & -0.00 & 0.01 \\ 
+   \hline
+\end{tabular}
+\end{table}
+\end{frame}
+\begin{frame} \frametitle{interpretation}
+  \begin{itemize}
+  \item 
+  For a ``1'' unit increase in $\X_j$, expect $\Y$ to increase by $\hat{\beta}_j \pm t_{\alpha/2}
+   \SE(\hat{\beta}_j$ 
+\item for log transforms
+$$\Y = \exp(\X\b + \eps) = \prod \exp(\X_j \beta_j) \exp(\eps)$$
+\item if $\X$ is logged  $\X_j = \log(|W_j)$ then look at 2-fold or \%
+  increases in $\W$
+\item if{\tt  cavol} increases by 10\%  then we expect {\tt PSA} to increase
+  by $1.10^{(CI)}$  = $( 1.0398, 1.0751)$ or by 3.98 to 7.51 percent
+  \end{itemize}
+For a 10\% increase in cancer volume, we are 95\% confident  that the PSA levels
+will increase by approximately 4 to 7.5\%
+\end{frame}
+\begin{frame}\frametitle{Derivation}
+  
+\end{frame}
+\end{document}
+
+
+
+
