@@ -1,0 +1,55 @@
+\documentclass{article}
+
+\usepackage{fullpage}
+\usepackage{amsmath,amssymb,array,comment,eucal}
+\pagestyle{empty}
+\input{../macros}
+\begin{document}
+{\bf STA721 \hfill Homework 4}
+
+\vspace{.5in}
+\begin{enumerate}
+\item Consider the linear model  model $\Y \sim \N(\mub, \sigma^2 \I_n)$
+  with  $\mub = \one \beta_0 + \X \b$ and $\X$ a full rank matrix with
+  rank $p$.  For a new observation $Y_*$ at $\x_*$ with $Y_* =
+  \x_*^T\b + \epsilon_*$ and $\epsilon_*$ independent of $\eps$,  consider the
+  predicted residual  $Y_* - \x^T_* \bhat$ where $\bhat$ is the MLE
+  using data $\Y$.   
+  \begin{enumerate}
+  \item Find the distribution of the predicted residual $Y_* - \x^T_*
+    \bhat$ given $\b$ and  $\sigma^2$. 
+\item Show that the standardized predicted residual (center so that
+  the mean is 1 and and scale (sd) is 
+  1 with $\sigma^2$ replaced by the usual unbiased estimate
+  $\hat{\sigma}^2 = \Y^T(\I-\P_{\X})\Y/ (n - p - 1)$ has a student $t$
+  distribution.  What are the degrees of freedom?   
+  \end{enumerate}
+  \item   Consider the linear model $\Y = \X\b + \eps$ with $\E[\eps]
+    = \zero_n$ and $\Cov(\eps) = \sigma^2 \I_n$ and with $\X$ of full
+    column rank $(p+1)$.
+  \begin{enumerate}
+\item Consider estimation of $\b$ using quadratic loss $(\b -
+  \a)^T(\b - \a)$ for some estimator $\a$.  Find the expected quadratic
+  loss if we use the MLE $\bhat$ for $\a$. Simplify the expression
+  as a function of the eigenvalues of $\X^T\X$.   What happens as the
+  smallest eigenvalue goes to 0?
+\item Consider estimation $\mub$'s at the observed data points
+  $\X$.  Find the expected  quadratic loss   $\E[(\mub -
+  \X\bhat)^T(\mub - \X\bhat)]$.  What happens as the  smallest eigen
+  value of $\X^T\X$ goes to 0?
+\item Consider predicting $\Y_*$'s at the observed data points $\X$
+  where $\Y_*$ is independent of $\Y$.  Find the expected quadratic
+  loss $\E[(\Y_* - \X\bhat)^T(\Y_* - \X\bhat)]$.  What happens as the
+  smallest eigen value of $\X^T\X$ goes to 0?
+\item Consider predicting $\Y_*$'s at new points $\X_*$ with
+  $\E[\X_*^T\X_*] = \I_p \neq \X^T\X$.  Find the expected quadratic loss
+  $\E[(\Y_* - \X_*\bhat)^T(\Y_* - \X_*\bhat)]$.  What
+  happens as the smallest eigen value of $\X^T\X$ goes to 0?  (If
+  $E[\X_*^T\X_*] = \Sigmab > 0$ does that change the result)
+\item Comment on the difference in estimation, prediction at observed
+  data and prediction at new data as $\X$ becomes non-full rank.
+  Which is the most stable?  Which is the least?
+  \end{enumerate}
+\end{enumerate}
+
+\end{document}
