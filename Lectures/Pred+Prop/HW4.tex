@@ -9,6 +9,13 @@
 
 \vspace{.5in}
 \begin{enumerate}
+\item Add 95\% prediction intervals to your plot from HW3 for the
+  Prostate data using a different linetype and color.  Explain why the
+  prediction intervals are wider than the confidence intervals for
+  $\hat{\mub}$.  (See the function {\tt predict()} in \R.  Please
+  label all axes with units and informative names, add a legend to
+  explain the multiple lines, and a caption).   
+
 \item Consider the linear model  model $\Y \sim \N(\mub, \sigma^2 \I_n)$
   with  $\mub = \one \beta_0 + \X \b$ and $\X$ a full rank matrix with
   rank $p$.  For a new observation $Y_*$ at $\x_*$ with $Y_* =
@@ -42,7 +49,7 @@
   loss $\E[(\Y_* - \X\bhat)^T(\Y_* - \X\bhat)]$.  What happens as the
   smallest eigen value of $\X^T\X$ goes to 0?
 \item Consider predicting $\Y_*$'s at new points $\X_*$ with
-  $\E[\X_*^T\X_*] = \I_p \neq \X^T\X$.  Find the expected quadratic loss
+  $\E[\X_*^T\X_*] = \I_p$.  Find the expected quadratic loss
   $\E[(\Y_* - \X_*\bhat)^T(\Y_* - \X_*\bhat)]$.  What
   happens as the smallest eigen value of $\X^T\X$ goes to 0?  (If
   $E[\X_*^T\X_*] = \Sigmab > 0$ does that change the result)
