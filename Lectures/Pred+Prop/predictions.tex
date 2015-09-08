@@ -1,0 +1,395 @@
+%\documentclass{beamer}
+\documentclass[handout]{beamer}
+%\usepackage[dvips]{color}
+\usepackage{graphicx}
+\usepackage{amsmath,amssymb,array,comment,eucal}
+\input{../macros}
+\usepackage{verbatim}
+
+\usetheme{Warsaw}
+\title{Predictive Distributions \& Properties of MLES}
+\subtitle{Merlise Clyde}
+\author{STA721 Linear Models}
+\institute{Duke University}
+\date{September 8, 2015}
+\logo{duke.eps}
+
+\begin{document}
+\maketitle
+
+\begin{frame}\frametitle{Outline}
+Topics
+  \begin{itemize}
+  \item Predictive Distributions
+  \item OLS/MLES Unbiased Estimation
+  \item Gauss-Markov Theorem
+  \end{itemize}
+
+
+Readings: Christensen Chapter 2,  Chapter 6.3, ( Appendix A, and
+Appendix B as needed)
+\end{frame}
+
+\begin{frame} \frametitle{Prediction}
+
+  \begin{itemize}
+  \item Predict $Y_*$ at $\x_*^T$   (could be new point or existing
+    point) $\Y_* = \x_*^T + \epsilon_*$ \pause
+ \item $\E[Y_* \mid \x^*] = \x_*^{T} \b = \mu_*$ minimizes squared
+   error loss for predicting $Y_*$ at $\X_*^T$ \pause
+   \begin{eqnarray*}
+     \E[Y_* - f(\x_*)]^2 & = & \E[Y_* - \mu_x + \mu_* - f(x_*)]^2
+                               \pause \\
+ & = & E[Y_* - \mu_x]^2 + E[\mu_* - f(x_*)]^2 + \\  &  & 2\E[( Y_* -
+       \mu_x)(\mu_* - f(x_*))] \pause \\
+ & = & E[Y_* - \mu_x]^2   \end{eqnarray*} \pause
+Crossproduct term is 0:  
+$$\E[\E[( Y_* -
+       \mu_x)(\mu_* - f(x_*))\mid \x_*]] = \E[0 \cdot (\mu_* -
+       f(x_*))]$$
+\item $E[Y_* \mid \x_*]$ is the ``best'' predictor of $Y_*$
+\item MLE of $\mu_*$ is $\x_*^{T} \bhat  = \hat{Y}_*$ (is this
+  unique?) \pause
+\item OLS Best Linear predictor of $\Y$
+\item Under joint Normality of $\Y, \X$  Best Predictor
+  \end{itemize}
+\end{frame}
+
+\begin{frame}\frametitle{Predictive Distribution}
+Look at  
+ $$Y_* -\hat{Y}_*  = \x^{*T} \b - \x^T\bhat + \epsilon_*$$ \pause
+
+ $$\var(Y -\hat{Y})  = \var(\x_*^{T} \b - \x^T\bhat) +
+ \var(\epsilon_*)$$ \pause
+
+\vfill
+Two Sources of variation:
+\begin{itemize}
+\item Variation of estimator around true regression \pause
+\item Variation of error around true regression \pause
+\end{itemize}
+\end{frame}
+\begin{frame}\frametitle{Distribution}
+Distribution of 
+$$ \frac{Y_* - \x_*^T\bhat}{
+\sqrt{\MSE (1 + \x_*(\X^T\X)^{-1}\x_*^T)}} \sim t(n - p - 1, 0, 1)
+$$  
+\vfill
+
+$(1 - \alpha) 100$ \% Prediction Interval 
+ $$\x_*^T \bhat \pm  t_{\alpha/2} \sqrt{\MSE (1 + \x_*(\X^T\X)^{-1}\x_*^T)}$$
+\end{frame}
+
+\begin{frame} \frametitle{Models \& MLEs}
+  \begin{itemize}
+  \item   $\Y \sim \N(\mub, \sigma^2 \I_n)$ with $\mub \in C(\X)
+    \Leftrightarrow \mub = \X \b$  \pause
+  \item  Maximum Likelihood Estimator (MLE) of $\mub$ is
+    $\P_\X \Y$  \pause
+\item $\P_\X$ is the orthogonal projection operator on the column
+  space of $\X$; e.g. $\X$ full rank $\P_\X = \X (\X^T\X)^{-1} \X^T$
+  \pause
+\item If $\X^T\X$ is not invertible use a generalized inverse
+\end{itemize}
+\begin{lemma}[B.43]
+  If $\, \G$ and $\H$ are generalized inverses of $(\X^T\X)$ then
+  \begin{enumerate}
+  \item $\X \G \X^T \X = \X \H \X^T \X = \X$
+  \item $\X \G \X^T = \X \H \X^T$
+  \end{enumerate}
+\end{lemma} \pause
+$\P_\X = \X (\X^T\X)^{-} \X^T$ is the orthogonal projection operator
+onto $C(\X)$   (does not depend on choice of generalized inverse!)
+[See proof in Theorem B.44]
+\end{frame}
+\begin{frame}
+  \frametitle{Generalize Inverses}
+
+A generalize inverse of $\A$: $\A^{-}$ satisfies   $\A \A^- \A = \A$
+
+
+Special Case: Moore-Penrose Generalized Inverse  \pause
+
+
+\begin{itemize}
+\item Decompose symmetric $\A = \U \Lambdab \U^T$  \pause
+\item $\A^-_{MP} = \U \Lambdab^- \U^T$  \pause
+\item $\Lambdab^-$ is diagonal with $$ \lambda_i^- = \left\{
+    \begin{array}{l}
+   1/\lambda_i \text{ if } \lambda_i \neq 0 \\
+   0 \quad \, \text{  if } \lambda_i = 0
+    \end{array}
+\right.$$  \pause
+\item Symmetric  $\A^-_{MP} = (\A^-_{MP})^T $  \pause
+\item Reflexive  $\A^-_{MP}\A \A^-_{MP} = \A^-_{MP} $  \pause
+\end{itemize}
+
+If $\P$ is an orthogonal projection matrix, the generalized inverse of
+$\P$, $\P^- = \P$ 
+
+
+\end{frame}
+\begin{frame}
+  \frametitle{MLE of $\b$}
+  \begin{eqnarray*}
+    \P_\X \Y & = & \X \bhat  \\
+\X(\X^T\X)^- \X^T\Y & =
+& \X \bhat 
+  \end{eqnarray*}  \pause
+  \begin{itemize}
+\item MLE of $\b$ iff $\P_\X \Y = \X \bhat$
+\item If $\X^T\X$ is invertible, then
+$$\bhat = (\X^T\X)^{-1} \X^T\Y$$ and is unique  \pause
+
+\item But if $\X^T\X$ is  not invertible, $$\bhat = (\X^T\X)^{-} \X^T\Y$$ is
+one solution which depends on choice of generalized inverse
+ \pause
+  \end{itemize}
+
+What can we estimate uniquely?
+\end{frame}
+\begin{frame}
+  \frametitle{Identifiability}
+$\Y \sim \N(\mub, \sigma^2 \I)$  \pause
+  \begin{itemize}
+  \item Distribution of $\Y$ determined by $\mub$ and $\sigma^2$  \pause
+\item $\mub = \X\b = \mu(\b)$  \pause
+\end{itemize}
+  \begin{block}{Identifiability}
+$\b$ and $\sigma^2$ are identifiable if distribution of $\Y$, $f_\Y(\y;
+\b_1, \sigma^2_1) = f_\Y(\y;
+\b_2, \sigma^2_2)$ implies that $(\b_1, \sigma^2_1)^T =  (\b_2, \sigma^2_2)^T$
+  \end{block}  \pause
+For linear models, equivalent definition is that $\b$ is identifiable
+if for any $\b_1$ and $\b_2$ $\mu(\b_1) = \mu(\b_2)$ implies that
+$\b_1 = \b_2$.  If $ r(\X) = p$ then $\b$ is identifiable
+ \pause
+\vspace{12pt}
+If $\X$ is not full rank, there exists $\b_1 \neq \b_2$, but $\X\b_1 =
+\X\b_2$ and hence $\b$ is not identifiable
+\end{frame}
+
+
+\begin{frame}
+\frametitle{Non-Identifiable }
+  Recall the One-way ANOVA model \pause
+$$\mu_{ij} = \mu + \tau_j \qquad \mub = (
+    \mu_{11}, \ldots,\mu_{n_1 1},\mu_{12},\ldots, \mu_{n_2,2},\ldots, \mu_{1J},
+\ldots,
+\mu_{n_J J})^T $$ \pause
+\begin{itemize}
+\item Let $\b_{1} = (\mu, \tau_1, \ldots, \tau_J)^T$ \pause
+\item Let $\b_{2} = (\mu - 42, \tau_1 + 42, \ldots, \tau_J + 42)^T$ \pause
+\item Then $\mub_{1} = \mub_{2}$ even though  $\b_1 \neq \b_2$ \pause
+\item $\b$ is not identifiable \pause
+\item yet  $\mub$ is identifiable, where $\mub = \X \b$  (a linear
+  combination of $\b$) 
+\end{itemize}
+\end{frame}
+
+\begin{frame}
+  \frametitle{Identifiability and Estimability}
+  \begin{theorem}
+    A function $g(\b)$ is identifiable if and only if $g(\b)$ is a
+    function of $\mu(\b)$
+  \end{theorem} \pause
+In linear models,  historical focus on linear functions.  Identifiable linear
+functions are called {\it estimable} functions \pause
+
+\begin{definition}
+  A vector valued function $\Lambdab \b$ is {\it estimable} if $\Lambdab \b
+  = \A \X \b$ for some matrix $\A$ \pause
+\end{definition} 
+Equivalently 
+
+\begin{definition}
+  A vector valued function $\Lambdab \b$ is {\it estimable} if it has
+  an unbiased linear estimator,   i.e. there exists an $\A$ such that
+  $\E(\A \Y) = \Lambdab \b$ for all $\b$
+\end{definition}  
+
+\end{frame}
+\begin{frame}
+  \frametitle{Estimability}
+  Work with scalar functions $\psi = \lambdab^T \b$
+  \begin{theorem}
+    The function $\psi = \lambdab^T \beta$ is estimable if and only if
+    $\lambdab^T$ is a linear combination of the rows of
+    $\X$. i.e. there exists $\a^T$ such that  $\lambdab^T = \a^T \X$
+  \end{theorem} \pause
+  \begin{proof}
+   The function $\psi= \lambdab^T\b$ is estimable if there exists an $\a^T$ such that
+    $\E[\a^T\Y] = \lambdab^T\b$ \pause
+
+    \begin{eqnarray*}
+      \E[\a^T\Y] & =  &\a^T \E[\Y] \pause\\
+                 & = & \a^T \X \b \pause \\
+  & =& \lambdab^T \b  \pause
+    \end{eqnarray*}
+if and only if $\lambdab^T = \a^T \X$ for all $\b$
+  \end{proof}
+\end{frame}
+\begin{frame}
+  \frametitle{Estimability of Individual $\beta_j$}
+  \begin{block}{Proposition}
+For    $$\mub = \X \b = \sum_j \X_j \beta_j$$
+$\beta_j$ is not identifiable  if and only if there exists $\alpha_j$
+such that $\X_j = \sum_{i \neq j} \X_i \alpha_i$
+  \end{block} \pause
+One-way Anova Model:
+$$Y_{ij} = \mu + \tau_j + \epsilon_{ij}$$
+  $$ \mub =  \left[
+    \begin{array}{lllll}
+\one_{n_1} & \one_{n_1} & \zero_{n_1} &  \ldots & \zero_{n_1} \\
+\one_{n_2} & \zero_{n_2} & \one_{n_2} &  \ldots & \zero_{n_2} \\
+\vdots & \vdots & \ddots & \vdots \\
+\one_{n_J} & \zero_{n_J} & \zero_{n_J} &  \ldots & \one_{n_J} \\
+    \end{array} \right]
+ \left(   \begin{array}{l}
+      \mu \\
+      \tau_1 \\
+   \tau_2 \\
+ \vdots \\
+\tau_J
+    \end{array} \right)
+$$\pause
+Are any parameters $\mu$ or $\tau_j$ identifiable?
+\end{frame}
+\begin{frame}
+  \frametitle{Unique Unbiased Estimator}
+  \begin{block}{Lemma}
+    \begin{itemize}
+    \item 
+    If   $\psi = \lambdab^T \b$ is estimable, there exists a unique
+    linear unbiased estimator of $\psi = \a^{*T}\Y$ with $a^* \in
+    C(\X)$. \pause 
+\item If $\a^T\Y$ is any unbiased linear estimator of $\psi$
+    then $a^*$ is the projection of $\a$ onto $C(\X)$, i.e. $\a^* =
+    \P_\X \a$.
+    \end{itemize}
+
+  \end{block} 
+      \end{frame}
+  \begin{frame}
+ \frametitle{Unique Unbiased Estimator}
+  \begin{block}{Proof}
+    \begin{itemize}
+    \item     Since $\psi$ is estimable, there exists an $\a \in \bbR^n$ for
+    which $\E[\a^T\Y] = \lambdab^T\b = \psi$ \pause
+\item Let $\a = \a^* + \u$ where $\a^* \in C(\X)$ and $\u \in
+  C(\X)^\perp$ \pause
+\item Then
+  \begin{eqnarray*}
+\psi  =   \E[\a^T\Y] &=& \E[\a^{*T}\Y] + \alert<3-5>{\E[\u^T\Y]} \pause\\    
+     & = & \E[\a^{*T} \Y] + \alert<4>{0} \\
+  &  & \\
+\E[\u^T\Y] & = & \u^T\X \b
+  \end{eqnarray*} 
+since $\u \perp C(\X)$ (i.e. $\u \in C(\X)^\perp$) $\E[\u^T\Y] = 0$ \pause
+
+\item Thus $\a^{*T} \Y$ is also an unbiased linear estimator of $\psi$ with
+  $\a^* \in C(\X)$
+    \end{itemize}
+
+  \end{block}
+\end{frame}
+\begin{frame}
+  \frametitle{Uniqueness}
+  \begin{proof}
+  Suppose that there is another $\v \in C(\X)$ such that $\E[\v^T\Y] =
+  \psi$. Then for all $\b$ \pause
+  \begin{eqnarray*}
+    0 & = & \E[\a^{*T}\Y] - \E[\v^T\Y]  \pause \\
+      & = & (\a^* - \v)^T \X \b \pause\\
+\text{So  } (\a^* - \v)^T\X & = &  0 \quad \text{ for all } \b \pause
+  \end{eqnarray*}
+
+\begin{itemize}
+\item Implies $(\a^* - \v) \in C(\X)^\perp$ \pause
+\item but by assumption $(\a^* - \v) \in C(\X)$ \pause ($C(\X)$ is a
+  vector space) \pause
+\item the only vector in BOTH is $\zero$, so $\a^* = \v$ \pause
+\end{itemize}
+Therefore $\a^{*T}\Y$ is the unique linear unbiased estimator of $\psi$
+with $\a^* \in C(\X)$.
+  \end{proof}
+
+\end{frame}
+\begin{frame}
+  \frametitle{Gauss-Markov Theorem}
+  \begin{theorem}
+
+  Under the assumptions:
+  \begin{eqnarray*}
+    \E[\Y] & = & \mub \pause \\
+    \Cov(\Y) & = &\sigma^2 \I_n \pause
+  \end{eqnarray*}
+every estimable function $\psi = \lambdab^T\b$ has a unique unbiased
+linear estimator $\hat{\psi}$ which has minimum variance in the class
+of all unbiased linear estimators. \pause  $\hat{\psi} = \lambdab^T\bhat$
+where $\bhat$ is any set of ordinary least squares
+estimators.
+    
+  \end{theorem}
+\end{frame}
+\begin{frame} \frametitle{Proof}
+ \begin{block}{}
+   \begin{itemize}
+    \item
+    Let $\a^{*T}\Y$ be the unique unbiased linear estimator of $\psi$
+    with $\a^* \in C(\X)$. \pause
+\item Let $\a^T\Y$ be any unbiased estimate of $\psi$; $\a = \a^* +
+  \u$ with $\a^* \in C(\X)$ and $\u \in C(\X)^\perp$ \pause
+  \begin{eqnarray*}
+    \Var(\a^T\Y) & = & \a^T\Cov(\Y)\a  \pause\\
+ & = & \sigma^2 \| \a \|^2  \pause \\
+& = & \sigma^2 (\| \a^* \|^2 + \|\u\|^2 + 2 \a^{*T} \u) \pause\\
+& = & \sigma^2 (\| \a^* \|^2 + \|\u\|^2) + 0 \pause\\
+& = & \Var(\a^{*T}\Y) + \sigma^2 \|\u\|^2 \pause \\
+& \geq & \Var(\a^{*T}\Y) \pause
+  \end{eqnarray*}
+with equality if and only if $\a = \a^*$ \pause
+\end{itemize}
+Hence $\a^{*T}\Y$ is the unique linear unbiased estimator of $\psi$
+with minimum variance \pause {\color{blue}''BLUE'' = Best Linear Unbiased Estimator}
+  \end{block}
+\end{frame}
+\begin{frame}
+  \frametitle{Continued}
+  \begin{proof}
+  Show that $\hat{\psi} = \a^{*T}\Y = \lambdab^T\bhat$ \pause
+
+  Since $\a^* \in C(\X)$ we have $\a^*  =  \P_\X \a^*$  \pause
+    \begin{eqnarray*}
+\a^{*T}\Y & = &  \a^{*T} \P_X^T \Y \pause \\
+         & = & \a^{*T}\P_x\Y \pause \\
+         & = & \a^{*T} \X \bhat \pause \\
+         & = & \lambdab^T \bhat  \pause
+    \end{eqnarray*}
+for $\lambdab^T = \a^{*T}\X$
+  \end{proof}
+\end{frame}
+\begin{frame}
+  \frametitle{MVUE}
+  \begin{itemize}
+  \item Gauss-Markov Theorem says that OLS has minimum variance in the
+    class of all Linear Unbiased estimators \pause
+\item Requires just first and second moments \pause
+\item Additional assumption of normality,  OLS = MLEs have
+  minimum variance out of \alert<3>{ALL}  unbiased estimators; not
+  just linear estimators \pause (requires Completeness and
+Rao-Blackwell Theorem - next semester) \pause
+\item Mean Squared Error for estimator $g(\Y)$ of $\lambdab^T\b$ is
+$$\E[g(\Y) - \lambdab^T\b]^2 = \Var(g(\Y)) + \text{Bias}^2(g(\Y))$$
+where Bias = $\E[g(\Y)] - \lambdab^T\b$  \pause
+\item Bias vs Variance tradeoff \pause
+\item Can have smaller MSE if we allow some Bias!  (to be continued)
+  \end{itemize}
+
+\end{frame}
+
+
+
+
+\end{document}
+
