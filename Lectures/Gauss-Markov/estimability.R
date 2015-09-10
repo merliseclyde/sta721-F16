@@ -24,6 +24,6 @@ out = cbind(test.set,
     predict(lm1234, new=test.set),
     predict(lm3412, new=test.set))
 out
-require("estimability" )
+library("estimability" )
 
-cbind(epredict(lm1234, test.set), epredict(lm3412, test.set))
+outE = cbind(epredict(lm1234, test.set), epredict(lm3412, test.set))
