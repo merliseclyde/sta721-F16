@@ -1,0 +1,302 @@
+%\documentclass{beamer}
+\documentclass[handout]{beamer}
+%\usepackage[dvips]{color}
+\usepackage{graphicx}
+\usepackage{amsmath,amssymb,array,comment,eucal}
+\input{../macros}
+\usepackage{verbatim}
+
+\usetheme{Warsaw}
+\title{Gauss Markov \& Predictive Distributions}
+\subtitle{Merlise Clyde}
+\author{STA721 Linear Models}
+\institute{Duke University}
+\date{September 10, 2015}
+\logo{duke.eps}
+
+\begin{document}
+\maketitle
+
+\begin{frame}\frametitle{Outline}
+Topics
+  \begin{itemize}
+  \item Gauss-Markov Theorem
+  \item Estimability and Prediction
+  \end{itemize}
+
+
+Readings: Christensen Chapter 2,  Chapter 6.3, ( Appendix A, and
+Appendix B as needed)
+\end{frame}
+
+\begin{frame}
+  \frametitle{Gauss-Markov Theorem}
+  \begin{theorem}
+
+  Under the assumptions:
+  \begin{eqnarray*}
+    \E[\Y] & = & \mub \pause \\
+    \Cov(\Y) & = &\sigma^2 \I_n \pause
+  \end{eqnarray*}
+every estimable function $\psi = \lambdab^T\b$ has a unique unbiased
+linear estimator $\hat{\psi}$ which has minimum variance in the class
+of all unbiased linear estimators. \pause  $\hat{\psi} = \lambdab^T\bhat$
+where $\bhat$ is any set of ordinary least squares
+estimators.
+    
+  \end{theorem}
+\end{frame}
+\begin{frame}
+  \frametitle{Unique Unbiased Estimator}
+  \begin{block}{Lemma}
+    \begin{itemize}
+    \item 
+    If   $\psi = \lambdab^T \b$ is estimable, there exists a unique
+    linear unbiased estimator of $\psi = \a^{*T}\Y$ with $a^* \in
+    C(\X)$. \pause 
+\item If $\a^T\Y$ is any unbiased linear estimator of $\psi$
+    then $a^*$ is the projection of $\a$ onto $C(\X)$, i.e. $\a^* =
+    \P_\X \a$.
+    \end{itemize}
+
+  \end{block} 
+      \end{frame}
+  \begin{frame}
+ \frametitle{Unique Unbiased Estimator}
+  \begin{block}{Proof}
+    \begin{itemize}
+    \item     Since $\psi$ is estimable, there exists an $\a \in \bbR^n$ for
+    which $\E[\a^T\Y] = \lambdab^T\b = \psi$  with $\a^T =
+    \lambda^T\X$ \pause
+\item Let $\a = \a^* + \u$ where $\a^* \in C(\X)$ and $\u \in
+  C(\X)^\perp$ \pause
+\item Then
+  \begin{eqnarray*}
+\psi  =   \E[\a^T\Y] &=& \E[\a^{*T}\Y] + \alert<3-5>{\E[\u^T\Y]} \pause\\    
+     & = & \E[\a^{*T} \Y] + \alert<4>{0} \\
+  &  & \\
+\E[\u^T\Y] & = & \u^T\X \b
+  \end{eqnarray*} 
+since $\u \perp C(\X)$ (i.e. $\u \in C(\X)^\perp$) $\E[\u^T\Y] = 0$ \pause
+
+\item Thus $\a^{*T} \Y$ is also an unbiased linear estimator of $\psi$ with
+  $\a^* \in C(\X)$
+    \end{itemize}
+
+  \end{block}
+\end{frame}
+\begin{frame}
+  \frametitle{Uniqueness}
+  \begin{proof}
+  Suppose that there is another $\v \in C(\X)$ such that $\E[\v^T\Y] =
+  \psi$. Then for all $\b$ \pause
+  \begin{eqnarray*}
+    0 & = & \E[\a^{*T}\Y] - \E[\v^T\Y]  \pause \\
+      & = & (\a^* - \v)^T \X \b \pause\\
+\text{So  } (\a^* - \v)^T\X & = &  0 \quad \text{ for all } \b \pause
+  \end{eqnarray*}
+
+\begin{itemize}
+\item Implies $(\a^* - \v) \in C(\X)^\perp$ \pause
+\item but by assumption $(\a^* - \v) \in C(\X)$ \pause ($C(\X)$ is a
+  vector space) \pause
+\item the only vector in BOTH is $\zero$, so $\a^* = \v$ \pause
+\end{itemize}
+Therefore $\a^{*T}\Y$ is the unique linear unbiased estimator of $\psi$
+with $\a^* \in C(\X)$.
+  \end{proof}
+
+\end{frame}
+\begin{frame} \frametitle{Proof of Minimum Variance (G-M)}
+ \begin{block}{}
+   \begin{itemize}
+    \item
+    Let $\a^{*T}\Y$ be the unique unbiased linear estimator of $\psi$
+    with $\a^* \in C(\X)$. \pause
+\item Let $\a^T\Y$ be any unbiased estimate of $\psi$; $\a = \a^* +
+  \u$ with $\a^* \in C(\X)$ and $\u \in C(\X)^\perp$ \pause
+  \begin{eqnarray*}
+    \Var(\a^T\Y) & = & \a^T\Cov(\Y)\a  \pause\\
+ & = & \sigma^2 \| \a \|^2  \pause \\
+& = & \sigma^2 (\| \a^* \|^2 + \|\u\|^2 + 2 \a^{*T} \u) \pause\\
+& = & \sigma^2 (\| \a^* \|^2 + \|\u\|^2) + 0 \pause\\
+& = & \Var(\a^{*T}\Y) + \sigma^2 \|\u\|^2 \pause \\
+& \geq & \Var(\a^{*T}\Y) \pause
+  \end{eqnarray*}
+with equality if and only if $\a = \a^*$ \pause
+\end{itemize}
+Hence $\a^{*T}\Y$ is the unique linear unbiased estimator of $\psi$
+with minimum variance \pause {\color{blue}''BLUE'' = Best Linear Unbiased Estimator}
+  \end{block}
+\end{frame}
+\begin{frame}
+  \frametitle{Continued}
+  \begin{proof}
+  Show that $\hat{\psi} = \a^{*T}\Y = \lambdab^T\bhat$ \pause
+
+  Since $\a^* \in C(\X)$ we have $\a^*  =  \P_\X \a^*$  \pause
+    \begin{eqnarray*}
+\a^{*T}\Y & = &  \a^{*T} \P_X^T \Y \pause \\
+         & = & \a^{*T}\P_x\Y \pause \\
+         & = & \a^{*T} \X \bhat \pause \\
+         & = & \lambdab^T \bhat  \pause
+    \end{eqnarray*}
+for $\lambdab^T = \a^{*T}\X$  or $\a = \X^T\lambda$
+  \end{proof}
+\end{frame}
+\begin{frame}
+  \frametitle{MVUE}
+  \begin{itemize}
+  \item Gauss-Markov Theorem says that OLS has minimum variance in the
+    class of all Linear Unbiased estimators \pause
+\item Requires just first and second moments \pause
+\item Additional assumption of normality,  OLS = MLEs have
+  minimum variance out of \alert<3>{ALL}  unbiased estimators; not
+  just linear estimators \pause (requires Completeness and
+Rao-Blackwell Theorem - next semester) \pause
+  \end{itemize}
+
+\end{frame}
+\begin{frame} \frametitle{Prediction}
+  \begin{itemize}
+  \item   For predicting at new $\x_*$ is there always a unique unbiased
+  estimator of $E[\Y \mid \x_*]$?
+\item If so how do we determine it?
+
+  \end{itemize}
+
+\end{frame}
+\begin{frame} \frametitle{Existence}
+  \begin{itemize}
+  \item  $\x_* \beta$ has a unique unbiased estimator if $\x_* =
+    \lambdab = \X^T \a$ 
+\item Clearly if $\x_* = \x_i$ ($i$th row of observed data) then it is
+  estimable with $\a$ equal to the vector with a 1 in the ith position
+  even if $\X$ is not full rank!
+\item What about out of sample prediction?
+\end{itemize}
+
+\end{frame}
+
+
+\begin{frame}[fragile] \frametitle{Example}
+\begin{verbatim}
+> x1 = -4:4
+> x2 = c(-2, 1, -1, 2, 0, 2, -1, 1, -2)
+> x3 = 3*x1  -2*x2
+> x4 = x2 - x1 + 4
+> Y = 1+x1+x2+x3+x4 + c(-.5,.5,.5,-.5,0,.5,-.5,-.5,.5)
+> dev.set = data.frame(Y, x1, x2, x3, x4)
+> lm1234 = lm(Y ~ x1 + x2 + x3 + x4, data=dev.set)
+> coefficients(lm1234)
+ (Intercept)   x1    x2     x3     x4 
+5.000000e+00    3 v   0     NA     NA 
+
+> lm3412 = lm(Y ~ x3 + x4 + x1 + x2, data = dev.set)
+> coefficients(lm3412)
+(Intercept)    x3    x4     x1     x2 
+        -19     3     6     NA     NA 
+\end{verbatim}
+\end{frame}
+
+\begin{frame}[fragile] \frametitle{In Sample Predictions}
+
+\begin{verbatim}
+
+> cbind(dev.set, predict(lm1234), predict(lm3412))
+     Y x1 x2  x3 x4    predict(lm1234)    predict(lm3412)
+1 -7.5 -4 -2  -8  6              -7              -7
+2 -3.5 -3  1 -11  8              -4              -4
+3 -0.5 -2 -1  -4  5              -1              -1
+4  1.5 -1  2  -7  7               2               2
+5  5.0  0  0   0  4               5               5
+6  8.5  1  2  -1  5               8               8
+7 10.5  2 -1   8  1              11              11
+8 13.5  3  1   7  2              14              14
+9 17.5  4 -2  16 -2              17              17
+ 
+\end{verbatim}  
+Both models agree!
+\end{frame}
+\begin{frame} [fragile] \frametitle{Out of Sample}
+\begin{verbatim}
+> out = data.frame(test.set,
+        Y1234=predict(lm1234, new=test.set), 
+        Y3412=predict(lm3412, new=test.set))
+> out
+  x1 x2 x3 x4 Y1234 Y3412
+1  3  1  7  2    14    14
+2  6  2 14  4    23    47
+3  6  2 14  0    23    23
+4  0  0  0  4     5     5
+5  0  0  0  0     5   -19
+6  1  2  3  4     8    14
+\end{verbatim}  \pause
+Agreement for cases 1, 3, and 4 only!  Can we determine that without
+finding the predictions and comparing?
+\end{frame}
+
+\begin{frame} \frametitle{Determining Estimable $\lambdab$}
+  \begin{itemize}
+ 
+ \item Estimable means that $\lambdab = \X^T \a$  for $\a \in C(\X)$ \pause
+ \item $\lambdab \in C(\X^T)$ ($\lambdab \in R(\X)$)\pause
+ \item $\lambdab \perp C(\X^T)^{\perp}$ \pause
+ \item $C(\X^T)^{\perp}$ is the null space of $\X$  \pause
+$$ \v \perp C(\X^T): \, \X \v = 0 \Leftrightarrow \v \in N(\X)$$ \pause
+\item $\lambdab \perp  N(\X)$ \pause
+\item if $\P$ is a projection onto $C(\X^T)$ then $\I - \P$ is a projection
+  onto $N(X)$ and therefore $(\I - \P) \lambdab = \zero$ if $\lambdab$
+  is estimable \pause
+  \end{itemize}
+\vfill
+Take $\P_{\X^T} = (\X^T\X)(\X^T\X)^{-}$ as a projection onto $C(\X^T)$
+\end{frame}
+
+\begin{frame}[fragile]\frametitle{Example}
+\begin{verbatim}
+> library("estimability" )
+
+> outE = cbind(epredict(lm1234, test.set), epredict(lm3412, test.set))
+
+> outE
+
+  [,1] [,2]
+1   14   14
+2   NA   NA
+3   23   23
+4    5    5
+5   NA   NA
+6   NA   NA
+\end{verbatim}
+Rows 2, 5, and 6 are not estimable!  No linear unbiased estimator
+
+  
+\end{frame}
+\begin{frame} \frametitle{Summary}
+  \begin{itemize}
+  \item When BLUE exist  under normality are MVUE  (ditto for
+    prediction)
+ \item BLUE/BLUP do not always for estimation/prediction if $\X$ is not full rank
+\item may occur with redundancies for modest $p < n$ and of course $p
+  > n$
+\item Eliminate redundancies by removing variables (variable
+  selection) 
+\item Consider alternative estimators
+  \end{itemize}
+\end{frame}
+
+\begin{frame} \frametitle{Other Estimators}
+What about some estimator $g(\Y)$ that is not unbiased?
+  \begin{itemize}
+\item Mean Squared Error for estimator $g(\Y)$ of $\lambdab^T\b$ is
+$$\E[g(\Y) - \lambdab^T\b]^2 = \Var(g(\Y)) + \text{Bias}^2(g(\Y))$$
+where Bias = $\E[g(\Y)] - \lambdab^T\b$  \pause
+\item Bias vs Variance tradeoff \pause
+\item Can have smaller MSE if we allow some Bias! 
+\end{itemize}
+\end{frame}
+
+
+\end{document}
+

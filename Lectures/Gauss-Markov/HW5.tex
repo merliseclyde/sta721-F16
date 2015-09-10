@@ -1,0 +1,37 @@
+\documentclass[fullpage]{article}
+
+\begin{document}
+\begin{enumerate}
+\item show that $\P = (\X^T\X) (\X^T\X)^{-}$ is a projection matrix
+  onto column space of $\X^T$  
+  Show that this does not depend on the choice og generalized inverse.
+
+\item show that for an estimable function $\lambda = \X^T \a$  with
+  $\a \in C(X)$ that $(I - P) \lambda = 0$
+\item Using the spectral decomposition of $(\X^T\X)$ and the
+  Moore-Penrose generalized inverse find a simple expression for I - P in
+  terms of the eigenvectors of $\X^T\X$  
+\item If $\X$ is full column rank will there be an BLUP for all $\x_*
+  \in \bbR^{p+1}$ ($\x_* \neq \zero$)?  Prove or Disprove.
+\item Write a function in \R to  find the projection $(I - P) \lambda$
+  with the design matrix (with intercept) and lambda (vector or matrix) as input.   (include the R code)
+\item apply your function to the data from class and compare to the
+ conclusions from epredict.   What sort of tolerance do you need to
+ decide of $(I - P) \lambda = 0$?
+ \item Prostate data:  create dummy varialbes for the 4 gleason
+   scores.
+
+fit a model where you add all four dummy variables.  What are the
+coefficients.  Now change the order, what happens to the coefficients.
+
+show that in the model with all 4 coefficients that $\beta_{gi} -
+\beta_{gj}$ is estimable.
+
+
+use as.factor(gleason) as a predictor; what order of dummy variables
+do the estimators correspond to?  What are the interpretation for all
+coefficients??
+
+\end{enumerate}
+\end{document}
+
