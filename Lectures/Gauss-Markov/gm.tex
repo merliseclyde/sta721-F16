@@ -1,5 +1,5 @@
-%\documentclass{beamer}
-\documentclass[handout]{beamer}
+\documentclass{beamer}
+%\documentclass[handout]{beamer}
 %\usepackage[dvips]{color}
 \usepackage{graphicx}
 \usepackage{amsmath,amssymb,array,comment,eucal}
@@ -151,7 +151,7 @@ for $\lambdab^T = \a^{*T}\X$  or $\a = \X^T\lambda$
     class of all Linear Unbiased estimators \pause
 \item Requires just first and second moments \pause
 \item Additional assumption of normality,  OLS = MLEs have
-  minimum variance out of \alert<3>{ALL}  unbiased estimators; not
+  minimum variance out of \alert<3>{ALL}  unbiased estimators (MVUE); not
   just linear estimators \pause (requires Completeness and
 Rao-Blackwell Theorem - next semester) \pause
   \end{itemize}
@@ -160,7 +160,7 @@ Rao-Blackwell Theorem - next semester) \pause
 \begin{frame} \frametitle{Prediction}
   \begin{itemize}
   \item   For predicting at new $\x_*$ is there always a unique unbiased
-  estimator of $E[\Y \mid \x_*]$?
+  estimator of $E[\Y \mid \x_*]$? \pause
 \item If so how do we determine it?
 
   \end{itemize}
@@ -169,11 +169,11 @@ Rao-Blackwell Theorem - next semester) \pause
 \begin{frame} \frametitle{Existence}
   \begin{itemize}
   \item  $\x_* \beta$ has a unique unbiased estimator if $\x_* =
-    \lambdab = \X^T \a$ 
+    \lambdab = \X^T \a$ \pause
 \item Clearly if $\x_* = \x_i$ ($i$th row of observed data) then it is
-  estimable with $\a$ equal to the vector with a 1 in the ith position
-  even if $\X$ is not full rank!
-\item What about out of sample prediction?
+  estimable with $\a$ equal to the vector with a 1 in the $i$th position
+  even if $\X$ is not full rank! \pause
+\item What about out of sample prediction? \pause
 \end{itemize}
 
 \end{frame}
@@ -216,7 +216,7 @@ Rao-Blackwell Theorem - next semester) \pause
 9 17.5  4 -2  16 -2              17              17
  
 \end{verbatim}  
-Both models agree!
+Both models agree for estimating the mean at the observed $\X$ points!
 \end{frame}
 \begin{frame} [fragile] \frametitle{Out of Sample}
 \begin{verbatim}
@@ -246,11 +246,12 @@ finding the predictions and comparing?
 $$ \v \perp C(\X^T): \, \X \v = 0 \Leftrightarrow \v \in N(\X)$$ \pause
 \item $\lambdab \perp  N(\X)$ \pause
 \item if $\P$ is a projection onto $C(\X^T)$ then $\I - \P$ is a projection
-  onto $N(X)$ and therefore $(\I - \P) \lambdab = \zero$ if $\lambdab$
+  onto $N(\X)$ and therefore $(\I - \P) \lambdab = \zero$ if $\lambdab$
   is estimable \pause
   \end{itemize}
 \vfill
 Take $\P_{\X^T} = (\X^T\X)(\X^T\X)^{-}$ as a projection onto $C(\X^T)$
+and show $(\I - \P_{\X^T})\lambdab = \zero_p$
 \end{frame}
 
 \begin{frame}[fragile]\frametitle{Example}
@@ -275,28 +276,40 @@ Rows 2, 5, and 6 are not estimable!  No linear unbiased estimator
 \end{frame}
 \begin{frame} \frametitle{Summary}
   \begin{itemize}
-  \item When BLUE exist  under normality are MVUE  (ditto for
-    prediction)
- \item BLUE/BLUP do not always for estimation/prediction if $\X$ is not full rank
+  \item When BLUEs exist,  under normality they are MVUE  (ditto for
+    prediction - BLUP) \pause
+ \item BLUE/BLUP do not always for estimation/prediction if $\X$ is
+   not full rank \pause
 \item may occur with redundancies for modest $p < n$ and of course $p
-  > n$
+  > n$ \pause
 \item Eliminate redundancies by removing variables (variable
-  selection) 
-\item Consider alternative estimators
+  selection) \pause
+\item Consider alternative estimators (Bayes and related)
   \end{itemize}
 \end{frame}
 
 \begin{frame} \frametitle{Other Estimators}
-What about some estimator $g(\Y)$ that is not unbiased?
+What about some estimator $g(\Y)$ that is not unbiased? \pause
   \begin{itemize}
 \item Mean Squared Error for estimator $g(\Y)$ of $\lambdab^T\b$ is
-$$\E[g(\Y) - \lambdab^T\b]^2 = \Var(g(\Y)) + \text{Bias}^2(g(\Y))$$
+$$\E[g(\Y) - \lambdab^T\b]^2 = \Var(g(\Y)) + \text{Bias}^2(g(\Y))$$ 
 where Bias = $\E[g(\Y)] - \lambdab^T\b$  \pause
 \item Bias vs Variance tradeoff \pause
 \item Can have smaller MSE if we allow some Bias! 
 \end{itemize}
 \end{frame}
 
+\begin{frame}\frametitle{Bayes}
+  \begin{itemize}
+  \item  Next Class Bayes Theorem \& Conjugate Normal-Gamma Prior/Posterior   distributions
+  \item  Read   Chapter 2 in Christensen or Wakefield 5.7
+  \item  Review Multivariate Normal and Gamma distributions
+  \end{itemize}
 
+
+
+
+
+\end{frame}
 \end{document}
 
