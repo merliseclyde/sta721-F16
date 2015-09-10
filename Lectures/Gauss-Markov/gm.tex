@@ -1,5 +1,5 @@
-\documentclass{beamer}
-%\documentclass[handout]{beamer}
+%\documentclass{beamer}
+\documentclass[handout]{beamer}
 %\usepackage[dvips]{color}
 \usepackage{graphicx}
 \usepackage{amsmath,amssymb,array,comment,eucal}
@@ -66,8 +66,8 @@ estimators.
   \begin{block}{Proof}
     \begin{itemize}
     \item     Since $\psi$ is estimable, there exists an $\a \in \bbR^n$ for
-    which $\E[\a^T\Y] = \lambdab^T\b = \psi$  with $\a^T =
-    \lambda^T\X$ \pause
+    which $\E[\a^T\Y] = \lambdab^T\b = \psi$  with $\lambdab^T =
+    \a^T\X$ \pause
 \item Let $\a = \a^* + \u$ where $\a^* \in C(\X)$ and $\u \in
   C(\X)^\perp$ \pause
 \item Then
@@ -141,7 +141,7 @@ with minimum variance \pause {\color{blue}''BLUE'' = Best Linear Unbiased Estima
          & = & \a^{*T} \X \bhat \pause \\
          & = & \lambdab^T \bhat  \pause
     \end{eqnarray*}
-for $\lambdab^T = \a^{*T}\X$  or $\a = \X^T\lambda$
+for $\lambdab^T = \a^{*T}\X$  or $\lambdab = \X^T\a$
   \end{proof}
 \end{frame}
 \begin{frame}
@@ -161,14 +161,14 @@ Rao-Blackwell Theorem - next semester) \pause
   \begin{itemize}
   \item   For predicting at new $\x_*$ is there always a unique unbiased
   estimator of $E[\Y \mid \x_*]$? \pause
-\item If so how do we determine it?
+\item If one does exist, how do we know that if we are given $\lambdab$?
 
   \end{itemize}
 
 \end{frame}
 \begin{frame} \frametitle{Existence}
   \begin{itemize}
-  \item  $\x_* \beta$ has a unique unbiased estimator if $\x_* =
+  \item  $\x_* \b$ has a unique unbiased estimator if $\x_* \equiv
     \lambdab = \X^T \a$ \pause
 \item Clearly if $\x_* = \x_i$ ($i$th row of observed data) then it is
   estimable with $\a$ equal to the vector with a 1 in the $i$th position
