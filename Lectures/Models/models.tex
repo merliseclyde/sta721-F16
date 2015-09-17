@@ -1,18 +1,16 @@
-\documentclass{beamer}
-%\documentclass[handout]{beamer}
+%\documentclass{beamer}
+\documentclass[handout]{beamer}
 %\usepackage[dvips]{color}
 \usepackage{graphicx}
 \usepackage{amsmath,amssymb,array,comment,eucal}
 \input{../macros}
 \usepackage{verbatim}
-
 \usetheme{Warsaw}
-\usecolortheme{orchid}
 \title{Models \& Estimation}
 \subtitle{Merlise Clyde}
 \author{STA721 Linear Models}
 \institute{Duke University}
-\date{August 28, 2014}
+\date{September 2, 2014}
 \logo{duke.eps}
 
 \begin{document}
@@ -23,50 +21,7 @@
 
 Readings: Christensen Chapter 1-2, Appendix A
 \end{frame}
-%\section{Models}
-\begin{frame}
-  \frametitle{Models}
-Take an random vector $\Y \in \bbR^n$ which is observable and decompose  \pause
-$$ \Y = \alert<2>{\mub} + \alert<3>{\eps}$$
-into  \alert<2>{$\mub \in \bbR^n$ (unknown, fixed)} \pause and
-\alert<3>{$\eps \in \bbR^n$ unobservable error vector (random)}
-\pause
 
-\vspace{18pt}
-Usual assumptions? \pause
-\begin{itemize}
-\item $\E[\eps] = \zero$ \pause  $ \quad \Rightarrow \E[\Y] = \mub$
-  (mean vector) \pause
-\item $\Cov[\eps] = \sigma^2 \I_n$   \pause  $ \quad \Rightarrow
-  \Cov[\Y] = \sigma^2 \I_n$  (errors are uncorrelated) \pause
-\item $\eps \sim \N(\zero, \sigma^2 \I)$ \pause  $ \quad \Rightarrow
-  \Y \sim \N(\mub, \sigma^2 \I)$ \pause
-\end{itemize}
-
-The distribution assumption allows us to right down a likelihood function
-\end{frame}
-
-\begin{frame} \frametitle{Likelihood Functions}
-
-The likelihood function for $\mub, \sigma^2$ is proportional to the
-sampling distribution of the data \pause
-
-\begin{eqnarray*}
- \cL(\mub, \sigma^2) & \propto & (\alert<3>{2 \pi} \sigma^2)^{-n/2} 
- \exp{\left\{ - \frac 1 2 \frac{(\Y - \mub)^T (\Y - \mub)}{\sigma^2} 
-\right\}}  \pause \\
-   & \propto & (\sigma^2)^{-n/2} 
- \exp{\left\{ - \frac 1 2 \frac{\| \Y - \mub \|^2}{\sigma^2} 
-\right\}}  \pause
-\end{eqnarray*}
-Find values of $\muhat$ and $\shat$ that maximize the likelihood
-$\cL(\mub, \sigma^2)$ for $\mub \in \bbR^n$ and $\sigma^2 \in \bbR^+$
-\pause
-
-\vspace{18pt}
-Clearly, $\muhat = \Y$ but $\shat = 0$  is outside the parameter space
-\end{frame}
-%\subsection{Oneway Anova Model}
 \begin{frame}
   \frametitle{Restrictions on $\mub$}
 Linear model $\mub = \X \b$ for fixed $\X$ ($n \times p$) and some $\b
@@ -369,24 +324,6 @@ $C(\X)$ \pause
 & \Leftrightarrow & \u^T\v   = 0  \quad
    \v \in C(\X)\\ 
   \end{eqnarray*}
-\end{frame}
-%\section{MLEs}
-\begin{frame} \frametitle{Models Again}
-  \begin{itemize}
-  \item   $\Y \sim \N(\mub, \sigma^2 \I_n)$ with $\mub \in C(\X)$  \pause
-  \item   Claim: Maximum Likelihood Estimator (MLE) of $\mub$ is
-    $\P_\X \Y$  \pause
-\item Log Likelihood:  \pause
-
-$$ \log \cL(\mub, \sigma^2) =
--\frac{n}{2} \log(\sigma^2) 
-  - \frac 1 2 \frac{\| \Y - \mub \|^2}{\sigma^2} 
-$$  \pause
-\item Decompose $\Y = \P_\X \Y + (\I - \P_\X) \Y$  \pause
-\item Use $\P_\X \mub = \mub$  \pause
-\item and Simplify $$\| \Y - \mub \|^2$$
-  \end{itemize}
-
 \end{frame}
 \end{document}
 
