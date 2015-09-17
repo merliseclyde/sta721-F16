@@ -35,14 +35,14 @@ Appendix B as needed)
   \begin{itemize}
   \item Predict $Y_*$ at $\x_*^T$   (could be new point or existing
     point) $\Y_* = \x_*^T + \epsilon_*$ \pause
- \item $\E[Y_* \mid \x^*] = \x_*^{T} \b = \mu_*$ minimizes squared
+ \item $\E[Y_* \mid \x_*] = \x_*^{T} \b = \mu_*$ minimizes squared
    error loss for predicting $Y_*$ at $\X_*^T$ \pause
    \begin{eqnarray*}
-     \E[Y_* - f(\x_*)]^2 & = & \E[Y_* - \mu_x + \mu_* - f(x_*)]^2
+     \E[Y_* - f(\x_*)]^2 & = & \E[Y_* - \mu_* + \mu_* - f(x_*)]^2
                                \pause \\
- & = & E[Y_* - \mu_x]^2 + E[\mu_* - f(x_*)]^2 + \\  &  & 2\E[( Y_* -
-       \mu_x)(\mu_* - f(x_*))] \pause \\
- & = & E[Y_* - \mu_x]^2   \end{eqnarray*} \pause
+ & = & E[Y_* - \mu_*]^2 + E[\mu_* - f(x_*)]^2 + \\  &  & 2\E[( Y_* -
+       \mu_*)(\mu_* - f(x_*))] \pause \\
+ & \geq & E[Y_* - \mu_*]^2   \end{eqnarray*} \pause
 Crossproduct term is 0:  
 $$\E[\E[( Y_* -
        \mu_x)(\mu_* - f(x_*))\mid \x_*]] = \E[0 \cdot (\mu_* -
@@ -50,16 +50,16 @@ $$\E[\E[( Y_* -
 \item $E[Y_* \mid \x_*]$ is the ``best'' predictor of $Y_*$
 \item MLE of $\mu_*$ is $\x_*^{T} \bhat  = \hat{Y}_*$ (is this
   unique?) \pause
-\item OLS Best Linear predictor of $\Y$
+\item OLS Best Linear predictor of $\Y_*$
 \item Under joint Normality of $\Y, \X$  Best Predictor
   \end{itemize}
 \end{frame}
 
 \begin{frame}\frametitle{Predictive Distribution}
 Look at  
- $$Y_* -\hat{Y}_*  = \x^{*T} \b - \x^T\bhat + \epsilon_*$$ \pause
+ $$Y_* -\hat{Y}_*  = \x^{*T} \b - \x_*^T\bhat + \epsilon_*$$ \pause
 
- $$\var(Y -\hat{Y})  = \var(\x_*^{T} \b - \x^T\bhat) +
+ $$\var(Y -\hat{Y})  = \var(\x_*^{T} \b - \x_*^T\bhat) +
  \var(\epsilon_*)$$ \pause
 
 \vfill
@@ -91,6 +91,7 @@ $(1 - \alpha) 100$ \% Prediction Interval
   \pause
 \item If $\X^T\X$ is not invertible use a generalized inverse
 \end{itemize}
+A generalize inverse of $\A$: $\A^{-}$ satisfies   $\A \A^- \A = \A$
 \begin{lemma}[B.43]
   If $\, \G$ and $\H$ are generalized inverses of $(\X^T\X)$ then
   \begin{enumerate}
@@ -255,6 +256,24 @@ $$Y_{ij} = \mu + \tau_j + \epsilon_{ij}$$
 $$\pause
 Are any parameters $\mu$ or $\tau_j$ identifiable?
 \end{frame}
+
+\begin{frame}
+  \frametitle{Gauss-Markov Theorem}
+  \begin{theorem}
+
+  Under the assumptions:
+  \begin{eqnarray*}
+    \E[\Y] & = & \mub \pause \\
+    \Cov(\Y) & = &\sigma^2 \I_n \pause
+  \end{eqnarray*}
+every estimable function $\psi = \lambdab^T\b$ has a unique unbiased
+linear estimator $\hat{\psi}$ which has minimum variance in the class
+of all unbiased linear estimators. \pause  $\hat{\psi} = \lambdab^T\bhat$
+where $\bhat$ is any set of ordinary least squares
+estimators.
+    
+  \end{theorem}
+\end{frame}
 \begin{frame}
   \frametitle{Unique Unbiased Estimator}
   \begin{block}{Lemma}
@@ -315,24 +334,7 @@ with $\a^* \in C(\X)$.
   \end{proof}
 
 \end{frame}
-\begin{frame}
-  \frametitle{Gauss-Markov Theorem}
-  \begin{theorem}
-
-  Under the assumptions:
-  \begin{eqnarray*}
-    \E[\Y] & = & \mub \pause \\
-    \Cov(\Y) & = &\sigma^2 \I_n \pause
-  \end{eqnarray*}
-every estimable function $\psi = \lambdab^T\b$ has a unique unbiased
-linear estimator $\hat{\psi}$ which has minimum variance in the class
-of all unbiased linear estimators. \pause  $\hat{\psi} = \lambdab^T\bhat$
-where $\bhat$ is any set of ordinary least squares
-estimators.
-    
-  \end{theorem}
-\end{frame}
-\begin{frame} \frametitle{Proof}
+\begin{frame} \frametitle{Proof of Minimium Variance}
  \begin{block}{}
    \begin{itemize}
     \item
@@ -383,7 +385,7 @@ Rao-Blackwell Theorem - next semester) \pause
 $$\E[g(\Y) - \lambdab^T\b]^2 = \Var(g(\Y)) + \text{Bias}^2(g(\Y))$$
 where Bias = $\E[g(\Y)] - \lambdab^T\b$  \pause
 \item Bias vs Variance tradeoff \pause
-\item Can have smaller MSE if we allow some Bias!  (to be continued)
+\item Can have smaller MSE if we allow some Bias! 
   \end{itemize}
 
 \end{frame}
