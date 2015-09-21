@@ -6,7 +6,7 @@ Week 2,1-Sep,Multivariate Normal Theory,"<a href=""../slides/NormalTheory/multno
 Week 2,8-Sep,Predictive Distributions & Properties of MLES,"<a href=""../slides/Pred+Prop/predictions.pdf"">Predictive Distributions</a> ","Read <a href=""http://getitatduke.library.duke.edu/?sid=sersol&SS_jc=TC0000508493&title=Plane%20Answers%20to%20Complex%20Questions%3A%20The%20Theory%20of%20Linear%20Models"" >  Christensen Ch 2  & 6.3 </a>","<a href=""../hw/Pred+Prop/HW4.pdf""> HW4</a> (Due Sept 11)"
 ,10-Sep,Gauss Markov & Prediction,"<a href=""../slides/Gauss-Markov/gm.pdf"">Gauss Markov</a>. <a href=""../slides/Gauss-Markov/estimability.R"">R code</a> ",Christensen Chapter 2,"<a href=""../hw/Gauss-Markov/HW5.pdf""> HW5</a> (Due Sept 15)"
 Week 3,15-Sep,Bayesian Regression,"<a href=""../slides/Bayes-Intro/Bayes-Intro.pdf"">Bayes Intro</a>","Read <a href=""http://getitatduke.library.duke.edu/?sid=sersol&SS_jc=TC0000508493&title=Plane%20Answers%20to%20Complex%20Questions%3A%20The%20Theory%20of%20Linear%20Models"" >  Christensen Ch 2 </a>","<a href=""../hw/Bayes-Intro/HW6.pdf""> HW6</a> (Due Sept 17)"
-,17-Sep,Conjugate Priors,"<a href=""../slides/Priors/priors.pdf"">Priors</a>",,
+,17-Sep,Conjugate Priors,"<a href=""../slides/Priors/priors.pdf"">Priors</a>",,"<a href=""../hw/Priors/HW7.pdf""> HW7</a> (Due Sept 22)"
 Week 4,22-Sep,Theoretical Comparison: MSE ,,,
 ,24-Sep,Distribution of Quadratic Forms,,,
 Week 5,29-Sep,Ridge Regression,,,
