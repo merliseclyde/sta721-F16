@@ -1,0 +1,43 @@
+\documentclass{article}
+
+
+\usepackage{graphicx, fullpage}
+\usepackage{amsmath,amssymb,array,comment,eucal}
+\input{../macros}
+\usepackage{verbatim}
+\begin{document}
+\begin{center}
+  STA 721 HW 8
+\end{center}
+
+\begin{enumerate}
+\item For the Independent Jeffreys Reference prior $p(\b, \phi) \propto
+  1$ and model $\Y \mid \b, \phi \sim \N(\X \b, \phi^{-1} \I_n)$ where
+  $\X$ is of full column rank $p$, derive/validate the results from class
+  \begin{enumerate}
+  \item $p(\b \mid \phi, \Y)$
+  \item $p(\phi \mid \Y)$
+  \item $p(\b \mid \Y)$
+  \end{enumerate}
+\item If $p(\log(\sigma^p)) \propto 1$, find $p(\sigma^p)$ (up to
+  proportionality)
+\item If $p(\phi) \propto \phi^{-1}$, find  $p(\sigma^2)$ (upto
+  proportionality) (can you use the previous result?)
+\item Consider the model 
+$$\Y \sim \N(\X_0 \alpha + \X \b, \phi^{-1} \I_n)$$ 
+with the blocked Zellner $g$-prior:
+\begin{eqnarray}
+  p(\alpha, \phi) &\propto& \phi^{-1} \\
+ \b \mid \phi & \sim & \N(0, \frac{g}{\phi} (\X^T(\I-\P_{\X_0}) \X)^{-1})
+\end{eqnarray}
+where $\X_0$ and $\X$ are not orthogonal.
+Find $p(\alpha \mid \Y, \b \phi$, $p(\b \mid \Y, \phi)$ and $\phi \mid
+\Y$ (hint:  decompose $\Y$ and  $\X$ into parts that are in $C(\X_0)$ and the
+orthgonal complement $C(\X_0)^\perp$ using appropriate projections and
+decompose the likelihood into three terms.  Are $\alpha$ and $\b$ independent given
+$\Y$ and $\phi$?  Find 
+the distribution of $\alpha$ given $\Y$ and $\phi$.  (Hint if they are
+not independent use iterated expectations!)
+\end{enumerate}
+\end{document}
+
