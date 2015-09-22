@@ -12,10 +12,11 @@
 
 \begin{enumerate}
 \item For the Independent Jeffreys Reference prior $p(\b, \phi) \propto
-  1$ and model $\Y \mid \b, \phi \sim \N(\X \b, \phi^{-1} \I_n)$ where
-  $\X$ is of full column rank $p$, derive/validate the results from class
+  \phi^{-1}$ and model $\Y \mid \b, \phi \sim \N(\X \b, \phi^{-1} \I_n)$ where
+  $\X$ is of full column rank $p$, derive/validate the results from
+  class  (page 16)
   \begin{enumerate}
-  \item $p(\b \mid \phi, \Y)$
+  \item $p(\b \mid \phi, \Y)$ 
   \item $p(\phi \mid \Y)$
   \item $p(\b \mid \Y)$
   \end{enumerate}
@@ -31,10 +32,10 @@ with the blocked Zellner $g$-prior:
  \b \mid \phi & \sim & \N(0, \frac{g}{\phi} (\X^T(\I-\P_{\X_0}) \X)^{-1})
 \end{eqnarray}
 where $\X_0$ and $\X$ are not orthogonal.
-Find $p(\alpha \mid \Y, \b \phi$, $p(\b \mid \Y, \phi)$ and $\phi \mid
+Find $p(\alpha \mid \Y, \b, \phi)$, $p(\b \mid \Y, \phi)$ and $\phi \mid
 \Y$ (hint:  decompose $\Y$ and  $\X$ into parts that are in $C(\X_0)$ and the
 orthgonal complement $C(\X_0)^\perp$ using appropriate projections and
-decompose the likelihood into three terms.  Are $\alpha$ and $\b$ independent given
+decompose the likelihood into three terms to find the sequence of distributions. Are $\alpha$ and $\b$ independent given
 $\Y$ and $\phi$?  Find 
 the distribution of $\alpha$ given $\Y$ and $\phi$.  (Hint if they are
 not independent use iterated expectations!)
