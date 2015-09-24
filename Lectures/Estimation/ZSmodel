@@ -1,0 +1,9 @@
+model
+{
+    for (i in 1:n) {
+        Y[i] ~ dnorm(X[i] * beta, phi)
+    }
+    beta ~ dnorm(0.00000E+00, SSX/(n * phi * lambda))
+    phi ~ dgamma(0.05, 0.05)
+    lambda ~ dgamma(0.5, 0.5)
+}
