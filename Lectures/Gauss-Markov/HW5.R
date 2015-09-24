@@ -18,32 +18,34 @@ colnames(newdf) = c("D6", "D7", "D8", "D9", "I")
 newdf[6, ] = c(1, -1, 0,0,0)
 newdf[7, ] = c(0,0,0,1,1)
 
-epredict(FullModel, newdf)
+#epredict(FullModel, newdf)
 
 estimability = function(lmobj,lambda, tol=10^-13) {
   X = model.matrix(lmobj)
   eigen.X = eigen(t(X)%*%X)
   use = eigen.X$values < tol
-  LamX = t(eigen.X$vectors[, use]) %*% lambda
+  LamX = t(eigen.X$vectors[,use]) %*% lambda
   P = eigen.X$vectors[,use]%*% LamX
   P[which(P <1e-10)]=0
-  is.nest = rep(1, nrow(P)) %*% abs(P)
+  is.nest = as.vector(rep(1, nrow(P)) %*% abs(P))
   is.nest[ which(is.nest > 0 )] = NA
   beta = coef(lmobj); beta[is.na(beta)] = 0
   est = t(lambda) %*% beta
   est[is.na(is.nest)] = NA
   sigma = summary(lmobj)$sigma
-  SE = sqrt( diag(t(LamX) %*% (1/eigen.X$values[use]) %*% LamX))
-  return (list(est, is.nest))
-}
-estimable = function (lmobj, v) {
-  X = model.matrix(lmobj)
-  svdXt = svd(t(X))
-  non0 = svdXt$d > 10^-13
-  v - svdXt$u[, non0] %*% (t(svdXt$u[,non0]) %*% v)
+  browser()
+  SE = rep(NA, length(est))
+  lam.inv = 1/eigen.X$values
+  lam.inv[is.na(is.nest)] = 0
+  SE[use] = sqrt( diag(t(LamX) %*% (1/eigen.X$values[use]) %*% LamX))
+  SE[is.na(is.nest)] = NA
+  
+  return (cbind(est, as.vector(is.nest)))
 }
 
-estimable(FullModel, t(as.matrix(newdf)))
+
+estimability(FullModel, t(as.matrix(newdf)))
+
 F1 <- lm( lpsa ~  D6+ D7+ D8 +  D9, data = Prostate)
 estimable(F1, c(0, 1, 0,0,0))
 # function works
