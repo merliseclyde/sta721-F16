@@ -1,0 +1,109 @@
+\documentclass[12pt]{article}
+\usepackage{fullpage, amssymb,amsmath}
+\pagestyle{empty}
+\input{../macros}
+\begin{document}
+\begin{center}
+{\bf STA721  Homework 9} \\
+\end{center}
+\vspace{.5in}
+
+\noindent
+Assume  the model
+\begin{equation}
+  \label{eq:true}
+\Y = \one \alpha + \X \betav + \eps 
+\end{equation}
+where $\X$ is $n \times p$ and
+full column rank for the problems below.  Without loss, you may assume
+that $\one^T\X = \zero_p$ for below.
+
+
+\begin{enumerate}
+
+ \item What is  $E_{\Y \mid \b, \phi}[\|\hat{\b} - \b)\|^2]$,
+  the expected MSE for OLS under the full model?
+
+\item  Find  $\btilde = \E_{\b \mid \Y}[\b \mid \Y, g]$, the
+  posterior mean under the Zellner $g$-prior:
+  \begin{align*}
+  p(\alpha, \phi) & \propto \phi^{-1}     \\
+  \b \mid \phi, g & \sim N(\zero_p, \frac{g}{\phi} (\X^T \X)^{-1})
+  \end{align*} as a function of the MLE $\bhat$.
+
+\item  Find the {\it sampling
+  distribution} of $\btilde$. (i.e as a function of $\Y$ given
+parameters, what is the  distribution of $\btilde$?)
+  
+\item  Is the posterior mean $\btilde$ 
+   unbiased for estimating $\b$?  If not, what is the bias?  (again the
+   expectation is with respect to the distribution for $\Y \mid \b, \phi$
+
+ \item Find $\E_{\Y \mid \b, \phi}[\| \btilde - \b \|^2]$ assuming
+   model (1) and express as a function of $g$, $\|\b\|^2$ and
+   expected MSE for
+   OLS (if possible).  This expectation should be taken with respect
+   to the sampling distribution of $\Y$ not the posterior distribution
+   of $\b$.
+
+
+ \item The Gauss-Markov Theorem showed that out of the class of
+   unbiased linear estimators, the MLE has the smallest variance.  If
+   we use the posterior mean above, can the posterior mean have a
+   smaller loss than the MLE for estimating $\b$?  Can it be much
+   worse? Explain.  (Make a plot to illustrate with $g/(1+g)$ on the
+   x-axis and MSE on the y-axis); add curves for 1) the sum of the
+   squared bias terms and 2) the variance term (the part from the
+   trace) as a additional lines using different line types and a
+   legend.  (you may need to assume or fix values for some quantities
+   that go into the loss, if so how sensitive are the
+   plots/conclusions to those assumptions?).
+
+ \item Can you find a value of $g$ to minimize the Expected MSE with
+   the Bayes estimator?  If so, what is it?  Add this point to you
+   graph above.   Simplify as much as
+   possible.  With this $g$ will the Expected MSE with the Bayes
+   estimator always be smaller than that with the MLE/OLS?  If this depends
+   on the parameters, describe how you could estimate it.
+
+
+
+ \end{enumerate}
+
+\end{document}
+
+
+
+%\item Christensen Exercises 4.1, 4.2, 4.3,  4.6
+
+%\item Refer to the  Meadowfoam data from class.
+ 
+%\begin{enumerate}
+% \item 
+%Show
+%that model that allows a different mean for every combination of Time
+%and Intensity is equivalent to the Two-way AOV 
+%with interaction model of Sec 7.2.  
+
+%\item Fit the two-way AOV model (with interactions) in R and obtain an
+%ANOVA table.  Do there appear to be significant interactions between
+%Time and Intensity?
+
+\item Show that the mean vector for the regression model discussed in
+  class with Intensity   now as a numeric variable and allowing for
+  different intercepts and   slopes for the two Time periods 
+ is contained in the space spanned by the columns of the design
+  matrix for the 2-way ANOVA model with interaction (see Page 163).
+
+\item Carry out the Extra-Sum of Squares F-test for Lack of Fit of the
+  regression model above (see Chapter 6).  What  do you conclude?
+
+\item Which model do you recommend for the data (of the above or those
+  from class)?  Using this model, write a brief paragraph summarizing
+  the effects of light intensity and photoperiod timing on flower
+  production. Make sure that any point estimates are accompanied by
+  appropriate interval estimates.
+
+
+
+13.2, 13.6, 13.7, 13.8, 13.9 Exercise 11.23 from Statistical Sleuth
