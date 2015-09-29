@@ -1,0 +1,305 @@
+%\documentclass[]{beamer}
+\documentclass[handout]{beamer}
+%\usepackage[dvips]{color}
+\usepackage{graphicx}
+\usepackage{amsmath,amssymb,array,comment,eucal}
+\input{../macros}
+\usepackage{verbatim}
+
+\usetheme{Warsaw}
+\usecolortheme{orchid}
+\title{Bayes Estimators \& Ridge Regression}
+\subtitle{Readings Chapter 14 Christensen}
+\institute{Merlise Clyde}
+\author{STA721 Linear Models Duke University}
+\date{\today}
+\logo{duke.eps}
+
+\begin{document}
+\maketitle
+
+
+\begin{frame}
+  \frametitle{How Good are  Estimators?}
+Quadratic loss for estimating  $\b$ using estimator $\a$
+$$ L(\b, \a) =  ( \b - \a)^T(\b -\a)$$ \pause
+
+\begin{itemize}
+\item Consider our expected loss (before we see the data) of taking an
+action $\a$ \pause
+\item Under OLS or the  Reference prior the Expected Mean Square Error  \pause
+  \begin{eqnarray*}
+\E_\Y[( \b - \bhat)^T(\b -\bhat) & = &\sigma^2
+  \tr[(\X^T\X)^{-1}] \pause \\
+ & = & \sigma^2 \sum_{j=1}^p \lambda_j^{-1}
+  \end{eqnarray*}
+\pause
+\item If smallest $\lambda_j \to 0$ then MSE $\to \infty$
+\end{itemize}
+\end{frame}
+
+
+  \begin{frame}
+ \frametitle{Is $g$-prior any better? }  
+
+Under the $g$-prior $\E_\Y[( \b - \frac{g}{1+g}\bhat)^T(\b
+-\frac{g}{1+g}\bhat) $ \pause
+  \begin{eqnarray*}
+\E[L(\b, \frac{g}{1+g}\bhat)]  & = &
+\sigma^2 \left(\frac{g}{1+g}   \right)^2  \tr[(\X^T\X)^{-1}]  +
+\frac{\b^T\b}{(1 + g)^2} \pause \\
+&  =  & \frac{1}{(1 + g)^2} (\sigma^2 g^2 \sum \lambda_j^{-1}  + ||\b\|^2)
+  \end{eqnarray*} \pause
+
+
+Aside: $g$ prior is better than Reference Prior if 
+$$g > \frac{ \| \b\|^2 }{\sigma^2 \sum \lambda_j^{-1 }} -1$$
+But still have risk going to infinity as $\lambda \to 0$
+\end{frame}
+
+\begin{frame}
+  \frametitle{Canonical Representation \& Ridge Regression}
+  Assume that $\X$ has been centered and standardized so that $\X^T\X
+  = \corr(\X)$ \pause  (use {\tt scale} function in {\tt R}) \pause
+
+  \begin{itemize}
+  \item Write $\X = \U_p L \V^T$ Singular Value Decomposition \pause where
+    $\U_p^T\U_p = \I_p$ and $\V$ is $p \times p$ orthogonal matrix,
+    $L$ is diagonal \pause 
+  $$ \Y = \one \alpha +  \U_p L \V^T \b + \eps $$ \pause
+  \item  Let $\U = [\one \, \U_p \, \U_{n-p -1}]$ $n \times n$  orthogonal matrix \pause
+\item Rotate by $\U^T$ \pause
+  \begin{eqnarray*}
+    \U^T \Y & = & \U^T \one \alpha + \U^T \U_p L \V^T \b + \U^T \eps \pause \\
+    \Y^* 
+   &=& \left[
+  \begin{array}{cc}
+   n & \zero_p\\ 0 & L \\  \zero_{n-p -1} & \zero_{n - p - 1  \times p} 
+  \end{array}
+ \right]
+\left(    \begin{array}{c}
+      \alpha \\
+  \g
+    \end{array} \right)
++  \eps^*
+  \end{eqnarray*} \pause
+
+  \end{itemize}
+\end{frame}
+  \begin{frame} {Orthogonal Regression}
+
+  \begin{eqnarray*}
+    \U^T \Y & = & \U^T \one \alpha + \U^T \U_p L \V^T \b + \U^T \eps \pause \\
+    \Y^* 
+   &=& \left[
+  \begin{array}{cc}
+   n & \zero_p\\ 0 & L \\  \zero_{n-p -1} & \zero_{n - p - 1  \times p} 
+  \end{array}
+ \right]
+\left(    \begin{array}{c}
+      \alpha \\
+  \g
+    \end{array} \right)
++  \eps^*
+  \end{eqnarray*} \pause
+
+    
+  \begin{itemize}
+  \item   $\hat{\alpha} = \ybar$ \pause 
+\item $\hat{\g} =( L^TL)^{-1} L^T \U^T_p\Y$ or $\hat{\gamma}_i = y^*_i/l_i$ for
+  $i = 1, \ldots, p$ \pause
+\item  $\Var(\hat{\gamma}_i) = \sigma^2/l_i^2$
+  \end{itemize}
+Directions in $\X$ space $\U_j$ with small eigenvectors $l_i$ have
+the largest variances.  Unstable directions.
+\end{frame}
+
+\begin{frame}
+  \frametitle{Ridge  Regression \& Independent Prior}
+  (Another) Normal Conjugate Prior Distribution on $\g$: $$\g \mid \phi \sim \N(\zero_p, \frac{1}{ \phi
+    k} \I_p)$$ \pause
+
+Posterior mean
+$$
+ \tilde{\g} =( L^TL + k \I)^{-1} L^T \U^T_p\Y  = ( L^TL + k \I)^{-1}
+ L^TL\hat{\g} 
+$$\pause
+
+ $$\tilde{\gamma}_i = \frac{l_i^2}{l_i^2 + k} \hat{\gamma}_i =
+ \frac{\lambda_i}{\lambda_i + k} \hat{\gamma}_i $$ \pause
+ \begin{itemize}
+\item When $\lambda_i \to 0$ then $\tilde{\gamma}_i \to 0$
+
+\item When $k \to 0$ we get OLS back but if $k$ gets too  big posterior
+  mean goes to zero.
+ \end{itemize}
+
+\end{frame}
+\begin{frame}
+  \frametitle{Transform}
+  \begin{itemize}
+  \item 
+  Transform back $\tilde{\b} = \V \tilde{\g}$ \pause
+  $$\tilde{\b} = (\X^T\X + k \I)^{-1}  \X^T\X \bhat$$ \pause
+\item importance of standardizing \pause
+
+\item Is there a value of $k$ for which ridge is better in terms of
+  Expected MSE than OLS? \pause
+\item Choice of $k$?
+  \end{itemize}
+\end{frame}
+\begin{frame}\frametitle{MSE}
+Can show that
+ $$\E[(\b - \btilde)^T(\b - \btilde)] = \E[(\g - \tilde{\g})^T(\g - \tilde{\g}]$$
+  \pause
+ \begin{itemize}
+ \item $\Var(\gamma_i - \tilde{\gamma}_i) = \sigma^2 l_i^2 /(l_i^2 +
+   k)^2$ \pause
+\item  Bias of $\tilde{\g}$ is $-k/(l_i^2 + k)$ \pause
+ \item  MSE $$\sigma^2 \sum_i \frac{l_i^2}{(l_i^2 + k)^2} +  k^2 
+   \sum_i \frac{\gamma_i^2} {(l_i^2 + k)^2} $$
+ \end{itemize}
+The derivative with respect to $k$ is negative at $k=0$, hence the
+function is decreasing. \pause
+
+\vspace{12pt}
+Since $k = 0$ is OLS, this means that is a value of $k$ that will
+always be better than OLS
+\end{frame}
+
+\begin{frame}  \frametitle{Alternative Motivation}
+  \begin{itemize}
+  \item If  $\bhat$ is unconstrained  expect high variance with nearly
+    singular $\X$ \pause
+  \item Let $\Y^c = (\I - \P_1) \Y$  and $\X^c$ the centered and
+    standardized  $\X$ matrix \pause
+\item Control how large coefficients may grow \pause
+    $$\min_{\b} (\Y^c - \X^c \b)^T (\Y^c - \X^c\b)$$
+    subject to
+    $$ \sum \beta_j^2 \le t$$ \pause
+  \item Equivalent Quadratic Programming Problem
+    $$\min_{\b} \| \Y^c - \X^c \b\|^2 + k \|\b\|^2$$ \pause
+  \item ``penalized'' likelihood \pause
+  \end{itemize}
+\end{frame}
+\begin{frame}\frametitle{Picture}
+  
+\end{frame}
+\begin{frame}
+  \frametitle{Longley Data}
+  \centerline{\includegraphics[height=3in]{longley-pairs}}
+\end{frame}
+
+\begin{frame}[fragile]
+  \frametitle{OLS}
+\begin{small}
+\begin{verbatim}
+> longley.lm = lm(Employed ~ ., data=longley)
+> summary(longley.lm)
+
+Coefficients:
+               Estimate Std. Error t value Pr(>|t|)    
+(Intercept)  -3.482e+03  8.904e+02  -3.911 0.003560 ** 
+GNP.deflator  1.506e-02  8.492e-02   0.177 0.863141    
+GNP          -3.582e-02  3.349e-02  -1.070 0.312681    
+Unemployed   -2.020e-02  4.884e-03  -4.136 0.002535 ** 
+Armed.Forces -1.033e-02  2.143e-03  -4.822 0.000944 ***
+Population   -5.110e-02  2.261e-01  -0.226 0.826212    
+Year          1.829e+00  4.555e-01   4.016 0.003037 ** 
+---
+Signif. codes:  0 '***' 0.001 '**' 0.01 '*' 0.05 '.' 0.1 ' ' 1 
+
+Residual standard error: 0.3049 on 9 degrees of freedom
+Multiple R-squared: 0.9955,	Adjusted R-squared: 0.9925 
+F-statistic: 330.3 on 6 and 9 DF,  p-value: 4.984e-10 
+\end{verbatim}
+\end{small}
+\end{frame}
+\begin{frame}
+  \frametitle{Ridge Trace}
+  \centerline{\includegraphics[height=3in]{ridge-trace}}
+\end{frame}
+\begin{frame}[fragile]
+\frametitle{Generalized Cross-validation}
+\begin{small}
+\begin{verbatim}
+> select(lm.ridge(Employed ~ ., data=longley, 
+         lambda=seq(0, 0.1, 0.0001)))
+
+modified HKB estimator is 0.004275357 
+modified L-W estimator is 0.03229531 
+smallest value of GCV  at 0.0028 
+
+> longley.RReg = lm.ridge(Employed ~ ., data=longley, 
+                          lambda=0.0028)
+> coef(longley.RReg)
+           GNP.deflator    GNP     Unemployed  Armed.Forces 
+-2.950e+03 -5.381e-04   -1.822e-02  -1.76e-02 -9.607e-03 
+
+ Population     Year 
+-1.185e-01  1.557e+00 
+\end{verbatim}
+ 
+\end{small}
+
+\end{frame}
+
+\begin{frame} \frametitle{Testimators}
+
+Goldstein \& Smith (1974) have shown that if
+
+\begin{enumerate}
+\item
+$0 \leq  h_i \leq 1$ and  $\tilde{\gamma}_i = h_i \hat{\gamma}_i$  
+\item $\frac{\gamma^2_i}{\Var(\hat{\gamma}_i)} < \frac{1 + h_i}{1 - h_i}$
+\end{enumerate}
+then   $\tilde{\gamma}_i$ has smaller MSE than $\hat{\gamma}_i$
+
+\vspace{14pt}
+Case:  If $\gamma_j < \Var(\hat{\gamma}_i) = \sigma^2/l_i^2$  then
+$h_i = 0$ and $\tilde{\gamma}_i$ is better.
+
+\vspace{11pt}
+Apply: Estimate $\sigma^2$ with SSE/(n - p - 1) and $\gamma_i$ with
+$\hat{\gamma}_i$.  Set $h_i = 0$ if t-statistic is less than 1.
+\vfill 
+``testimator'' - see also Sclove (JASA 1968) and Copas ( JRSSB 1983)
+\end{frame}
+\begin{frame} \frametitle{Generalized Ridge}
+
+
+Instead of $\gamma_j \simiid \N(0, \sigma^2/k)$ take 
+
+$$\gamma_j \ind \N(0, \sigma^2/k_i)$$  \pause
+
+Then Condition of Goldstein \& Smith becomes
+
+$$
+\gamma_i^2 < \sigma^2\left[ \frac{2}{k_j} + \frac{1}{l_i^2}  \right]
+$$ \pause
+\begin{itemize}
+\item 
+If $l_i$ is small almost any $k_i$ will improve over OLS \pause
+\item 
+if $l_i^2$ is large then only very small values of $k_i$ will give an
+improvement \pause
+\item Prior on $k_i$?   \pause
+\item Induced prior on $\b$?  
+$$\gamma_j \ind \N(0, \sigma^2/k_i) \Leftrightarrow 
+\b \sim \N(\zero, \sigma^2 \V K^{-1} \V^T)$$
+which is not diagonal.   Loss of invariance.
+\end{itemize}
+
+\end{frame}
+\begin{frame} \frametitle{Summary }
+
+  \begin{itemize}
+  \item OLS can clearly be dominated by other estimators
+  \item Lead to Bayes like estimators
+  \item choice of penalities or prior hyperparameters
+  \item hierarchical model with prior on $k_i$
+  \end{itemize}
+
+\end{frame}
+\end{document}
+
