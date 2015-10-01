@@ -1,0 +1,43 @@
+\documentclass{article}
+
+
+\usepackage{graphicx, fullpage}
+\usepackage{amsmath,amssymb,array,comment,eucal}
+\input{../macros}
+\usepackage{verbatim}
+
+\begin{document}
+\begin{center}
+  STA 721 HW 10
+\end{center}
+
+\begin{enumerate}
+\item With the model from class and sufficient statistics, derive  the
+  full conditional distributions  for  $\alpha$,   $\gamma$ $\kappa_j$
+  and $\phi$ assuming 
+  \begin{align}
+    p(\alpha, \phi) & \propto 1/\phi \\
+    \gamma_j \mid \kappa_j, \phi, \alpha & \simiid \N(0, \frac{1}{\phi
+                                           \kappa_j}) \\
+   \kappa_j & \iid G(1/2, 1/2)
+  \end{align}
+(You should have a name, and 
+  expressions for all hyperparameters)
+\item Modify you Gamma prior on $\kappa_i$ to capture the  desired features
+  based on $l_i$. 
+
+\item Find the updated full conditionals based on your choice above.
+  Do you need to update all of the full conditionals?  Explain.
+
+\item Implement your models in R or JAGS  (see earlier JAGS code as a
+  starting point) and apply this to the {\tt longley} data.
+ How do your results compare to classical ridge?  Include plots of the
+ posterior distributions of coefficients, plus means and credible
+ intervals, as well as plots of the distributions of the $\kappa$'s.
+ How sensitive to the results to the prior assumptions?  How do the
+ estimates of $\kappa_i$ compare to the best GCV estimate from class?
+
+\item Explain the compuational advantage of using the canonical parameterization
+  in  MCMC.
+\end{enumerate}
+\end{document}
