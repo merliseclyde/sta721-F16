@@ -12,32 +12,103 @@
 \end{center}
 
 \begin{enumerate}
-\item With the model from class and sufficient statistics, derive  the
-  full conditional distributions  for  $\alpha$,   $\gamma$ $\kappa_j$
+\item Verify  equation (3) starting from  (1) for the
+  rotated model for $\Y^*$: 
+  \begin{align}
+    \Y & = \one \alpha + \X^s \b + \eps \\
+    \U^T\Y & = \U^T\one \alpha + \U^T \X^s \b + \U^T\eps \\
+\left(
+    \begin{array}{c}
+      y_0^* \\
+      y_1^* \\
+    \vdots \\
+      y_p^* \\
+      y_{p+1}^* \\
+      \vdots \\
+      y_{n-1}^*
+    \end{array} \right)
+ & =  
+\left[
+ \begin{array}{ccccc}
+      \sqrt{n} & 0 & 0  & \ldots & 0\\
+      0 & l_1 & 0 & \ldots & 0 \\
+    \vdots & 0 & \ddots &  0 & \ldots \\
+    \vdots&  0 & \vdots & \ddots & 0 \\
+    \vdots&  \vdots & \vdots & 0 & l_p \\
+    \vdots & \vdots & \vdots &\vdots &  0 \\
+    \vdots & \vdots & \vdots &\vdots &  \vdots \\
+     0 & \ldots & \ldots & \ldots & 0  
+    \end{array} \right]
+\left(
+                                    \begin{array}{c}
+                                      \alpha \\
+                                      \gamma_1 \\
+                                      \vdots \\
+                                      \gamma_p
+                                    \end{array}
+\right)
++ \eps^*
+  \end{align} 
+where$\X^s$ has been centered and standardized so that each column has
+length 1 and mean 0 (see scale in R), $\U = [\one_n/\sqrt{n} \, \U_p \,
+\U_{n-p-1}]$ is an orthogonal matrix with $\X^s = \U_p L \V^T$ from
+the singular value decomposition, and $\g = \V^T\b$.
+
+\item Show that OLS estimates $\hat{\alpha} = \ybar$ and
+  $\hat{\gamma}_i = y_i^*/l_i$ for $i = 1, \ldots, p$.
+
+\item Show that $\SSE = \Y^T\U_{n-p-1}\U_{n-p-1}^T \Y = \Y(\I -
+  \frac{1}{n}\one \one^T - \U_p \U_p^T)\Y$.  Do you need to find
+  $\U_{n-p-1}^T\Y$ to compute SSE?  Can you express SSE as a function of
+  the MLEs of  $\alpha$ and $\hat{\gamma}$s (and $\Y^TY$)?
+\item Write the  likelihood function as a product of three terms:
+a part that involves only $\alpha \mid \phi$, $\gamma \mid \phi$ and
+$\phi$ with the MLES and SSE using $\Y^*$. 
+
+\item Derive  the
+  full conditional distributions  for  $\alpha$,   $\gamma$, $\kappa_j$
   and $\phi$ assuming 
   \begin{align}
     p(\alpha, \phi) & \propto 1/\phi \\
     \gamma_j \mid \kappa_j, \phi, \alpha & \simiid \N(0, \frac{1}{\phi
                                            \kappa_j}) \\
-   \kappa_j & \iid G(1/2, 1/2)
+   \kappa_j & \simiid G(1/2, 1/2)
   \end{align}
-(You should have a name, and 
-  expressions for all hyperparameters)
-\item Modify you Gamma prior on $\kappa_i$ to capture the  desired features
-  based on $l_i$. 
+You should have a name for the distribution and  
+  expressions for all hyperparameters, not just an expression for the
+  density. Hint: write down likelihoods and priors,
+  but ignore any terms that do not involve the parameter of interest
+  (they go into constant of proportionality).  Simplify until you
+  recognize the distribution. 
 
+\item Modify your Gamma prior on $\kappa_i$ to try to capture the
+  desired features of Goldstein \& Smith (1974)  (See Christensen
+  Chapter 15) where if
+$$
+\gamma_i^2 < \sigma^2\left[ \frac{2}{\kappa_i} + \frac{1}{l_i^2}  \right]
+$$ the fixed $\kappa_i$ Generalized Ridge shrinkage estimator (posterior mean) beats OLS:
+\begin{itemize}
+\item 
+If $l_i$ is small almost any $\kappa_i$ will improve over OLS 
+\item 
+if $l_i^2$ is large then only very small values of $\kappa_i$ will give an
+improvement
+based on $l_i$, i.e. if $l_i^2$ is large $kappa_i$ should be small.
+Plot your prior densities, with an overlay of the G(1/2, 1/2).
+\end{itemize}
 \item Find the updated full conditionals based on your choice above.
   Do you need to update all of the full conditionals?  Explain.
 
-\item Implement your models in R or JAGS  (see earlier JAGS code as a
-  starting point) and apply this to the {\tt longley} data.
- How do your results compare to classical ridge?  Include plots of the
- posterior distributions of coefficients, plus means and credible
- intervals, as well as plots of the distributions of the $\kappa$'s.
- How sensitive to the results to the prior assumptions?  How do the
- estimates of $\kappa_i$ compare to the best GCV estimate from class?
+\item Implement your 2 models in R, JAGS or other language (see
+  earlier JAGS code as a starting point) and apply this to the {\tt
+    longley} data.  How do your results compare to classical ridge?
+  Include histograms of the posterior distributions of coefficients,
+  plus means and credible intervals, as well as histograms of the
+  $\kappa$'s with the prior density overlaid.  How sensitive are the
+  results to the prior assumptions?  How do the estimates of
+  $\kappa_i$ compare to the best GCV estimate from class?
 
-\item Explain the compuational advantage of using the canonical parameterization
-  in  MCMC.
+\item Explain the computational advantage of using the canonical
+  parameterization in MCMC.
 \end{enumerate}
 \end{document}

@@ -59,7 +59,7 @@ smallest value of GCV  at 0.0028
  \Y^c & = & \X^s\b^s + \eps^s \qquad \eps^s \sim \N(\zero, (\I -
  \P_{1})/\phi) \pause \\
  \Ybar \mid \alpha, \phi & \sim & N(\alpha, 1/(n \phi)) \pause \\
- \U_{p} \Y & = &  L \g + \eps_p \qquad  \eps_p \sim \N(\zero,
+ \U_{p}^T \Y & = &  L \g + \eps_p \qquad  \eps_p \sim \N(\zero,
  \I_p/\phi) \pause \\
 \SSE \equiv \Y^T \U_{n-p-1} \U_{n-p-1}^T \Y  & \sim & \G( (n-p-1)/2, \phi/2)
   \end{eqnarray*}
@@ -155,14 +155,14 @@ $$\gamma_j \ind \N(0, \sigma^2/\kappa_i)$$  \pause
 Then Condition of Goldstein \& Smith becomes
 
 $$
-\gamma_i^2 < \sigma^2\left[ \frac{2}{\kappa_j} + \frac{1}{l_i^2}  \right]
+\gamma_i^2 < \sigma^2\left[ \frac{2}{\kappa_i} + \frac{1}{l_i^2}  \right]
 $$ \pause
 \begin{itemize}
 \item 
 If $l_i$ is small almost any $\kappa_i$ will improve over OLS \pause
 \item 
 if $l_i^2$ is large then only very small values of $\kappa_i$ will give an
-improvement \pause
+improvement. \pause
 \item Prior on $\kappa_i$?   \pause
 \item Prior that can capture the feature above?
 
@@ -175,7 +175,7 @@ improvement \pause
 $$\gamma_j \mid \sigma^2, \kappa_j  \ind \N(0, \sigma^2/\kappa_j) \Leftrightarrow 
 \b \sim \N(\zero, \sigma^2 \V\ \K^{-1} \V^T)$$
 which is not diagonal.   
-  \item  Or start with $$\b  \mid \sigma^2, \K \sim \N(0, \sigma^2 K)$$
+  \item  Or start with $$\b  \mid \sigma^2, \K \sim \N(0, \sigma^2 \K^{-1})$$
  \item loss of invarince with linear transformations of $\X^s$
 \item $\X^s \A \A^{-1} \b = \Z \alphav$ where $\A^{-1} \b = \alphav$
   \end{itemize}
@@ -199,11 +199,11 @@ $$\X = \U_p \L \V^T$$
      then we may decide to not use $\F_i$ in the model.  \pause
 \item equivalent to setting
   \begin{itemize}
-  \item $\tilde{\gamma}_i = \hat{\gamma}_i$ if  $l_i\geq \eps$
+  \item $\tilde{\gamma}_i = \hat{\gamma}_i$ if  $l_i\geq \delta$
   \item $\tilde{\gamma}_i = 0$ if  $l_i < \eps$ \pause
   \end{itemize}
   \end{itemize}
-How to choose $\eps$?   Why should $\Y$ be related to first $k$
+How to choose $\delta$?   Why should $\Y$ be related to first $k$
 principal components?
 \end{frame}
 \begin{frame} \frametitle{Summary }
