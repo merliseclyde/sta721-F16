@@ -11,7 +11,7 @@ Week 4,22-Sep,Jeffreys Priors & Formal Bayes ,"<a href=""../slides/MorePriors/mo
 ,24-Sep,Comparisons,"<a href=""../slides/Estimation/estimation.pdf""> Mixture Priors & Estimators</a>, <a href=""../slides/Estimation/gprior.R""> R & JAGS code</a>",Hoff Chapter 2,"<a href=""../hw/Estimation/HW9.pdf""> HW9</a> (Due Sept 29)"
 Week 5,29-Sep,Ridge Regression,"<a href=""../slides/Ridge/ridge.pdf""> Ridge Regression</a>",Chapter 15 Christensen,
 ,1-Oct,Bayesian Ridge,"<a href=""../slides/BayesRidge/BRidge.pdf""> Bayesian Ridge Regression & Topics</a>",Chapter 15 Christensen and Hoff Chapter 7,"<a href=""../hw/BRidge/HW10.pdf""> HW10</a> (Due Oct 6)"
-Week 6,6-Oct,Properties of Shrinkage Priors,,,
+Week 6,6-Oct,Lasso & Bayesian Lasso,"<a href=""../slides/Lasso/lasso.pdf""> Lasso & Bayesian Lasso Regression </a>",Chapter 15 Christensen and Hoff Chapter 7,No HW - review for Midterm
 ,8-Oct,Midterm ,,,
 Week 7,13-Oct,,"<span style=""color:gray"">No class - Fall Break",,
 ,15-Oct,Hypothesis Testing,,,
