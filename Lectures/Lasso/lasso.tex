@@ -1,0 +1,258 @@
+\documentclass[handout]{beamer}
+%\documentclass[]{beamer}
+%\usepackage[dvips]{color}
+\usepackage{graphicx}
+\usepackage{amsmath,amssymb,array,comment,eucal,url}
+\input{../macros}
+\usepackage{verbatim}
+
+\usetheme{Warsaw}
+\usecolortheme{orchid}
+\title{Lasso \& Bayesian  Lasso }
+\subtitle{Readings Chapter 15 Christensen}
+\institute{Merlise Clyde}
+\author{STA721 Linear Models Duke University}
+\date{\today}
+\logo{duke.eps}
+
+\begin{document}
+\maketitle
+
+
+\begin{frame}
+  \frametitle{Lasso}
+Tibshirani (JRSS B 1996) proposed estimating coefficients through
+$L_1$ constrained least squares  ``Least Absolute Shrinkage and
+Selection Operator''
+\begin{itemize}
+ \item Control how large coefficients may grow \pause
+    $$\min_{\b} (\Y^c - \X^c \b^c)^T (\Y^c - \X^c\b^c)$$
+    subject to
+    $$ \sum |\beta^c_j| \le t$$ \pause
+  \item Equivalent Quadratic Programming Problem for ``penalized'' Likelihood
+    $$\min_{\b^c} \| \Y^c - \X^c \b^c\|^2 + \lambda \|\b^c\|_1$$ \pause
+  \item Posterior mode
+  $$
+\max_{\b} -\frac{\phi}{2} \{ \| \Y^c - \X^c \b^c\|^2 + \lambda \|\b^c\|_1 \}
+$$ \pause
+ \item the entire path of solutions can be easily found using the
+   ``Least Angle Regression'' Algorithm of Efron et al (Annals of
+   Statistics 2004)
+\end{itemize}
+\end{frame}
+\begin{frame}
+  \frametitle{Picture}
+  
+\end{frame}
+\begin{frame}[fragile]
+  \frametitle{R Code}
+\begin{verbatim}
+> library(lars)
+> longley.lars = lars(as.matrix(longley[,-7]), longley[,7],
+                 type="lasso")
+> plot(longley.lars)
+\end{verbatim}
+\includegraphics[height=2.5in,width=4.5in]{longley-lars}
+\end{frame}
+
+\begin{frame}[fragile]
+  \frametitle{Solutions}
+{\fontsize{9pt}{10pt} \selectfont 
+\begin{verbatim}
+> round(coef(longley.lars),5)
+    GNP.deflator      GNP Unemployed Armed.Forces Population    Year
+ [1,]    0.00000  0.00000    0.00000      0.00000    0.00000 0.00000
+ [2,]    0.00000  0.03273    0.00000      0.00000    0.00000 0.00000
+ [3,]    0.00000  0.03623   -0.00372      0.00000    0.00000 0.00000
+ [4,]    0.00000  0.03717   -0.00459     -0.00099    0.00000 0.00000
+ [5,]    0.00000  0.00000   -0.01242     -0.00539    0.00000 0.90681
+ [6,]    0.00000  0.00000   -0.01412     -0.00713    0.00000 0.94375
+ [7,]    0.00000  0.00000   -0.01471     -0.00861   -0.15337 1.18430
+ [8,]   -0.00770  0.00000   -0.01481     -0.00873   -0.17076 1.22888
+ [9,]    0.00000 -0.01212   -0.01663     -0.00927   -0.13029 1.43192
+[10,]    0.00000 -0.02534   -0.01869     -0.00989   -0.09514 1.68655
+[11,]    0.01506 -0.03582   -0.02020     -0.01033   -0.05110 1.82915
+\end{verbatim}
+}
+\end{frame}
+
+\begin{frame}[fragile]
+  \frametitle{Cp Solution}
+Min $C_p = SSE_p/\hat{\sigma}^2_F - n + 2 p$  \pause
+\begin{small}
+\begin{verbatim}
+> summary(longley.lars)
+LARS/LASSO
+Call: lars(x = as.matrix(longley[, -7]), y = longley[, 7], type = "lasso")
+   Df     Rss        Cp
+0   1 185.009 1976.7120
+1   2   6.642   59.4712
+2   3   3.883   31.7832
+3   4   3.468   29.3165
+4   5   1.563   10.8183
+5   4   1.339    6.4068
+6   5   1.024    5.0186
+7   6   0.998    6.7388
+8   7   0.907    7.7615
+9   6   0.847    5.1128
+10  7   0.836    7.0000
+\end{verbatim}
+\end{small}
+ \pause
+{\fontsize{9pt}{10pt} \selectfont 
+\begin{verbatim}
+     GNP.deflator     GNP Unemployed Armed.Forces Population    Year
+[7,]     0.00000  0.00000   -0.01471     -0.00861   -0.15337 1.18430
+
+\end{verbatim}
+}
+
+\end{frame}
+\begin{frame}
+  \frametitle{Features}
+Combines shrinkage (like Ridge Regression) with Selection (like
+stepwise selection) \pause
+
+\vspace{2.5in}
+Uncertainty?  Interval estimates?
+\end{frame}
+\begin{frame}
+  \frametitle{Bayesian Lasso}
+  Park \& Casella (JASA 2008) and Hans (Biometrika 2010) propose
+  Bayesian versions of the Lasso  \pause
+  \begin{eqnarray*}
+    \Y \mid \alpha, \b, \phi & \sim & \N(\one_n \alpha + \X^c \b, \I_n/\phi)  \pause\\
+    \b \mid \alpha, \phi, \taub & \sim & \N(\zero, \diag(\taub^2)/\phi)  \pause\\
+    \tau_1^2 \ldots, \tau_p^2 \mid \alpha, \phi & \simiid & \Ex(\lambda^2/2)  \pause\\
+    p(\alpha, \phi) & \propto& 1/\phi  \pause\\
+  \end{eqnarray*}
+Can show that $\beta_j \mid \phi, \lambda \simiid DE(\lambda \sqrt{\phi})$
+$$\int_0^\infty \frac{1}{\sqrt{2 \pi s}}
+  e^{-\frac{1}{2} \phi \frac{\beta^2}{s }}
+  \, \frac{\lambda^2}{2} e^{- \frac{\lambda^2 s}{2}}\, ds =
+  \frac{\lambda \phi^{1/2}}{2} e^{-\lambda \phi^{1/2} |\beta|}
+$$  \pause
+Scale Mixture of Normals  (Andrews and Mallows 1974)
+\end{frame}
+\begin{frame}
+  \frametitle{Gibbs Sampling}
+  \begin{itemize}
+  \item Integrate out $\alpha$: $\alpha \mid \Y, \phi \sim \N(\ybar,
+    1/(n \phi)$  \pause
+\item $\b \mid \taub, \phi, \lambda, \Y \sim \N(, )$   \pause
+\item $\phi \mid \taub, \b, \lambda, \Y \sim \G( , ) $  \pause
+\item $1/\tau_j^2 \mid \b, \phi, \lambda, \Y \sim \text{InvGaussian}(
+  , )$  \pause
+  \end{itemize}
+$X \sim \textsf{InvGaussian}(\mu,  \lambda)$
+$$
+f(x) =  \sqrt{\frac{\lambda^2}{2 \pi}}  x^{-3/2} e^{- \frac{1}{2} \frac{
+    \lambda^2( x - \mu)^2} {\mu^2 x}} \qquad x > 0
+$$  \pause
+
+Homework:  Derive the full conditionals for $\b$, $\phi$,
+$1/\tau^2$  see \url{http://www.stat.ufl.edu/~casella/Papers/Lasso.pdf} 
+\end{frame}
+\begin{frame}
+  \frametitle{Other Options}
+  Range of other scale mixtures used  \pause
+  \begin{itemize}
+  \item Horseshoe  (Carvalho, Polson \& Scott)  \pause
+  \item Generalized Double Pareto (Armagan, Dunson \& Lee)  \pause
+  \item Normal-Exponenetial-Gamma (Griffen \& Brown)  \pause
+  \item Bridge - Power Exponential Priors  \pause
+   \end{itemize}
+Properties of Prior?   \pause
+\end{frame}
+
+
+
+
+
+
+
+
+\begin{frame}
+  \frametitle{Horseshoe}
+  Carvalho, Polson \& Scott  propose
+\begin{itemize}
+\item 
+Prior Distribution on $$\b \mid \phi \sim \N(\zero_p, \frac{\diag(\tau^2)}{ \phi
+    }) $$ \pause
+\item $\tau_j^2 \mid \lambda \simiid C^+(0, \lambda)$ \pause
+\item $\lambda \sim \C^+(0, 1/\phi)$ \pause
+\item $p(\alpha, \phi) \propto 1/\phi)$ \pause
+\end{itemize}
+
+In the case $\lambda = \phi = 1$ and with $\X^t\X = \I$ $\Y^* =
+\X^T\Y$ \pause
+$$ 
+E[\beta_i \mid \Y] = \int_0^1 (1 - \kappa_i) y^*_i p(\kappa_i \mid \Y)
+\ d\kappa_i = (1 - \E[\kappa \mid y^*_i]) y^*_i$$
+where $\kappa_i = 1/(1 + \tau_i^2)$ shrinkage factor \pause
+
+\vspace{18pt}
+Half-Cauchy prior induces a Beta(1/2, 1/2) distribution on $\kappa_i$
+a priori
+\end{frame}
+\begin{frame}
+\frametitle{Horseshoe}
+  \includegraphics[height=3.5in]{beta}
+\end{frame}
+
+
+
+\begin{frame}
+  \frametitle{Simulation Study with Diabetes Data}
+  \includegraphics[height=3.5in]{diabetes}
+\end{frame}
+
+\begin{frame}
+  \frametitle{Other Options}
+  Range of other scale mixtures used  \pause
+  \begin{itemize}
+  \item Generalized Double Pareto (Armagan, Dunson \& Lee)  \pause
+$\lambda \sim \Gam(\alpha, \eta)$  then $\beta_j \sim \textsf{GDP}(\xi
+= \eta/\alpha, \alpha)$  \pause
+$$
+f(\beta_j) = \frac{1}{2 \xi} (1 + \frac{|\beta_j|}{\xi \alpha})^{-(1 + \alpha)}
+$$
+
+see \url{http://arxiv.org/pdf/1104.0861.pdf} \pause
+  \item Normal-Exponenetial-Gamma (Griffen \& Brown 2005)
+$\lambda^2 \sim \Gam(\alpha, \eta)$ 
+  \pause
+  \item Bridge - Power Exponential Priors  (Stable mixing density) \pause
+
+   \end{itemize}
+See the monomvn package on CRAN \pause
+
+\vfill
+
+Choice of prior?   Properties?  Fan \& Li (JASA 2001) discuss Variable
+selection via nonconcave penalties and oracle properties
+\end{frame}
+
+\begin{frame}
+  \frametitle{Choice of Estimator \& Selection?}
+
+  \begin{itemize}
+  \item Posterior Mode (may set some coefficients to zero) \pause
+  \item Posterior Mean (no selection) \pause
+  \end{itemize}
+  Bayesian Posterior does not assign any probability to $\beta_j = 0$ \pause
+
+  \begin{itemize}
+  \item selection based on posterior mode ad hoc rule - Select if
+    $\kappa_i < .5)$ \pause \\
+See  article by  Datta \& Ghosh
+\url{http://ba.stat.cmu.edu/journal/forthcoming/datta.pdf} \pause
+  \item Selection solved as a post-analysis decision problem \pause
+  \item Selection part of model uncertainty $\Rightarrow$ add prior \pause
+    probability that $\beta_j = 0$  and combine with decision problem 
+  \end{itemize}
+\end{frame}
+
+
+\end{document}
+
