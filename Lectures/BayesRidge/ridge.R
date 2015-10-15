@@ -31,7 +31,10 @@ coef(fit)[best.lambda,]
 
 longley.RRegs = lm.ridge(Employed ~ scale(longley[-7]), data=longley, lambda=as.numeric(best.lambda))
 
-plot(coef(longley.lm), coef(longley.RRegs))
+pdf("shrinkage-ridge.pdf")
+plot(coef(longley.lms), coef(longley.RRegs), xlab="Standardized OLS", ylab="Standardized Ridge", main="Shrinkage")
+abline(0,1)
+dev.off()
 #####################################################################
 
 # compare to LASSO
