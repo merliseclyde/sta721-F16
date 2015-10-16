@@ -1,0 +1,101 @@
+\documentclass[12pt]{article}
+\usepackage{fullpage, amssymb,amsmath}
+\pagestyle{empty}
+\input{../macros}
+\begin{document}
+{\bf STA721  }
+\vspace{.1in}
+\begin{center}
+{\large \bf Homework 11} \\
+\end{center}
+\vspace{.5in}
+\noindent
+
+\begin{enumerate}
+\item Derive the full conditionals in Casella and Park (2008) see
+  website for link to paper.
+\item  As a variation on the simulation study in Nott \& Kohn (Biometrika
+2005) (nott-kohn.R), we will explore shrinkage estimators in the normal linear model 
+\begin{equation}
+  \label{eq:model}
+\Y \sim \N(\X \betav, \I_n\sigma^2)
+\end{equation}
+where $\X$ has been generated to have a given correlation structure
+(see the R code nott-kohn.R in the Shrinkage section).  Two of the
+variables have a correlation of near 0.99, with the others more
+modest.  Of the 20 variables, only 8 are related to $\Y$.
+
+
+\begin{enumerate}
+\item Calculate the $E[(\hat{\beta} - \beta)^T(\hat{\beta} - \beta)]$,
+  the expected MSE for OLS under the full model. 
+\item For each simulation, the OLS coefficients are found and an
+  observed MSE = $(\hat{\beta}^{(s)} - \beta)^T(\hat{\beta}^{(s)} -
+  \beta)$ is computed for each of the $s$ simulated datasets.  Does
+  the average of the vector of observed MSEs provide a good estimate
+  of the average of $E[(\hat{\beta} - \beta)^T(\hat{\beta} - \beta)]$?
+  What does the distribution of MSEs look like?  Do you think you need
+  to use a larger number of simulations?    
+
+\item Modify the R-code to use lasso (lars), ridge regression
+  (lm.ridge from MASS or other), and the horseshoe (bhs from monomvn package on CRAN) to
+  estimate $\beta$ (be careful about which methods standardize
+  variables)).  In terms of MSE, which method appears to be best (look
+  at average MSE and side-by-side boxplots)?  Which method has the
+  least bias? (most variance?)  How do they compare to OLS?  Because
+  the methods are compard on the same simulated data, we can use
+  ``blocking'' to eliminate some of the MC variation. For each
+  simulated data set, take the MSE for all the methods and divide by
+  the smallest MSE for that simulation (hint: use {\tt apply} and {\tt
+    sweep}) and then look at side-by-side boxplots of the relative MSE
+  -- those closest to 1 are best.
+\item (Optional)- repeat the above, but consider predictive MSE for
+  predicting new $\Y^*$'s at new $\X^*$ values with the same correlation
+  structure.  Are the methods that are best for estimating $\b$ also
+  best for estimating $\Y^*$
+\end{enumerate}
+\end{enumerate}
+\end{document}
+
+Assume  the model
+\begin{equation}
+  \label{eq:true}c
+\Y = 1 \alpha + \X \betav + \eps 
+\end{equation}
+where $\X$ is $n \times p$ and
+full column rank for the problems below.
+
+\begin{enumerate}
+
+
+\item For $\muhat = \X \betahat$ and $\mub = \X \betav$, find the
+  expected loss
+  $\E[\| \muhat - \mub \|^2$
+  where the expectation is taken with respect to the distribution of
+  the data $\Y$ given in (1). (Hint: re-express so that you may use
+  the results about the expectation of a quadratic
+  form. 
+
+\item  Define $\mupost = \X \betapost$ where $\betapost$ is the
+  posterior mean under the Zellner $g$-prior.  Find the sampling
+  distribution of $\mupost$.  (As a function of $\Y$, what is the
+  distribution of $\mupost$ under the model in (1)).
+  
+   Is the posterior mean $\mupost$ 
+   unbiased for estimating $\mub$?  If not, what is the bias?
+
+\item Find $\E[\| \mupost - \mub \|^2$ assuming model (1) and express
+  as a function of $p$, $g$ and $\|\mu\|^2$.  This expectation should
+  be taken with respect to the sampling distribution of $\Y$ not the
+  posterior distribution of $\mub$.
+
+%\item The Gauss-Markov Theorem showed that
+%  out of the class of unbiased linear estimators, the MLE has the
+%  smallest variance.  If we use the posterior means above, can they have a
+%  smaller loss than  the MLE for estimating $\mub$?  Can it be much worse? Expl%ain.
+
+
+ \end{enumerate}
+
+\end{enumerate}
+\end{document}
