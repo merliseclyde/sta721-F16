@@ -1,0 +1,353 @@
+\documentclass[]{beamer}
+%\usepackage[dvips]{color}
+\usepackage{graphicx}
+\usepackage{amsmath,amssymb,array,comment,eucal}
+\input{../macros}
+\usepackage{verbatim}
+
+\usetheme{Warsaw}
+\title{General Linear Model and Weighted Regression}
+\subtitle{Merlise Clyde}
+\author{STA721 Linear Models}
+\institute{Duke University}
+\date{September 25, 2012}
+\logo{duke.eps}
+
+\begin{document}
+\maketitle
+
+\begin{frame}\frametitle{Outline}
+Topics
+  \begin{itemize}
+  \item Generalized Linear Model
+  \item Maximum Likelihood Estimates
+  \item Projections
+  \item Weighted Regression
+  \item Example
+
+  \end{itemize}
+
+
+Readings: Christensen Chapter 2 (section 7),  Chapter 10, Appendix B
+\end{frame}
+%\section{Models}
+\begin{frame} \frametitle{General Linear Model}
+ Generalized Linear Model:
+ $$ \Y = \mub + \eps $$
+  \begin{itemize}
+  \item   $\mub \in C(\X) \Leftrightarrow \mub = \X \b$  \pause
+  \item Assume $\E[\eps] = \zero_n$ and $\Cov[\eps] = \sigma^2 \V$,
+    $\V > 0$ \pause  
+ \item Generalized Least Squares estimate (GLS) $\bhat$ minimizes
+$$ (\Y - \X \b)^T \V^{-1} (\Y - \X\b)$$  \pause
+\item Add Normal Errors $\eps \sim \N(\zero, \sigma^2 \V)$ 
+$$ \Y \sim \N(\X\b, \sigma^2 \V)$$
+\item Then GLS is equivalent to Maximum
+Likelihood Estimator  (MLE) of $\b$
+\end{itemize}
+\end{frame}
+
+
+\begin{frame}
+  \frametitle{Likelihood}
+  \begin{itemize}
+  \item Likelihood:  
+$$ \cL(\mub, \sigma^2) \propto | \sigma^2 \V |^{-1/2} 
+\exp \left\{  - \frac 1 2 \frac{(\Y - \mub)^T\V^{-1} (\Y - \mub) }{\sigma^2} \right\}
+$$  \pause
+\item $\V > 0$ write $\V = \Q \Q^T$  with $\Q > 0$ (Thm  B.22) \pause
+\item $\V^{-1} = (\Q \Q^T)^{-1} = (\Q^T)^-1 \Q^{-1} = (\Q^{-1})^T
+  \Q^{-1} = \Q^{-T} \Q^{-1}$ \pause
+\item use notation $\Q^{-T} \equiv (\Q^{-1})^T = (\Q^T)^{-1}$ \pause
+  \begin{eqnarray*}
+\cL(\mub, \sigma^2) & \propto & | \sigma^2 \V |^{-1/2} 
+e^{ \left\{  - \frac 1 2 \frac{(\Y - \mub)^T\Q^{-T} \Q^{-1}(\Y -
+    \mub) }{\sigma^2} \right\}} \pause  \\ 
+& \propto & | \sigma^2 \V |^{-1/2} 
+e^{\left\{  - \frac 1 2 \frac{(\Q^{-1}\Y - \Q^{-1}\mub)^T (\Q^{-1}\Y -
+    \Q^{-1}\mub) }{\sigma^2} \right\}}\pause \\
+& \propto & | \sigma^2 \V |^{-1/2} 
+e^{\left\{  - \frac 1 2 \frac{(\tY - \tmub)^T (\tY -
+    \tmub) }{\sigma^2} \right\}} \\
+  \end{eqnarray*}
+where $\tY = \Q^{-1} \Y$ and  $\tmub = \Q^{-1} \mub$
+ \end{itemize}
+\end{frame}
+\begin{frame}
+  \frametitle{MLEs}
+$$\cL(\tmub, \sigma^2) \propto  | \sigma^2 \V |^{-1/2} 
+\exp{\left\{  - \frac 1 2 \frac{(\tY - \tmub)^T (\tY -
+    \tmub) }{\sigma^2} \right\}}
+$$  
+\begin{itemize}
+  \item $\tmub = \Q^{-1} \X \b$ so $\tmub \in C(\Q^{-1}\X) = C(\tX)$  \pause
+  \item MLE of $\tmub$ is $\P_{\tX} \tY = \hat{\tmub}$ where $\P_{\tX} =
+    \tX(\tX^T\tX)^{-1} \tX$ \pause
+    \begin{eqnarray*}
+\P_{\tX}\tY  & = & \Q^{-1} \X (\X^T\Q^{-T}\Q^{-1} \X)^{-1} \X^T
+\Q^{-T} \Q^{-1} \Y    \pause  \\
+  & = &  \Q^{-1} \X (\X^T \V^{-1} \X)^{-1} \X^T \V^{-1} \Y \pause  \\
+  & = &\Q^{-1} \X (\X^T \V^{-1} \X)^{-1} \X^T \V^{-1} \Y \pause  \\
+\Q \hat{\tmub} & = & \Q \Q^{-1}\X (\X^T \V^{-1} \X)^{-1} \X^T \V^{-1}
+\Y \pause  \\
+\Q \Q^{-1} \muhat & = &\X (\X^T \V^{-1} \X)^{-1} \X^T \V^{-1}
+\Y  
+    \end{eqnarray*}
+\pause 
+\item MLE $\muhat = \X (\X^T \V^{-1} \X)^{-1} \X^T \V^{-1}
+\Y $ \pause 
+\item MLE $\bhat = (\X^T \V^{-1} \X)^{-1} \X^T \V^{-1}\Y$ (full rank case)
+  \end{itemize}
+\end{frame}
+\begin{frame}
+  \frametitle{More on Projections}
+  \begin{definition}
+    \begin{enumerate}
+    \item  $\P$ is a projection operator on $C(\P)$ along $N(\P)$ if $\P^2 =
+ \P$ \pause
+ \item Let $N$ and $M$ be two spaces such than $N \cap M = {\zero}$
+   and $r(M) + r(N) = n$. Then the square matrix $\P$ is a projection
+   on $M$ along $N$ if (i) $\P \v = \v$ for any $\v \in M$ and $\P \w
+   = \zero$ for any $\w \in N$
+    \end{enumerate} \pause
+  \end{definition}
+
+
+ \begin{itemize}
+ \item  Null Space $N(\P) = \{\u:  \P \u = \zero \}$ \pause
+  \item $\P_\X = \X (\X^T \X)^{-1} \X^T$ is a projection
+  onto $C(\X)$ along  $N(\P)$  \pause
+$$ \x \in N(\P) = \{ \x:  \P \x = 0 \} \Leftrightarrow \x^T \P^T = 0$$  \pause
+$$\x \in C(\P^T)^\perp \pause = C(\P)^\perp \pause = C(\X)^\perp$$ \pause
+\item   $\P_{\X} = \X (\X^T \V^{-1} \X)^{-1} \X^T \V^{-1}$ is also a projection
+  onto $C(\X)$ \pause
+\item $N(\P_\X): \{\u : \X(\X^T\V^{-1}\X)^{-1}\X^T \V^{-1} \u = \zero
+  \} \Leftrightarrow \u^T \V^{-1} \X  = \zero$ \pause
+\item Change inner product! 
+ \end{itemize}
+\end{frame}
+
+\begin{frame}
+  \frametitle{Inner Product}
+  \begin{itemize}
+  \item Usual Inner product $\langle \x, \y \rangle = \x^T\y$ \pause
+ \item  Define inner product based on covariance structure
+ $$\langle \x, \y \rangle_{\V^{-1}} = \x^T\V^{-1} \y$$ \pause
+\item The adjoint of an operator $\A$ is defined as 
+ $$\langle \x, \A\y \rangle_{\V^{-1}} = \langle \A^*\x, \y
+ \rangle_{\V^{-1}}$$ \pause
+
+  \end{itemize}
+  \begin{definition}
+ For an inner product space, $(\bbR^n, \langle \cdot, \cdot
+ \rangle_{\V^{-1}})$ a projection operator $\P$ is an orthogonal
+ projection operator onto $C(\P)$ along $C(\P)^\perp$ if \pause
+ \begin{itemize}
+ \item $\P = \P^2$  (projection) \pause
+ \item $\P = \P^*$  (self-adjoint  ``symmetry'')  \pause
+ \end{itemize}
+  
+  \end{definition}
+Change definition of $\perp$ 
+\end{frame}
+
+\begin{frame}
+  \frametitle{Show $\P_\X$ is Self-Adjoint}
+ $\P_\X$ self-adjoint is
+$$\langle \x, \P_\X \y \rangle_{\V^{-1}} = \langle \P_\X^*\x, \y
+ \rangle_{\V^{-1}} =  \langle \P_\X\x, \y
+ \rangle_{\V^{-1}}$$
+\pause
+ \begin{eqnarray*}
+   \langle \x, \P_\X \y \rangle_{\V^{-1}} & = & \x^T \V^{-1} \P_\X
+   \y  \pause\\ 
+ & = & \x^T \V^{-1} \X (\X^T\V^{-1} \X)^{-1} \X^T \V^{-1}  \y  \pause\\ 
+ & = &  (\P_\X \x)^T \V^{-1} \y  \pause\\
+ & = &  \langle \P_\X\x, \y  \rangle_{\V^{-1}} \pause
+ \end{eqnarray*}
+$\u \in N(\P) \Leftrightarrow \u \in C(\X)^\perp$ where $\u^T \V^{-1}
+\X =0$
+\end{frame}
+\begin{frame}
+  \frametitle{MLEs}
+  \begin{itemize}
+  \item MLE of $\mub$: $\muhat = \P_\X \Y = \X (\X^T\V^{-1} \X)^{-1} \X^T \V^{-1}
+    \Y$ \pause
+\item MLE of $\b$ satisfies $\P_\X \Y = \X \bhat$ with 
+$\bhat = (\X^T\V^{-1} \X)^{-1} \X^T \V^{-1} 
+    \Y$ for full rank case \pause
+\item $\Cov(\muhat) = \sigma^2 \P_\X \V \P_\X^T = \sigma^2 \X (\X^T
+  \V^{-1} \X)^{-1} \X^T$ \pause
+\item $\Cov(\bhat) = \sigma^2 (\X^T\V^{-1} \X)^{-1}$  (full rank case) \pause
+\item $\muhat$ and $\bhat$ are BLUE - Best Linear Unbiased Estimators
+  (Gauss-Markov Theorem with change in inner-product) \pause
+\item With Normality, Minimum Variance Unbiased Estimators 
+  \end{itemize}
+\end{frame}
+\begin{frame}
+  \frametitle{Properties}
+  \vspace{-24pt}
+  \begin{itemize}
+  \item $\P_\X^T \V^{-1} \P_\x = \P_\X^T \V^{-1} = \V^{-1} \P_\X$
+    \pause
+
+ \item $(\I- \P_\X)^T \V^{-1}(\I - \P_\x) = (\I - \P_\X)^T \V^{-1} =
+   \V^{-1}(\I - \P_\X)$ \pause
+\item  $(\I- \P_\X)^T \V^{-1}\P_\x = \zero$
+
+  \end{itemize}
+\vfill
+\end{frame}
+
+
+\begin{frame}
+  \frametitle{Estimates of $\sigma^2$}
+\vspace{-24pt}
+Unbiased Estimate of $\sigma^2$ 
+$$ \shat = \frac{\| (\I - \P_\X)\Y \|^2_{\V^{-1}}}{r(\I - \P_\X)} =
+\frac{\Y^T(\I - \P_{\X})^T \V^{-1}   (\I - \P_{\X}) \Y}{n - r(\X)}$$ 
+$$\E[\Y^T(\I - \P_{\X})^T \V^{-1}   (\I - \P_{\X}) \Y] = n - r(\X)$$
+\vfill
+\end{frame}
+
+\begin{frame}
+  \frametitle{Distributions}
+  \begin{theorem}
+Let $\Y \sim \N(\mub, \sigma^2\V)$.
+If $\P$ is a rank $k$ orthogonal projection on $C(\P)$ with
+inner product $\langle \cdot, \cdot \rangle_{\V^-1}$ then 
+$$ \frac{\| \P \Y \|^2_{\V^{-1}}}{\sigma^2} \sim \chi^2_{k}
+\left( \| \P \mub \|^2_{\V^{-1}}\right)$$  
+  \end{theorem} \pause
+
+
+  \begin{itemize}
+  \item Model Comparison:  H$_o: \mub \in C(\X_0)$ vs H$_a: \mub \in
+    C(\X)$ \pause
+  \item Extra Sum of Squares:  
+$$ \|\Y\|^2_{\v^{-1}} = \|\P_{\X_0}\Y\|^2_{\v^{-1}} + \|( \P_\X -
+\P_{\X_0})\Y\|^2_{\v^{-1}} + \|(\I - \P_{\X})\Y\|^2_{\v^{-1}}$$ \pause
+\item  F test of $H_0$  (distribution under null)
+$$  \frac{\|( \P_\X - \P_{\X_0}) \Y \|^2_{\V^{-1}}/(r(P_\X) - r(P{\X_0}))}{\| (\I - \P_\X)\Y
+  \|^2_{\V^{-1}}/(n - r(\X)) } \sim F(r(X), n-r(X)) $$
+    
+\end{itemize}
+
+
+\end{frame}
+\begin{frame}
+  \frametitle{Weighted Regression}
+Special Case: Take $\V$ diagonal with elements $w_i^{-1}$ $\V^{-1} = \W$
+
+Weighted Least Squares is Generalized Least Squares 
+$$\bhat = (\X^T \W \X)^{-1} \X^T\W\Y$$
+
+Inner product $\u^T \W \v = \sum_i w_i u_i v_i$
+\end{frame}
+
+\begin{frame}
+  \frametitle{Climate Change ?}
+  Scientists are interested in the Earth's temperature change since the last 
+glacial maximum, about 20,000 years ago. \pause
+\begin{itemize}
+\item  The first study to estimate the 
+temperature change was published in 1980 \pause
+\item  Estimated a change of -1.5 
+degrees C, $\pm 1.2$ degrees C in tropical sea surface temperatures.  \pause
+\item The 
+negative value means that the Earth was colder then than now.  \pause
+\item Since 1980 
+there have been many other studies, which use different 
+measurement techniques, or proxies.  \pause
+\item Some proxies can be used over land, 
+others over water. 
+\end{itemize}
+
+
+\end{frame}
+
+\begin{frame}
+  \frametitle{Proxies}
+   The proxies are
+
+   \begin{enumerate}
+   \item      "Mg/Ca"           1
+   \item     "alkenone"        2
+   \item        "Faunal"          3
+   \item             "Sr/Ca"           4
+   \item            "del 180"         5
+   \item             "Ice Core"        6
+   \item             "Pollen"          7
+   \item             "Noble Gas"       8
+   \end{enumerate}
+
+\end{frame}
+\begin{frame}[fragile]
+  \frametitle{Data}
+  \begin{tiny}
+\begin{verbatim}
+  climate =
+  read.table("http://www.stat.duke.edu/courses/Fall10/sta290/datasets/climate.dat",
+
+  header=T)  
+\end{verbatim}
+    
+  \end{tiny}
+\pause
+Each study reports
+\begin{itemize}
+\item {\tt deltaT} an estimate of the temperature change \pause
+\item {\tt sdev}  a standard deviation of that
+estimate \pause
+\item {\tt proxy}  the proxy used (coded 1 to 8),  \pause
+\item {\tt T.M} whether it was a
+terrestrial or marine study (T/M), which is coded as 0 for
+Terrestrial, 1 for Marine,  \pause
+\item {\tt latitude} at which data were collected 
+\end{itemize}
+\end{frame}
+
+\begin{frame}[fragile]
+  \frametitle{Anova}
+  \begin{small}
+\begin{verbatim}
+climate.lm = lm(deltaT ~ proxy *(poly(latitude,2)),
+                weights=(1/sdev^2), 
+                data=climate)
+anova(climate.lm)
+Response: deltaT
+                        Df  Sum Sq Mean Sq F value    Pr(>F)    
+proxy                    7 307.598  43.943  9.8541 3.848e-07 ***
+poly(latitude, 2)        2  10.457   5.228  1.1725    0.3198    
+proxy:poly(latitude, 2) 12  74.065   6.172  1.3841    0.2126    
+Residuals               41 182.833   4.459  
+\end{verbatim}
+    
+  \end{small}
+Sequential Sum of Squares 
+\end{frame}
+
+\begin{frame}[fragile]
+ \frametitle{Sequential Sum of Squares}
+   \begin{small}
+\begin{verbatim}
+>anova(lm(deltaT ~ (poly(latitude,2))* proxy, weights=1/sdev^2,
+          data=climate))
+ Analysis of Variance Table
+
+Response: deltaT
+                        Df  Sum Sq Mean Sq F value    Pr(>F)    
+poly(latitude, 2)        2  79.869  39.935  8.9553 0.0005931 ***
+proxy                    7 238.185  34.026  7.6304  6.93e-06 ***
+poly(latitude, 2):proxy 12  74.065   6.172  1.3841 0.2125512    
+Residuals               41 182.833   4.459                      
+                   
+---
+Signif. codes:  0 '***' 0.001 '**' 0.01 '*' 0.05 '.' 0.1 ' ' 1 
+ 
+\end{verbatim}
+\end{small}
+\end{frame}
+
+\end{document}
+
