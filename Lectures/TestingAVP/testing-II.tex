@@ -1,0 +1,266 @@
+%\documentclass[]{beamer}
+\documentclass[handout]{beamer}
+%\usepackage[dvips]{color}
+\usepackage{graphicx}
+\usepackage{amsmath,amssymb,array,comment,eucal}
+\input{../macros}
+\usepackage{verbatim}
+
+\usetheme{Warsaw}
+\title{Hypothesis Testing and Model Choice}
+\subtitle{Merlise Clyde}
+\author{STA721 Linear Models}
+\institute{Duke University}
+\date{\today}
+\logo{duke.eps}
+
+\begin{document}
+\maketitle
+
+
+
+\begin{frame}
+  \frametitle{Decomposition}
+  Consider a series of nested models: \pause
+  \begin{eqnarray*}
+    \M_0: \Y & = & \one_n \beta_0 + \eps   \pause\\
+\M_1: \Y & = & \one_n \beta_0 + \X_1 \b_1 + \eps  \pause \\
+\M_2: \Y & = & \one_n \beta_0 + \X_1 \b_1 + \X_2 \b_2 + \eps   \pause\\
+\vdots & & \vdots \\
+\M_k: \Y & = & \one_n \beta_0 + \X_1 \b_1 + \X_2 \b_2 + \ldots \X_k \b_k + \eps 
+  \end{eqnarray*} \pause
+
+Let $\P_j$ denote the projection on the column space in each of the
+models $\M_j$: $C(\X_0, \X_1, \ldots, \X_j)$ \pause
+\begin{small}
+  \begin{align*}
+\| \Y^T\Y \|^2 =&  \| \P_0 \Y\|^2 + \| (\P_1 - \P_0) \Y \|^2 + \|(\P_2
+- \P_1)\Y\|^2 + \ldots \| (\P_k - \P_{k-1})\Y \|^2 + \\ 
+& \|(\I_n -
+\P_k)\Y\|^2
+ \end{align*}
+\end{small}
+
+\end{frame}
+\begin{frame}
+  \frametitle{Sequential F tests}
+
+  \begin{tabular}{lllc} \hline
+    Hypothesis* & SS & df & F \\ \hline
+$\b_1 = 0$ & $\| (\P_1 - \P_0) \Y \|^2$ & $r(\P_1) - r(\P_0)$ & $
+\frac{\frac{\| (\P_1 - \P_0) \Y \|^2} {r(\P_1) - r(\P_0) }}{\shat}$
+\pause \\
+$\b_2 = 0$ & $\| (\P_2 - \P_1) \Y \|^2$ & $r(\P_2) - r(\P_1)$ & $ \frac{\frac{\| (\P_
+2 - \P_1) \Y \|^2} {r(\P_2) - r(\P_1) }}{\shat}$  \pause \\
+$\vdots$ &$\vdots$ & $\vdots$& $\vdots$ \\
+ $\b_k = 0$ & $\| (\P_k - \P_{k-1}) \Y \|^2$ & $r(\P_k) - r(\P_{k-1})$ & $ \frac{\frac{\| (\P_
+k - \P_{k-1}) \Y \|^2} {r(\P_k) - r(\P_{k-1}) }}{\shat}$  \pause
+  \end{tabular}
+  \begin{itemize}
+  \item Sequential test $\b_j = 0$ includes variables from the
+    previous model $\b_0, \b_1,\ldots, \b_{j-1}$ but $\b_i$ for $i >
+    j$ are all set to $0$  \pause
+  \item All use estimate of $\shat =  \|(\I_n -
+    \P_k)\Y\|^2 /(n - r(\P_k))$ under largest model
+ \pause
+  \item Unless $\P_j\P_i = \zero$ for $i \neq j$, decomposition will
+    depend on the order of $\X_j$ in the model  \pause
+  \item If last $\X_k$ is $n\times 1$, then $t^2 = F$  for testing H$_0$:
+    $\beta_k = 0$  \pause
+  \end{itemize}
+\end{frame}
+% add here
+\begin{frame}
+  \frametitle{Data}
+\centerline{\includegraphics[height=3.5in]{temp-lat}}
+\end{frame}
+\begin{frame}[fragile]
+  \frametitle{Order 1: Sequential Sum of Squares }
+  \begin{small}
+\begin{verbatim}
+climate.lm = lm(deltaT ~ proxy *(poly(latitude,2)),
+                weights=(1/sdev^2), 
+                data=climate)
+anova(climate.lm)
+Response: deltaT
+                        Df  Sum Sq Mean Sq F value    Pr(>F)    
+proxy                    7 307.598  43.943  9.8541 3.848e-07 ***
+poly(latitude, 2)        2  10.457   5.228  1.1725    0.3198    
+proxy:poly(latitude, 2) 12  74.065   6.172  1.3841    0.2126    
+Residuals               41 182.833   4.459  
+\end{verbatim}
+    
+\end{small}
+
+\end{frame}
+
+\begin{frame}[fragile]
+ \frametitle{Order 2: Sequential Sum of Squares}
+   \begin{small}
+\begin{verbatim}
+>anova(lm(deltaT ~ (poly(latitude,2))* proxy, weights=1/sdev^2,
+          data=climate))
+ Analysis of Variance Table
+
+Response: deltaT
+                        Df  Sum Sq Mean Sq F value    Pr(>F)    
+poly(latitude, 2)        2  79.869  39.935  8.9553 0.0005931 ***
+proxy                    7 238.185  34.026  7.6304  6.93e-06 ***
+poly(latitude, 2):proxy 12  74.065   6.172  1.3841 0.2125512    
+Residuals               41 182.833   4.459                      
+\end{verbatim}
+\end{small}
+\end{frame}
+\begin{frame}
+  \frametitle{Prediction with Latitude}
+  \centerline{\includegraphics[height=3in]{pred-temp-lat}}
+\end{frame}
+\begin{frame}
+  \frametitle{Added Variable Plots}
+  \begin{enumerate}
+  \item   Let $\P_{(-j)}$ denote the projection on the space spanned by
+   $C(\X_0, \ldots, \X_{j-1}, \X_{j+1}, \ldots \X_k)$  (omit variable
+    $j$) \pause
+\item  Find residuals $\e_{\Y \mid \X_{(-j)}} = (\I - \P_{(-j)})\Y$
+  from regressing $\Y$ on  all variables except $\X_j$ \pause
+\item  Remove the effect of other explanatory variables from $\X_j$ by
+  taking residuals $ \e_{\X_j \mid \X_{(-j)}} = (\I - \P_{(-j)})\X_j$ \pause
+\item Plot $\e_{\Y \mid \X_{(-j)}}$ versus $\e_{\X_j \mid \X_{(-j)}}$ \pause
+\item Slope is adjusted regression coefficient in full model $\mub \in
+  C(\X_0, \ldots, \X_{j-1}, \X_j, \X_{j+1}, \ldots \X_k)$ \pause
+\item {\tt library(car)} \pause
+\item {\tt avPlots(climate1.lm, terms$=\sim .$)}
+  \end{enumerate}
+ \end{frame}
+
+\begin{frame}%
+   \frametitle{avPlots}
+ \centerline{\includegraphics[height=3in]{avplot}}
+ \end{frame}
+\begin{frame}[fragile]
+  \frametitle{Multiple Model Objects and Anova in \R}
+\begin{verbatim}
+> anova(climate3.lm,climate2.lm,climate1.lm, climate.lm)
+Analysis of Variance Table
+
+Model 1: deltaT ~ T.M
+Model 2: deltaT ~ poly(latitude, 2) + T.M
+Model 3: deltaT ~ poly(latitude, 2) + proxy
+Model 4: deltaT ~ proxy * (poly(latitude, 2))
+  Res.Df    RSS Df Sum of Sq      F   Pr(>F)   
+1     61 385.66                                
+2     59 347.11  2    38.542 4.3215 0.019814 * 
+3     53 256.90  6    90.215 3.3718 0.008552 **
+4     41 182.83 12    74.065 1.3841 0.212551   
+---
+Signif. codes:  0 '***' 0.001 '**' 0.01 '*' 0.05 '.' 0.1 ' ' 1 
+\end{verbatim}
+\end{frame}
+
+
+\begin{frame}[fragile]
+  \frametitle{Other order}
+ \begin{small}
+\begin{verbatim}
+> anova(climate3.lm,climate2.lm,climate1.lm, climate.lm)
+Analysis of Variance Table
+
+Model 1: deltaT ~ T.M
+Model 2: deltaT ~ proxy
+Model 3: deltaT ~ poly(latitude, 2) + proxy
+Model 4: deltaT ~ proxy * (poly(latitude, 2))
+  Res.Df    RSS Df Sum of Sq      F   Pr(>F)   
+1     61 385.66                                
+2     55 267.35  6   118.301 4.4215 0.001555 **
+3     53 256.90  2    10.457 1.1725 0.319767   
+4     41 182.83 12    74.065 1.3841 0.212551   
+---
+Signif. codes:  0 '***' 0.001 '**' 0.01 '*' 0.05 '.' 0.1 ' ' 1 
+\end{verbatim}
+  \end{small}
+\end{frame}
+\begin{frame} \frametitle{Residual Plots}
+
+\centerline{\includegraphics[height=2.5in]{resid}}
+\end{frame}
+
+\begin{frame}[fragile]
+  \frametitle{Terrestrial versus Marine}
+\begin{small}
+\begin{verbatim}
+climate.final = lm(deltaT ~ T.M + proxy -1, weights=(1/sdev^2))
+
+               Estimate Std. Error t value Pr(>|t|)    
+T.MT            -5.6360     0.7132  -7.902 1.26e-10 ***
+T.MM            -2.1145     0.4124  -5.127 3.93e-06 ***
+proxyAlkenone   -0.1408     0.4381  -0.321    0.749    
+proxyFaunal     -0.1507     0.8971  -0.168    0.867    
+proxySr/Ca      -3.2188     0.7584  -4.244 8.49e-05 ***
+proxyDel180     -0.6378     0.5048  -1.263    0.212    
+proxyIceCore     0.1360     1.3130   0.104    0.918    
+proxyPollen      0.5283     1.0033   0.527    0.601    
+proxyNoble Gas       NA         NA      NA       NA    
+
+Multiple R-squared: 0.9115,	Adjusted R-squared: 0.8986 
+
+          Df  Sum Sq Mean Sq  F value  Pr(>F)    
+T.M        2 2635.27 1317.63 271.0625 < 2e-16 ***
+proxy      6  118.30   19.72   4.0561 0.00195 ** 
+Residuals 55  267.35    4.86                     
+\end{verbatim}
+\end{small}
+\end{frame}
+
+\begin{frame}[fragile]
+  \frametitle{Even Simpler ?}
+  \begin{small}
+\begin{verbatim}
+lm(formula = deltaT ~ T.M + I(proxy == "Sr/Ca"), weights = (1/sdev^2))
+
+                        Estimate Std. Error t value Pr(>|t|)    
+(Intercept)              -5.3915     0.4486 -12.018  < 2e-16 ***
+T.MM                      3.0585     0.4649   6.579 1.30e-08 ***
+I(proxy == "Sr/Ca")TRUE  -3.0003     0.6371  -4.709 1.52e-05 ***
+
+Residual standard error: 2.166 on 60 degrees of freedom
+Multiple R-squared: 0.5103,	Adjusted R-squared: 0.4939 
+
+Model 1: deltaT ~ T.M + I(proxy == "Sr/Ca") 
+Model 2: deltaT ~ T.M + proxy - 1
+  Res.Df    RSS Df Sum of Sq      F Pr(>F)
+1     60 281.58                           
+2     55 267.36  5    14.228 0.5854  0.711
+\end{verbatim}
+\end{small}
+\end{frame}
+\begin{frame}
+  \frametitle{Boxplots}
+\centerline{ \includegraphics[height=2.5in]{box}}
+\end{frame}
+\begin{frame}
+  \frametitle{Design}
+  \centerline{\includegraphics[height=3in]{lat-proxy}}
+\end{frame}
+
+\begin{frame}
+  \frametitle{Summary}
+  \begin{itemize}
+   \item Ignoring proxies, there are systematic trends with
+     latitude. \pause
+  \item Difference among proxies, even after adjusting for latitude \pause
+\item Weak evidence of a latitude effect, after taking into account proxies
+\pause
+ \item  Terrestrial sites differ from Marine sites, however there are significant difference among
+      proxies within the Marine group  driven by the {\tt Sr/Ca} proxy which
+      indicates a significantly greater increases in temperatures 
+\pause
+   \item Significant warming for Terrestrial ($5.4 ^\circ C$) with
+     Marine  sites   significantly  cooler ($3^ \circ  C$)\pause 
+   \item {\tt Sr/Ca} proxies are significantly cooler than other
+     marine proxies by about $3^\circ C$ \pause
+  \end{itemize}
+
+Uncertainty Measures?  \pause  Normal Assumptions? 
+\end{frame}
+
+\end{document}
