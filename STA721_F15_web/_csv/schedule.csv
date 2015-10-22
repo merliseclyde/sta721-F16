@@ -15,9 +15,9 @@ Week 6,6-Oct,Lasso & Bayesian Lasso,"<a href=""../slides/Lasso/lasso.pdf""> Lass
 ,8-Oct,Midterm ,,,
 Week 7,13-Oct,,"<span style=""color:gray"">No class - Fall Break",,
 ,15-Oct,Other Shrinkage Priors ,"<a href=""../slides/shrinkage/horseshoe.pdf""> Horseshoe and other Shrinkage Priors </a> and <a href=""../slides/shrinkage/diabetes.R""> R Code </a> ","<a href=""http://www.stat.ufl.edu/archived/casella/Papers/Lasso.pdf""> Bayesian Lasso </a>","<a href=""../hw/shrinkage/HW11.pdf""> HW11</a>  <a href=""../hw/shrinkage/nott-kohn.R""> Nott-Kohn R code</a> (Due Oct 20)"
-Week 8,20-Oct,Testing,"<a href=""../slides/Testing/testing.pdf"">  Testing </a>  (<a href=""../slides/Testing/climate.R"">  R-code <a/>",,
-,22-Oct,Bayesian Model Choice,,,
-Week 9,27-Oct,,,,
+Week 8,20-Oct,Testing,"<a href=""../slides/Testing/testing.pdf"">  Testing </a>  (<a href=""../slides/Testing/climate.R"">R-code <a/>)",,"<a href=""../hw/Testing/HW12.pdf""> HW12</a>  (Due Oct 23)  <a href=""https://stat.duke.edu/resources/datasets/climate.html""> Climate data </a>"
+,22-Oct,Added Variable Plots,"<a href=""../slides/TestingAVP/testing-II.pdf"">  Model Selection and AVP </a>  (<a href=""../slides/Testing/climate.R"">R-code <a/>)",,
+Week 9,27-Oct,General Linear Model,,,
 ,29-Oct,BMA,,"<a  href=""http://www.tandfonline.com/doi/pdf/10.1080/00031305.2015.1031827""> Bayesian Variable Selection under Coliniearity</a>",
 Week 10,3-Nov,Choice of Prior Distributions,,,
 ,5-Nov,Checking Assumptions,,,
