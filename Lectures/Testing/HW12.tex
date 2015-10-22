@@ -18,24 +18,35 @@ where under $H_a:  \mub \in C(\X_0, \X_1)$  where the number of
 parameters is $p$.  (Assume everything is full rank).
 To test that $\b_1 = \zero_q$,
 the F statistic
-$$F =  \frac{\| (\P_{0,1} - \P_{0} )\Y} \|^2 /q) }
+$$F =  \frac{\| (\P_{\X_0,\X_1} - \P_{\X_0} )\Y \|^2 /q) }
 {\hat{\sigma}^2} \sim F( q,  n - p)$$
 under the null hypothesis $H_o: \mub \in C(\X_0)$ and $\hat{\sigma}^2$ is
 the MSE from the full model  $H_a$.
 
 \begin{enumerate}
-\item Show that the numerator and denominator are independent.
-\item Find the expected value of the numerator under $H_a$ (simplify
-  as much as possible)
-\item Find the expected value of $\hat{\sigma}^2$ under $H_o$.
+\item Show that $\P_{\X_0,\X_1} - \P_{\X_0}$ is a projection and
+  describe the space onto which it projects.
+\item Show that the numerator and denominator are independent and find
+  the respective distributions of the two quadratic forms.
+\item Find the expected value of the numerator under $H_0$ and $H_a$ (simplify
+  as much as possible).   Do you expect the numerator to be larger
+  than $\sigma^2$ if the alternative hypothesis is true?
+\item Find the expected value of $\hat{\sigma}^2$ under $H_o$ and
+  $H_a$.
+\item If we instead use the estimate of $\sigma^2$ from the null
+  model,  is that an unbiased estimate of $\sigma^2$ under $H_0$?
+  under $H_a$?  Explain why it is preferable to use the estimate from
+  the largest model. 
+
 \end{enumerate}
 
-\item Apply lasso and horseshoe to the
-  Climate Change data.  What can they tell you
-  about the questions of interest?  If you code the dummy variables or
-  polynomials in latitude   differently will this result in different
-  conclusions?  Do they provide measures of uncertainty?   Write a
-  brief summary of your analysis  and recommendation.
+\item Apply lasso and horseshoe to the Climate Change data (you will
+  have to pick a basis/design matrix).  What can they tell you about
+  the questions of interest?  If you code the dummy variables or
+  polynomials in latitude differently will this result in different
+  conclusions? (Explore). Do they provide measures of uncertainty
+  about the degree of temperature changes?   Write a
+  brief summary of your analysis and recommendation.
  
 \end{enumerate}
 \end{document}
