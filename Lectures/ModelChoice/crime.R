@@ -1,0 +1,11 @@
+library(BAS)
+library(MASS)
+data(UScrime)
+bic.bas = bas.lm(y ~ ., n.models=2^15, prior="BIC", data=UScrime)
+hg3.bas = bas.lm(y ~ ., n.models=2^15, a=3, prior="hyper-g", data=UScrime)
+system.time( bas.lm(y ~ ., n.models=2^15, a=2.1, prior="hyper-g", data=UScrime))
+hgn.bas = bas.lm(y ~ ., n.models=2^15, a=3, prior="hyper-g-n", data=UScrime)
+ZS.bas = bas.lm(y ~ ., n.models=2^15, a=3, prior="ZS-null", data=UScrime)
+
+library(BayesVarSel)
+rob = Bvs(y ~ ., data=UScrime, n.keep=2^13)
