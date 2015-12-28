@@ -13,9 +13,18 @@ ols = lm(Y ~ X -1)
 #lm(formula = Y ~ X - 1)
 #
 #Coefficients:
-#    X  
+#    X
 3.247  
 
+library(BAS)
+data(Hald)
+
+hald.gprior1.0.9 =  bas.lm(Y~ ., data=Hald, prior="g-prior", alpha=13,
+                            modelprior=beta.binomial(1,1), method="MCMC+BAS",
+                            initprobs="eplogp")
+hald.gprior =  bas.lm(Y~ ., data=Hald, prior="g-prior", alpha=13,
+                           modelprior=beta.binomial(1,1), method="MCMC+BAS",
+                           initprobs="eplogp")
 bols = lm(c(Y, 0) ~ c(X, sqrt(SSX/g)) -1)
                                         #
 pdf("gprior.pdf", height=6, width=6)
