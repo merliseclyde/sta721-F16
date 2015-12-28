@@ -1,0 +1,62 @@
+\documentclass[12pt]{article}
+\usepackage{fullpage, amssymb,amsmath, url}
+\pagestyle{empty}
+\input{../macros}
+\begin{document}
+{\bf STA721}
+\vspace{.1in}
+\begin{center}
+{\large \bf Homework 15} \\
+\end{center}
+\vspace{.5in}
+\noindent
+\begin{enumerate}
+\item Exercise B.21 in Christensen. 
+\item Let $\X$ denote the $n \times p$ design matrix where
+  $\X^T \one = \zero$ and partition $\X = [\Xg \, \X_{1-\g}]$ where
+  $\Xg$ denotes the design matrix under model $\g$ which includes the
+  columns of $\X$ where $\gamma_j = 1$ (and intercept) $\X_{1-\g}$ are
+  the columns of $\X$ where $\gamma_j = 0$.  Similarly partition
+  $\b = (\bg^T, \b_{1-\g}^T)^T$ the vector of regression coefficients.
+  Using Zellner's $g$ prior for
+  $$\b \mid g, \sigma^2 \sim \N(\zero, g \sigma^2 (\X^T\X)^{-1})$$
+  find $\bg \mid g, \sigma^2, \b_{1 - \g} = \zero$ and show that this is
+  also a $g$ prior.   {\it Hint use Problem 1}
+ 
+
+\item Refer to the Womack et al (2014) paper
+  \url{http://amstat.tandfonline.com/doi/abs/10.1080/01621459.2014.880348}).
+  Show that the Bayes factor (equation 14) for comparing $\Mg$ to the
+  null model may   be written in terms of the Appell $F_1$ function:
+$$
+F_1(a,b_1,b_2,c; x,y) = \frac{\Gamma(c)} {\Gamma(a) \Gamma(c-a)} 
+\int_0^1 t^{a-1} (1-t)^{c-a-1} (1-xt)^{-b_1} (1-yt)^{-b_2} \,\mathrm{d}t, 
+\quad c > a > 0 
+$$
+(see
+\url{http://functions.wolfram.com/HypergeometricFunctions/AppellF1/07/01/01/0001/}  where the prior on $w$ is a Beta$(1/2, 1/2)$
+Similarly find an expression for the posterior mean of $g/(1+g)$, the
+posterior expected shrinkage.
+
+
+\item For extra participation credit: Use the {\tt  Appell}
+  package and write two functions to return the BF and the posterior expected
+  shrinkage respectively using R2,number of predictors and $n$ as
+  input.   Compare results to Womack et al. Post on Piazza.
+
+  
+\item Refer back to the simulation study you did using the Nott-Kohn
+  code in HW 11.  Use the {\tt prior="hyper-g-n"} prior with {\tt a =
+    3} and the Zellner-Siow Cauchy priors {\tt prior="ZS-null", a=n}
+  where n is the sample size in the {\tt BAS} package to estimate
+  $\beta$ under enumeration of all models BMA (see
+  {\tt help(coef.bma)}), the Robust prior of Bayarri et al (R package
+  {\tt BayesVarSel} or {\tt BVS} and the (optionally) intrinsic prior
+  (use your code or the archived R package {\tt VarselIP}) How do
+  these compare to your previous results in terms of bias or MSE and
+  on running time?  BAS should be able to enumerate all models {\tt
+    n.models=}$2^p$ where p = number of predictors.
+
+\end{enumerate}
+
+\end{document}
