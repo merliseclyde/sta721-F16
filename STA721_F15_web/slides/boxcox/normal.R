@@ -1,0 +1,1 @@
+../../../Lectures/Boxcox/normal.R
