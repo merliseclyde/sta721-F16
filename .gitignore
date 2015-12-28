@@ -20,3 +20,4 @@ Private/
 clyde@stat.duke.edu
 *.dropbox
 .RData
+.Rproj.user
