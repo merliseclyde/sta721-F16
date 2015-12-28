@@ -1,0 +1,55 @@
+stackloss <- read.table("stackloss")
+#Use qr=T so that the diagnostic function works!
+lm1 <- lm(StackLoss ~ ., qr=T, data=stackloss)
+summary(lm1)
+stack.diag <- ls.diag(lm1)
+names(stack.diag)
+
+plot(abs(stack.diag$stud.res), ylab="|Externally Studentized Residuals|", xlab="Case")
+plot(stack.diag$cooks, ylab="Cook's Distance", ,type="h",xlab="Case")
+
+Bout <- Bayes.outlier.prob(lm1,k=3)
+plot(Bout$Bayesprob, ylab="Posterior Probability of Outlier", xlab="Case", type="h")
+abline(h=.0027)
+
+########## Functions ###############
+outlier.prob <- function(phi, ehat,hii,alpha,rate, nsd) {
+	z1 <- (nsd - ehat*sqrt(phi))/sqrt(hii)
+	z2 <- (- nsd - ehat*sqrt(phi))/sqrt(hii)
+	pr.phi <- (1 - pnorm(z1) + pnorm(z2))*dgamma(phi,shape=alpha, rate=rate)
+	return(pr.phi)}
+	
+bivoutlier.prob <- function(phi, ehati,ehatj,hii,hjj, rhoij, alpha,rate, nsd) {
+	z1i <- (nsd - ehati*sqrt(phi))/sqrt(hii)
+	z2i <- (- nsd - ehati*sqrt(phi))/sqrt(hii)
+	z1j <- (nsd - ehatj*sqrt(phi))/sqrt(hjj)
+	z2j <- (- nsd - ehatj*sqrt(phi))/sqrt(hjj)
+	rhoij <- rep(rhoij, length(z1i))
+	binorm <-  (pmvnorm(cbind(-z1i,-z1j),rho=rhoij) +  pmvnorm(cbind(z2i,z2j),rho=rhoij) - 
+	            pmvnorm(cbind(-z1i,z2j),rho=-rhoij) - pmvnorm(cbind(z2i,-z1j), rho=-rhoij))
+	pr.phi <- binorm*dgamma(phi,shape=alpha, rate=rate)
+	return(pr.phi)}
+
+Bayes.outlier.prob <- function(lmobj, k=3) {
+	e <- residuals(lmobj)
+	h <- ls.diag(lmobj)$hat
+	Q <- qr.Q(lmobj$qr)
+	alpha <- (lmobj$df.residual)/2
+	rate <- (lmobj$df.residual*(summary(lmobj)$sigma)^2)/2 # 1/rate
+	n <- length(e)
+	pr <- rep(0,n)
+	prjoint <- matrix(0,n,n)
+	for (i in 1:n){
+		j <- 1
+	 pr[i] <-	integrate(outlier.prob,0,Inf, ehat=e[i],hii=h[i],alpha=alpha,rate=rate,nsd=k)$integral
+	 while (j < i ) {
+		corrij <- sum(Q[i,]*Q[j,])/sqrt(h[i]*h[j]) 
+		if (corrij >= 1) corrij <- corrij - .0000000001
+		if (corrij <= -1) corrij <- corrij + .0000000001
+	   	prjoint[i,j] <- integrate(bivoutlier.prob,0,Inf, ehati=e[i],ehatj=e[j],hii=h[i],hjj=h[j],
+									  rhoij=corrij,alpha=alpha,rate=rate,nsd=k)$integral
+		j <- j + 1
+	}}
+return(e,h,Bayesprob=pr,prjoint)
+}
+
