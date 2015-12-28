@@ -1,0 +1,51 @@
+#EDA Part 3
+# lattice and coplots
+# some of the following plots assume that you have downloaded HH library for
+# Heiberger and Holland's book
+
+
+library(lattice)
+example(xyplot)
+
+fish = read.table("fish", header=T)
+summary(fish)
+fish$RIVER = factor(fish$RIVER)
+levels(fish$RIVER)
+levels(fish$RIVER) <- c("Lumber", "Wacamaw")
+fish$STATION = factor(fish$STATION)
+summary(fish)
+
+pdf("fish-box-lattice.pdf", width=8,height=8,pointsize=18, col="blue", fg="blue")
+bwplot(STATION ~ MERCURY | RIVER, data=fish,
+       xlab="Mercury Concentrations (ppm)",
+       ylab="Station on River", col="blue") 
+dev.off()
+
+table(fish$STATION)
+
+pdf("fish-xy-lattice.pdf", horizontal=F, width=8,height=8,pointsize=18,fg="blue",bg="transparent")
+coplot(WEIGHT ~ LENGTH | STATION, data=fish,ylab="Weight (g)", xlab="Length (cm)", col="blue")
+dev.off()
+
+pdf("fish-xy-smooth-lattice.pdf", horizontal=F, width=8,height=8,pointsize=18,fg="blue",bg="transparent")
+xyplot(MERCURY ~ LENGTH | STATION, data=fish,
+      type=c("p"), ylab="[Mercury] (ppm)", xlab="Length (cm)", col="blue")
+dev.off()
+
+pdf("fish-coplot1.pdf", horizontal=F, width=8,height=8,pointsize=18,fg="blue",bg="transparent")
+coplot(MERCURY ~ LENGTH | STATION, data=fish,
+#       panel=panel.smooth,
+ ylab="[Mercury] (ppm)", xlab="Length (cm)", col="blue")
+dev.off()
+
+pdf("fish-coplot2.pdf", horizontal=F, width=8,height=8,pointsize=18,fg="blue",bg="transparent")
+coplot(MERCURY ~ LENGTH | WEIGHT*RIVER, data=fish,
+ ylab="[Mercury] (ppm)", xlab="Length (cm)", col="blue")
+dev.off()
+
+pdf("fish-coplot3.pdf", horizontal=F, width=8,height=8,pointsize=18,fg="blue",bg="transparent")
+coplot(MERCURY ~ LENGTH | RIVER, data=fish,
+       panel=panel.smooth,
+ ylab="[Mercury] (ppm)", xlab="Length (cm)", col="blue")
+dev.off()
+

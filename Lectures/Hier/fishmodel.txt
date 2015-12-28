@@ -1,0 +1,20 @@
+model
+{
+    for (n in 1:N) {
+        muj[n] <- alpha[station[n]] + beta[station[n]] * (X[n] - 
+            xbar)
+        Y[n] ~ dnorm(muj[n], phi)
+    }
+    for (j in 1:J) {
+        alpha[j] ~ dnorm(alpha.mu, alpha.phi)
+        beta[j] ~ dnorm(beta.mu, beta.phi)
+    }
+    phi ~ dgamma(0.001, 0.001)
+    sigma <- 1/sqrt(phi)
+    alpha.mu ~ dnorm(0.00000E+00, 1.00000E-06)  T(-5, 5)
+    alpha.sigma ~ dunif(0.00000E+00, 100)
+    alpha.phi <- 1/(alpha.sigma * alpha.sigma)
+    beta.mu ~ dnorm(0.00000E+00, 1.00000E-06)
+    beta.phi <- pow(beta.sigma, -2)
+    beta.sigma ~ dunif(0.00000E+00, 100)
+}

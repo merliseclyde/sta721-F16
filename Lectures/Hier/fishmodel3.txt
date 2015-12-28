@@ -1,0 +1,23 @@
+model{
+
+  for (n in 1:N){
+    muj[n] <- beta[station[n],1]+ beta[station[n],2]*X[station[n]]
+    Y[n] ~ dnorm(muj[n], phi)
+  }
+
+  for (j in 1:J) {
+    beta[j,1:2 ] ~ dmnorm(beta.mu[ ], beta.prec[ , ])
+  }
+  phi ~ dgamma(1.0E-6, 1.0E-6)
+  sigma <- pow(phi, -.5)
+
+  beta.mu[1:2] ~ dmnorm(zero[ ], prec.mu[ , ])
+
+  beta0.sigma ~ dunif(0, 1000)
+  beta1.sigma ~ dunif(0, 1000)
+
+  beta.prec[1,1] <- 1/.33
+  beta.prec[2,2] <- 1/.33
+  beta.prec[1,2] <- 0
+  beta.prec[2,1] <- 0
+}

@@ -1,0 +1,71 @@
+display(log)
+check(z:/Users/clyde/Documents/sta290/Lectures/hier/fishmodel.txt)
+model is syntactically correct
+data(z:/Users/clyde/Documents/sta290/Lectures/hier/data.txt)
+data loaded
+compile(2)
+model compiled
+inits(1,z:/Users/clyde/Documents/sta290/Lectures/hier/inits1.txt)
+chain initialized but other chain(s) contain uninitialized variables
+inits(2,z:/Users/clyde/Documents/sta290/Lectures/hier/inits2.txt)
+model is initialized
+gen.inits()
+command #Bugs:gen.inits cannot be executed (is greyed out)
+thin.updater(50)
+update(500)
+set(alpha)
+set(beta)
+set(alpha.sigma)
+set(beta.sigma)
+set(sigma)
+set(alpha.mu)
+set(beta.mu)
+update(500)
+coda(*,z:/Users/clyde/Documents/sta290/Lectures/hier/coda)
+stats(*)
+
+Node statistics
+	 node	 mean	 sd	 MC error	2.5%	median	97.5%	start	sample
+	alpha[1]	-7.358	0.7383	0.09629	-8.748	-7.362	-5.961	501	1000
+	alpha[2]	-7.28	0.7178	0.09489	-8.576	-7.296	-5.883	501	1000
+	alpha[3]	-6.89	0.6933	0.08961	-8.116	-6.909	-5.511	501	1000
+	alpha[4]	-7.063	0.7055	0.09266	-8.358	-7.073	-5.734	501	1000
+	alpha[5]	-7.225	0.702	0.09253	-8.467	-7.248	-5.894	501	1000
+	alpha[6]	-7.191	0.7263	0.09363	-8.479	-7.214	-5.807	501	1000
+	alpha[7]	-6.847	0.7302	0.09241	-8.152	-6.851	-5.427	501	1000
+	alpha[8]	-7.225	0.6962	0.09051	-8.464	-7.252	-5.881	501	1000
+	alpha[9]	-7.166	0.7006	0.09208	-8.442	-7.168	-5.847	501	1000
+	alpha[10]	-7.29	0.7521	0.09742	-8.67	-7.272	-5.86	501	1000
+	alpha[11]	-6.962	0.7077	0.09178	-8.247	-6.979	-5.622	501	1000
+	alpha[12]	-7.109	0.7232	0.09504	-8.461	-7.098	-5.719	501	1000
+	alpha[13]	-7.555	0.7397	0.09483	-8.944	-7.604	-6.119	501	1000
+	alpha[14]	-7.021	0.7195	0.09297	-8.313	-7.062	-5.595	501	1000
+	alpha[15]	-6.897	0.7339	0.09457	-8.19	-6.905	-5.459	501	1000
+	alpha[16]	-7.018	0.7362	0.09542	-8.342	-7.028	-5.61	501	1000
+	alpha.mu	-7.129	0.698	0.0929	-8.38	-7.162	-5.789	501	1000
+	alpha.sigma	0.273	0.1178	0.004559	0.03792	0.283	0.5041	501	1000
+	beta[1]	1.908	0.1951	0.02555	1.542	1.911	2.279	501	1000
+	beta[2]	1.919	0.1963	0.02597	1.535	1.926	2.287	501	1000
+	beta[3]	1.96	0.1947	0.02529	1.587	1.968	2.301	501	1000
+	beta[4]	1.945	0.1891	0.02495	1.589	1.946	2.289	501	1000
+	beta[5]	1.932	0.1935	0.02562	1.556	1.939	2.287	501	1000
+	beta[6]	1.93	0.1987	0.02615	1.546	1.94	2.292	501	1000
+	beta[7]	1.982	0.1954	0.02486	1.611	1.983	2.327	501	1000
+	beta[8]	1.929	0.199	0.02611	1.555	1.939	2.289	501	1000
+	beta[9]	1.933	0.1964	0.02595	1.559	1.938	2.29	501	1000
+	beta[10]	1.918	0.1954	0.02555	1.559	1.927	2.286	501	1000
+	beta[11]	1.963	0.1926	0.02515	1.6	1.967	2.301	501	1000
+	beta[12]	1.946	0.1937	0.02544	1.575	1.951	2.295	501	1000
+	beta[13]	1.877	0.207	0.02665	1.48	1.894	2.276	501	1000
+	beta[14]	1.951	0.195	0.02533	1.566	1.964	2.295	501	1000
+	beta[15]	1.973	0.1916	0.02468	1.604	1.976	2.314	501	1000
+	beta[16]	1.959	0.1896	0.02468	1.595	1.96	2.294	501	1000
+	beta.mu	1.939	0.1909	0.02551	1.563	1.94	2.29	501	1000
+	beta.sigma	0.04916	0.03245	0.001629	0.002012	0.04517	0.1227	501	1000
+	sigma	0.3973	0.02379	8.094E-4	0.3553	0.3959	0.4481	501	1000
+history(*,z:/Users/clyde/Documents/sta290/Lectures/hier/history.odc)
+
+History
+
+save(z:/Users/clyde/Documents/sta290/Lectures/hier/log.odc)
+save(z:/Users/clyde/Documents/sta290/Lectures/hier/log.txt)
