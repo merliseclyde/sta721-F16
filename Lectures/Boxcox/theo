@@ -1,0 +1,27 @@
+model
+{
+    for (i in 1:N) {
+        for (j in 1:T) {
+            Y[i, j] ~ dnorm(mu[i, j], eps.tau)
+            mu[i, j] <- Dose[i] * (ke[i] + ka[i] - Cl[i]) * (exp(-ke[i] * 
+                time[i, j]) - exp(-ka[i] * time[i, j]))/(ka[i] - 
+                ke[i])
+        }
+        theta[1:3, i] ~ dmnorm(beta[1:3], Dinv[1:3, 1:3])
+        ke[i] <- exp(theta[1, i])
+        ka[i] <- exp(theta[2, i])
+        Cl[i] <- exp(theta[3, i])
+    }
+    eps.tau <- exp(logtau)
+    logtau ~ dunif(0.00000E+00, 100)
+    sigma <- 1/sqrt(eps.tau)
+    beta ~ dmnorm(mean, prec)
+    kemed <- exp(beta[1])
+    kamed <- exp(beta[2])
+    Clmed <- exp(beta[3])
+    Dinv[1:3, 1:3] ~ dwish(R[1:3, 1:3], 3)
+    D <- inverse(Dinv)
+    for (i in 1:3) {
+        sdD[i] <- sqrt(D[i, i])
+    }
+}

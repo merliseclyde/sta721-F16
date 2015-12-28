@@ -1,0 +1,30 @@
+\documentclass[12pt]{article}
+\usepackage{fullpage,amssymb,amsmath, url}
+\pagestyle{empty}
+\input{../macros}
+\begin{document}
+{\bf STA721}
+\vspace{.1in}
+\begin{center}
+{\large \bf Homework 17} \\
+\end{center}
+
+\begin{enumerate}
+\item Consider the following nonlinear function
+
+  \begin{equation}
+    \label{eq:compartment}
+    \mu(\b) = \frac{D \kappa_e \kappa_a}{ C (\kappa_e- \kappa_a)}
+    \left\{\exp (- \kappa_e t ) - \exp(- \kappa_a) \right\}
+  \end{equation}
+  \begin{enumerate}
+  \item Show that the model is not identifiable.
+  \item 
+  \end{enumerate}
+
+\end{enumerate}
+
+
+\end{document}
+
+

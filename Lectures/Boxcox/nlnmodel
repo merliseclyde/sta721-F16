@@ -1,0 +1,13 @@
+model
+{
+    v ~ dt(0.00000E+00, phi, 1)  T(0.00000E+00, )
+    k ~ dt(0.00000E+00, phi, 1)  T(0.00000E+00, )
+    for (i in 1:n) {
+        y[i] ~ dnorm(mu[i], phi)
+        mu[i] <- D/v * exp(-k * x[i])
+    }
+    phi <- pow(sigma, -2)
+    sigma ~ dt(0.00000E+00, 1, 1)  T(0.00000E+00, )
+    cl <- v * k
+    t.5 <- log(2)/k
+}

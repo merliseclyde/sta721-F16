@@ -1,0 +1,16 @@
+model
+{
+    v ~ dt(0, phi, 1) T(0,)
+    k ~ dt(0,phi, 1) T(0,)
+#    b ~ dwish(I, 1)
+#    R ~ dwish(I, 1)
+    lambda ~ dgamma(1/2, 1/2)
+    for (i in 1:n) {
+        y[i] ~ dnorm(mu[i], phi)
+        mu[i] <- D/v * exp(- k * x[i])
+    }
+    phi <- pow(sigma, -2)
+    sigma ~ dt(0.00000E+00, 1, 1)  T(0.00000E+00, )
+
+}
+
