@@ -10,6 +10,8 @@ help(av.plots)
 par(mfrow=c(2,3))
 av.plots(poll.lm, ask=F, one.page=T, iden=F)
 
+library(devtools)
+install_github("merliseclyde/BAS")
 library(BAS)
 poll.bma = bas.lm(log(SO2) ~ temp + log(mfgfirms) + log(popn) + wind + precip+ raindays, data=usair, prior="g-prior", alpha=41, n.models=2^6, modelprior=uniform(), update=50, initprobs="Uniform")
 
