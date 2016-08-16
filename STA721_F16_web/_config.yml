@@ -3,10 +3,10 @@ exclude:
   - LICENSE
 
 layouts: ./_noita
-baseurl: /courses/Fall15/sta721
+baseurl: /courses/Fall16/sta721
 
 noita:
-  name: Duke STA 721 - Linear Models (Fall 2015)
+  name: Duke STA 721 - Linear Models (Fall 2016)
   description: Jekyll theme built with Foundation
   author:
     name: Merlise Clyde
@@ -25,7 +25,7 @@ noita:
       - name: Resources
         url: /resources/
       - name: Sakai
-        url: https://sakai.duke.edu/portal/site/sta721-f15
+        url: https://sakai.duke.edu/portal/site/sta721-f16
         absolute: true
       - name: Links
         url: /links/
