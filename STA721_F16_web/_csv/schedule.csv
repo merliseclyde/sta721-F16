@@ -24,9 +24,9 @@ Week 10,8-Nov,Choice of Prior Distributions,"<a href=""../slides/Desiderata/desi
 Week 11,15-Nov,Robust Regression ,"<a href=""../slides/Robust/robust.pdf"">  Robust</a>  (<a href=""../slides/Robust/robust-gibbs.R"">R-code </a>)","<a href=""../slides/Robust/west84.pdf"">  West 84</a> <a href=""http://repositorio.upr.edu:8080/jspui/bitstream/10586%20/356/1/DynamicSBeta_Aug02pm_2012.pdf""> Fuquene et al</a>    ","<a href=""../slides/Robust/HW16.pdf""> HW16</a>  "
 ,17-Nov,Random Effects ,"<a href=""../slides/Hier/hier.pdf""> Random Effects</a>  (<a href=""../slides/Hier/hier.R"">R-code </a>)","<a href=""https://projecteuclid.org/euclid.ba/1354024466""> Polson & Scott 2010</a>",
 Week 12,22-Nov,Transformations & Normality,"<a href=""../slides/boxcox/boxcox.pdf""> Normality</a>  (<a href=""../slides/boxcox/normal.R"">R-code </a> <a href=""../slides/boxcox/nonlinear.R"">R-code </a>)",Wakefield & Christensen,
-,24-Nov,Generalized Additive Models,"<a href=""../slides/gam/gam.pdf""> GAMs</a>  (<a href=""../slides/gam/gam.R"">R-code </a> )",,"<a href=""../slides/gam/HW17.pdf""> HW17</a>  "
-Week 13,29-Nov,Putting it all Together,,,
-,1-Dec,Thanksgiving,,,
-Week 14,2-Dec,,"<span style=""color:gray"">Graduate Reading Period",,
+,24-Nov,,"<span style=""color:gray"">Graduate Reading Period",,Thanksgiving
+Week 13,29-Nov,Generalized Additive Models,"<a href=""../slides/gam/gam.pdf""> GAMs</a>  (<a href=""../slides/gam/gam.R"">R-code </a> )",,"<a href=""../slides/gam/HW17.pdf""> HW17</a>  "
+,1-Dec,No Class,,,
+Week 14,6-Dec,Putting it all Together,"<span style=""color:gray"">Graduate Reading Period",,
 ,8-Dec,Review,, Take Home Due,
 Final,18-Dec,"<b>Final, 7 - 10 pm</b>",BioSci 154,,
