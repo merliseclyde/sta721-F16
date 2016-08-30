@@ -2,7 +2,7 @@ markdown: kramdown
 exclude:
   - LICENSE
 
-layouts: ./_noita
+layouts_dir: ./_noita
 baseurl: /courses/Fall16/sta721
 
 noita:
@@ -25,7 +25,7 @@ noita:
       - name: Resources
         url: /resources/
       - name: Sakai
-        url: https://sakai.duke.edu/portal/site/sta721-f16
+        url: https://sakai.duke.edu/x/xrqqk7
         absolute: true
       - name: Links
         url: /links/

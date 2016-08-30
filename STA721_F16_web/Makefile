@@ -1,6 +1,6 @@
 REMOTEUSER ?= clyde
 REMOTEHOST ?= okeeffe.stat.duke.edu
-REMOTEDIR ?= /web/isds/docs/courses/Fall15/sta721
+REMOTEDIR ?= /web/isds/docs/courses/Fall16/sta721
 REMOTE ?= $(REMOTEUSER)@$(REMOTEHOST):$(REMOTEDIR)
 
 .PHONY: clean

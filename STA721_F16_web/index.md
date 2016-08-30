@@ -23,16 +23,19 @@ review linear algebra, please explore resources under [Links](/links)
 
 ### Instructional Team:
 
-|------------+---------------------+---------------------|
-|Professor   | [Dr. Merlise Clyde ](http://stat.duke.edu/~clyde) | [clyde@duke.edu](mailto:clyde@duke.edu)
+|------------+---------+------------+-----------+----------|
+| Role | Name | email | office hour location | office hours
 |:-----------|:--------------------|:-------------------|
-|TAs         | [Nicole Dazell](http://nicoledalzellduke.weebly.com)     | [nicole.dalzell@duke.edu](mailto:nicole.dalzell@duke.edu) |
-|            | Shin Shirota     | [shinichiro.shirota@duke.edu](mailto:shinichiro.shirota@duke.edu) |
-|------------+---------------------+---------------------|
+|Professor   | [Dr. Merlise Clyde ](http://stat.duke.edu/~clyde) | [clyde@duke.edu](mailto:clyde@duke.edu) | 214A Old Chemistry | MW  10-11  or by appointment
+|:-----------|:--------|:------------|:-----------|:--------|
+|TA         | [Dave Klemish](http://stat.duke.edu/people/david-klemish-0)|[david.klemish@duke.edu](mailto:david.klemish@duke.edu) | 211 Old Chemistry | TBA
+|:-----------|:--------|:------------|:-----------|:--------|
+TA | [Sayan Patra](http://stat.duke.edu/people/sayan-patra) | [sayan.patra@duke.edu](mailto:sayan.patra@duke.edu)      | 211 Old Chemistry | TBA
+|------------+----------+-----------+------------+---------|
 
 * * *
 
-### Books \& Materials:
+### Books & Materials:
 
 {:.right}
 ![Plane Answers to Complex Questions](images/plane.jpg)
@@ -68,21 +71,13 @@ Used in co-requisite course STA 601.
 
 ### Class meetings:
 
-* Lectures: Tuesday and Thursday, 3:05 pm - 4:20 pm, Perkins 071 (Link
-  Classroom 5)
+* Lectures: Tuesday and Thursday, 3:05 pm - 4:20 pm,
+  Biological Sciencs 154 
 
 
 * * *
 
-### <a name="oh"></a>Office Hours:
-* Professor Clyde -  Old Chemistry 214 or by appointment
-    * MWF 1-2pm or Tu/Th after class
-* Teaching Assistants
-    * Nicole  - Mon, 7-9pm  - Old Chemistry 123
-    * Nicole  - Tues, 6-7pm - Old Chemistry 123
-    * Karou   - Wed, TBA
 
-* * *
 
 ### <a name="grading"></a>Grade breakdown:
 
@@ -103,7 +98,7 @@ Used in co-requisite course STA 601.
 
 * Inclass Midterm:  Tuesday, TBA
 * TakeHome: Tuesday, TBA
-* Final: Tuesday, December 8, 7:00 PM - 10:00 PM
+* Final: Sunday, December 18 7:00 PM - 10:00 PM
 
 * * *
 
@@ -117,7 +112,7 @@ Assignments and Due dates are in the [Course Calendar]({{site.baseurl}}/calendar
 ### Discussion Forums
 
 We will be using
-[Piazza](https://piazza.com/duke/fall2015/sta72101f15/home) for class
+[Piazza](https://piazza.com/duke/fall2016/sta72101f16/home) for class
 discussion. The system is highly catered to getting you help fast and
 efficiently from classmates, the TAs, and myself. Rather than emailing
 questions to the teaching staff, I encourage you to post your
@@ -125,15 +120,19 @@ questions on Piazza (peer answers earn participation points!). If you
 have any problems or feedback for the developers, email
 team@piazza.com.
 
-Find our class page at: [Piazza](https://piazza.com/duke/fall2015/sta72101f15/home)  or through the link on Sakai
+Find our class page at:
+[Piazza](https://piazza.com/duke/fall2016/sta72101f16/home)  or
+through the link on Sakai.    [Click to signup](piazza.com/duke/fall2016/sta72101f16)
 
 ***
 
 ### Holidays:
 
 
-* Friday October 9 7pm - Wednesday October 14 8:30 a.m Fall Break
-* Tuesday, Nov 24 - Last Day of Graduate Classes; Beginning of Thanksgiving break
+* Friday October 7 7 pm - Wednesday October 12 8:30 am Fall Break
+* Tuesday November 22 10:30 pm  - Monday November 28 8:30 am  Thanksgiving Break
+
+
 
 * * *
 
@@ -143,3 +142,5 @@ Find our class page at: [Piazza](https://piazza.com/duke/fall2015/sta72101f15/ho
 ![DukeGreenClassroomCertification](images/DukeGreenClassroomCertification-Logo.png)
 
 This course has achieved Duke’s Green Classroom Certification. The certification indicates that the faculty member teaching this course has taken significant steps to green the delivery of this course. Your faculty member has completed a checklist indicating their common practices in areas of this course that have an environmental impact, such as paper and energy consumption. Some common practices implemented by faculty to reduce the environmental impact of their course include allowing electronic submission of assignments, providing online readings and turning off lights and electronics in the classroom when they are not in use. The eco-friendly aspects of course delivery may vary by faculty, by course and throughout the semester. Learn more at [http://sustainability.duke.edu/action/certifications/classroom/index.php](http://sustainability.duke.edu/action/certifications/classroom/index.php).
+
+

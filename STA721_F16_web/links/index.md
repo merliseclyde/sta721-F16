@@ -6,12 +6,12 @@ title: Useful Links & Resources
 
 ### Sakai
 
-* [Sakai Homepage](https://sakai.duke.edu/portal/site/sta721-f15)
-* For submitting homeworks and takehome exams, click [here](https://sakai.duke.edu/portal/site/6637515f-40d6-43ac-9e00-e777547abfd9/page/38643d32-4fef-4d28-87d7-5df1bc1aef72)
-* For viewing your grades, click [here](https://sakai.duke.edu/portal/site/6637515f-40d6-43ac-9e00-e777547abfd9/page/6463f1ac-b2d4-422d-aafa-26c98bd72f51)
-* [Class recordings](https://sakai.duke.edu/portal/site/6637515f-40d6-43ac-9e00-e777547abfd9/page/dded1336-4c68-445d-bb52-3c162d638b43) via ExplainEverything
-* [Piazza](https://sakai.duke.edu/portal/site/6637515f-40d6-43ac-9e00-e777547abfd9/page/6463f1ac-b2d4-422d-aafa-26c98bd72f51)
-     or via [Sakai](sakai.duke.edu/portal/site/6637515f-40d6-43ac-9e00-e777547abfd9/page/809b0b33-9e76-4636-ac17-d8260440de83): To post and answer questions related to course materials
+* [Sakai Homepage](https://sakai.duke.edu/x/pMO5qI)
+* For submitting homeworks and takehome exams
+* For viewing your grades
+* Class recordings via ExplainEverything are under Lessons
+* [Piazza](https://sakai.duke.edu/x/6xZj1S) Class forum for questions
+* about homework or lectures
 
 * * *
 
