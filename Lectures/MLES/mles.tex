@@ -1,5 +1,5 @@
-\documentclass{beamer}
-%\documentclass[handout]{beamer}
+%\documentclass{beamer}
+\documentclass[handout]{beamer}
 %\usepackage[dvips]{color}
 \usepackage{graphicx}
 \usepackage{amsmath,amssymb,array,comment,eucal}
@@ -12,7 +12,7 @@
 \subtitle{Merlise Clyde}
 \author{STA721 Linear Models}
 \institute{Duke University}
-\date{August 27, 2015}
+\date{September 1, 2016}
 \logo{duke.eps}
 
 \begin{document}
@@ -97,8 +97,8 @@ $\cL(\mub, \sigma^2)$ for $\mub \in \bbR^n$ and $\sigma^2 \in \bbR^+$
     & \propto & (\sigma^2)^{-n/2} 
  \exp{\left\{ - \frac 1 2 \frac{\| \Y - \mub \|^2}{\sigma^2} 
 \right\}} \\ \pause
- \cL(\mub, \sigma^2) 
-\log(\cL)   & \propto & -\frac{n}{2} \log(\sigma^2)  - \frac 1 2 \frac{\| \Y - \mub \|^2}{\sigma^2} 
+ \log(\cL(\mub, \sigma^2) )
+   & \propto & -\frac{n}{2} \log(\sigma^2)  - \frac 1 2 \frac{\| \Y - \mub \|^2}{\sigma^2} 
  \\ \pause
 \end{eqnarray*}
 or equivalently the log likelihood
