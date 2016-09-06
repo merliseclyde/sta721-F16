@@ -1,5 +1,5 @@
-\documentclass{beamer}
-%\documentclass[handout]{beamer}
+%\documentclass{beamer}
+\documentclass[handout]{beamer}
 %\usepackage[dvips]{color}
 \usepackage{graphicx, hyperref}
 \usepackage{amsmath,amssymb,array,comment,eucal}
@@ -16,53 +16,37 @@
 
 \begin{document}
 \maketitle
-\section{Geometric View}
-\begin{frame}
-  \frametitle{Geometric View}
-  \begin{itemize}
-  \item Fitted Values  $\Yhat = \P_\X \Y = \X \bhat$ \pause
-\item Residuals $\e = (\I - \P_\X) \Y$ \pause
-\item $\Y = \Yhat + \e$ \pause
-$$\| \Y \|^2 = \| \P_\X \Y \|^2 +  \| (\I- \P_\X)\Y\|^2  $$ \pause
-  \end{itemize}
-  \centerline{\includegraphics[height=2in]{OLS}}
 
+\begin{frame} \frametitle{Outline}
+  
+  \begin{itemize}
+  \item Expectations of Quadratic Forms
+  \item Multivariate Normal Distribution
+  \item Linear Transformations 
+  \item Distribution of estimates under normality
+  \end{itemize}
 \end{frame}
 
 \begin{frame}
-  \frametitle{Properties}
+  \frametitle{Properties of MLE's Recap}
+  \begin{itemize}
+  \item 
  $\Yhat = \muhat$ is an unbiased estimate of $\mub = \X\b$
 \pause
-    \begin{eqnarray*}
-      \E [ \Yhat ]  & = & \E [\P_\X \Y ] \pause\\
-& = & \P_\X \E[\Y] \pause\\
-& = & \P_\X \mub \pause\\
-& = & \mub \pause
-    \end{eqnarray*}
+\item $\E[\e] = \zero$ if $\mub \in C(\X)$ \pause
 
-$\E[\e] = \zero$ if $\mub \in C(\X)$ \pause
-\begin{eqnarray*}
-      \E [ \e ]  & = & \E [(\I - \P_\X) \Y ] \pause\\
-& = & (\I - \P_\X) \E[\Y] \pause\\
-& = & (\I - \P_\X) \mub \pause\\
-& = & \zero \pause
-    \end{eqnarray*}
-Will not be $\zero$ if $\mub \notin C(\X)$  (useful for model checking)
-
-\end{frame}
-
-\begin{frame}
-  \frametitle{Estimate of $\sigma^2$}
-MLE of $\sigma^2$:
+$$      \E [ \e ]   =  \E [(\I - \P_\X) \Y ] \pause
+$$
+\item MLE of $\sigma^2$:
   $$\shat = \frac{\e^T\e}{n} = \frac{\Y^T (\I - \P_\X) \Y}{n}$$
 \pause
 Is this an unbiased estimate of $\sigma^2$?
+  \end{itemize}
 \pause
-
-\vspace{1in}
 Need expectations  of quadratic forms $\Y^T \A \Y$ for $\A$ an
  $n \times n$ matrix $\Y$ a random vector in $\bbR^n$
 \end{frame}
+
 \begin{frame}
   \frametitle{Quadratic Forms}
   Without loss of generality we can assume that $\A = \A^T$
@@ -197,7 +181,7 @@ sum of $r$ rank 1 projections.
   \item Distribution of $\hat{\b}$
   \item Distribution of $\P_{\X} \Y$
   \item Distribution of $\e$
-  \item Distribution ot $\hat{\sigma^2}$
+  \item Distribution ot $\hat{\sigma}^2$
   \end{itemize}
 \end{frame}
 \begin{frame}
