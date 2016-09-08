@@ -1,0 +1,55 @@
+\documentclass[12pt]{article}
+\usepackage{fullpage}
+\usepackage{amsmath,amssymb,array,comment,eucal}
+\pagestyle{empty}
+\input{../../../Lectures/macros}
+\begin{document}
+{\bf STA721 \hfill Homework 3}
+
+\vspace{.5in}
+
+
+\begin{enumerate}
+\item Condsider the linear model $\Y \sim \N(\mub, \sigma^2 \I_n)$
+  with  $\mub = \one \beta_0 + \X \b$ and $\X$ a full rank matrix with rank $p$
+  \begin{enumerate}
+  \item 
+
+    Show that the projection, $\P$, on the column space spanned by
+    $\one$ and $\X$ may be written as
+    $\P = \P_{\one} + \P_{\X - \one \xbar^T}$.  Show that diagonal
+    elements are
+    $$h_{ii} = \frac{1}{n} + (\x_i-\xbar)^T\left((\X- \one \xbar^T)^T(\X - \one
+    \xbar^T)\right)^{-1}(\x_i - \xbar)$$
+    (Recall all vectors are column vectors).  The $h_{ii}$ are known
+    as the leverage values.
+\item Find the sampling distribution of $\hat{\mu}_i$ (the mean
+  of  $Y_i$ at $\x_i^T$ as a function of $h_{ii}$ and provide an
+  expression for a 95\% confidence interval.   For what values of $\x$
+  will the interval be the narrowest? Explain.
+
+\item Given $\sigma^2$, find the distribution of $\e_i$ as a function
+  of $h_{ii}$.  Explain (rigorously) why $\e_i$ unconditional on
+    $\sigma^2$ does not have a student $t$ distribution with
+    $n - p - 1$ degrees of freedom.
+\end{enumerate}
+\item  Refer to the Prostate data  from {\tt library(lasso2); data(Prostate)}
+\begin{enumerate}
+
+\item Fit a linear model using {\tt lcavol} (log
+  cancer volume) as the response and include all covariates.
+  Construct 95\% confidence intervals for 
+  each coefficient and provide a meaningful interpretations for
+  changes in the  cancer volume  ( not log cancer volume) include any
+  units etc in your interpretation.  Note ``a 1 unit'' change may or may not be
+  meaningful for interpretation so adjust as needed.
+\item Fit the regression model with
+  response {\tt lcavol}, and variables {\tt svi} and {\tt lpsa} as
+  predictors.  Plot the cancer volume versus PSA on the log scale. Add
+  the fitted regression function for svi = 1 and svi = 0, with
+  lines representing the (pointwise) 95\%  confidence intervals for
+  each.
+\end{enumerate}
+
+\end{enumerate}
+\end{document}
