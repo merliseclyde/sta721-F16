@@ -28,10 +28,10 @@ review linear algebra, please explore resources under [Links](/links)
 |:-----------|:--------------------|:-------------------|
 |Professor   | [Dr. Merlise Clyde ](http://stat.duke.edu/~clyde) | [clyde@duke.edu](mailto:clyde@duke.edu) | 214A Old Chemistry | MW  10-11  or by appointment
 |:-----------|:--------|:------------|:-----------|:--------|
-|TA         | [Dave Klemish](http://stat.duke.edu/people/david-klemish-0)|[david.klemish@duke.edu](mailto:david.klemish@duke.edu) | 211 Old Chemistry | TBA
+|TA         | [Dave Klemish](http://stat.duke.edu/people/david-klemish-0)|[david.klemish@duke.edu](mailto:david.klemish@duke.edu) | 211 Old Chemistry | T
 |:-----------|:--------|:------------|:-----------|:--------|
-TA | [Sayan Patra](http://stat.duke.edu/people/sayan-patra) | [sayan.patra@duke.edu](mailto:sayan.patra@duke.edu)      | 211 Old Chemistry | TBA
-|------------+----------+-----------+------------+---------|
+TA | [Sayan Patra](http://stat.duke.edu/people/sayan-patra) | [sayan.patra@duke.edu](mailto:sayan.patra@duke.edu)      | 211 Old Chemistry | W 8-9pm 116 Old Chem
+|:------------+----------+-----------+------------+---------|
 
 * * *
 
