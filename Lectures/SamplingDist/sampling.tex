@@ -11,7 +11,7 @@
 \subtitle{Merlise Clyde}
 \author{STA721 Linear Models}
 \institute{Duke University}
-\date{September 3, 2015}
+\date{September 8, 2016}
 \logo{duke.eps}
 
 \begin{document}
@@ -67,12 +67,186 @@ Models:  Full  $\Y = \X\b + \eps$
 Assume $\X$ is full rank with the first column of ones $\one_n$ and $p$ additional predictors $r(\X) = p +1$
 
    $$\hat{\b} \mid \sigma^2 \sim \N(\b, \sigma^2 (\X^T\X)^{-1})$$
-   $$\frac{\RSS }{\sigma^2} \sim \chi^2_{n - r(\X)}$$
+   $$\frac{\SSE }{\sigma^2} \sim \chi^2_{n - r(\X)}$$
    $$\frac{\hat{\beta}_j - \beta_j}{\SE(\hat{\beta}_j)} \sim t_{n - r(\X)}$$
 where  $\SE(\hat{\beta})$  is the square root of the  $j$th diagonal element of $\hat{\sigma}^2 (\X^T\X)^{-1}$   and $\hat{\sigma}^2$ is the unbiased estimate of $\sigma^2$
 \end{frame}
 
 \section{Sampling Distribution}
+
+\begin{frame} \frametitle{General Case}
+$\W = \mub + \A \Z$  with $\Z \in \bbR^d$ and $\A$ is $n \times d$ \pause
+\begin{itemize}
+\item $\E[\W] = \mu$ \pause
+\item $\Cov(\W) = \A \A^T \ge 0$ \pause
+\item $\W \sim \N(\mub, \Sigmab)$ where $\Sigmab = \A \A^T$
+\end{itemize}
+  If $\Sigmab$ is singular then there is no density (on $\bbR^n$), but claim that
+  $\W$ still has a multivariate normal distribution!  \pause
+
+ \begin{definition}
+  $\W \in \bbR^n$ has a  multivariate normal distribution $\N(\mub,
+  \Sigmab)$ if for any $\v \in \bbR^n$ $\v^T\Y$ has a normal
+  distribution with mean $\v^T\mub$ and variance $\v^T\Sigmab \v$
+  \end{definition} \pause
+
+see Lessons in Normal Theory in Sakai for videos using Characteristic functions
+\end{frame}
+
+\begin{frame} \frametitle{Linear Transformations are Normal}
+
+If $\Y \sim \N_n(\mub, \Sigmab)$ then for $\A$ $m \times n$
+
+$$\A \Y \sim \N_m(\A \mub, \A \Sigmab \A^T)$$
+
+
+$\A \Sigmab \A^T$ does not have to be positive definite!
+  
+
+
+\end{frame}
+\begin{frame}
+  \frametitle{Equal in Distribution}
+  Multiple ways to define the same normal: \pause
+
+  \begin{itemize}
+  \item 
+$\Z_1 \sim \N(\zero, \I_n)$, $\Z_1 \in \bbR^n$  and take $\A$ $d
+\times n$ \pause
+\item $\Z_2 \sim \N(\zero, \I_p)$,  $\Z_2 \in \bbR^p$  and take $\B$ $d
+\times p$ \pause
+\item Define $\Y = \mub + \A \Z_1$ \pause
+\item Define $\W = \mub + \B \Z_2$ \pause
+  \end{itemize}
+  \begin{theorem}
+    If  $\Y = \mub + \A \Z_1$ and $\W = \mub + \B \Z_2$ then $\Y
+    \eqindis \W$ if and only if $\A \A^T = \B \B^T = \Sigmab$
+  \end{theorem}
+\end{frame}
+
+\frame{ \frametitle{Zero Correlation and Independence}
+ \begin{theorem}
+For a random vector $\Y \sim \N(\mub, \Sigmab) $ partitioned as
+$$
+\Y = \left[
+  \begin{array}{c}
+\Y_1  \\ \Y_2 \end{array} \right]  \sim \N\left( \left[
+  \begin{array}{c} \mub_1  \\ \mub_2 \end{array} \right],
+  \left[ \begin{array}{cc}
+\Sigmab_{11} &  \Sigmab_{12}  \\ 
+\Sigmab_{21} & \Sigmab_{22} \end{array} \right]
+ \right)    
+ $$  \pause
+then $\Cov(\Y_1, \Y_2) = \Sigmab_{12} = \Sigmab_{21}^T = \zero$  if and
+only if $\Y_1$ and $\Y_2$ are independent.
+  \end{theorem}
+}
+
+\frame { \frametitle{Independence Implies Zero Covariance}
+\begin{proof}
+$$ \Cov(\Y_1, \Y_2) = \E[ (\Y_1 - \mub_1)(\Y_2 - \mub_2)^T]$$ \pause
+  If $\Y_1$ and $\Y_2$ are independent \pause 
+$$\E[ (\Y_1 - \mub_1)(\Y_2 - \mub_2)^T] = \E[ (\Y_1 - \mub_1) \E(\Y_2 -
+\mub_2)^T] = \zero \zero^T = \zero $$ \pause
+ 
+therefore $\Sigmab_{12} = \zero$
+
+\end{proof}
+
+}
+
+\frame { \frametitle{ Zero Covariance Implies  Independence}
+  Assume $\Sigmab_{12} = \zero$
+\begin{block}{Proof}
+\begin{itemize}
+
+\item  Choose an $$ 
+  \A = \left[
+  \begin{array}{ll}
+    \A_1 & \zero \\
+    \zero & \A_2 
+  \end{array}
+\right]  $$
+ such that $\A_1 \A_1^T = \Sigmab_{11}$, $\A_2 \A_2^T = \Sigmab_{22}$
+ \pause
+ \item Partition  $$
+\Z = \left[
+  \begin{array}{c}
+    \Z_1 \\ \Z_2
+  \end{array}
+\right] \sim \N\left(
+\left[
+  \begin{array}{c}
+    \zero_1 \\ \zero_2
+  \end{array}
+\right],
+\left[
+  \begin{array}{ll}
+    \I_1 &\zero \\
+\zero & \I_2
+  \end{array}
+\right]  
+ \right)  \text{ and } \mub = \left[
+  \begin{array}{c}
+    \mub_1 \\ \mub_2
+  \end{array}
+\right] $$ \pause
+\item then 
+       $\Y \eqindis \A \Z + \mub \sim  \N(\mub, \Sigmab)$ 
+\end{itemize}
+  \end{block}  
+}
+\frame {\frametitle{Continued}
+  \begin{proof}
+    \begin{itemize}
+    \item $$
+\left[
+  \begin{array}{c}
+    \Y_1 \\ \Y_2
+  \end{array}
+\right]  \eqindis \left[
+  \begin{array}{c}
+    \A_1\Z_1 + \mub_1 \\ \A_2\Z_2 +\mub_2
+  \end{array}
+\right] 
+$$ \pause
+\item But $\Z_1$ and $\Z_2$ are independent \pause
+\item Functions of $\Z_1$ and $\Z_2$ are independent \pause
+\item Therefore $\Y_1$ and $\Y_2$ are independent  \pause
+    \end{itemize}
+  \end{proof}
+For Multivariate Normal Zero Covariance implies independence
+
+}
+\frame { \frametitle{ Another Useful Result}
+  \begin{corollary}
+    If $\Y \sim \N( \mub, \sigma^2 \I_n) $ and $\A \B^T = \zero$
+then $\A \Y$ and $\B \Y$ are independent.
+  \end{corollary} \pause
+  \begin{proof}
+ \begin{itemize}
+    \item $$
+\left[
+  \begin{array}{c}
+    \W_1 \\ \W_2
+  \end{array}
+\right]  = \left[
+  \begin{array}{c}
+    \A \\ \B 
+  \end{array}
+\right]  \Y =  \left[
+  \begin{array}{c}
+    \A \Y \\ \B  \Y
+  \end{array}
+\right] 
+$$ \pause
+\item $\Cov(\W_1, \W_2) = \Cov(\A \Y, \B \Y) = \sigma^2 \A \B^T$
+  \pause
+\item $\A \Y $ and $\B \Y$ are independent if $\A \B^T = \zero$
+\end{itemize}    
+  \end{proof}
+
+}
 
 
 
