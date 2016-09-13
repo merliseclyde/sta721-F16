@@ -1,0 +1,61 @@
+## Example Code for Regression
+The data are in the library `lasso2`.  You will need to install the package from CRAN (click on the Packages tab in Rstudio) and then load the library:
+```{r library}
+library(lasso2)
+```
+
+We can load the prostate data from the package
+```{r data}
+data(Prostate)    # n = 97, 9 variable
+names(Prostate)
+```
+The `names` function provides the names of the variables in the dataframe. 
+To get a sense of the data use the `summary` function
+```{r summary}
+summary(Prostate)
+```
+
+## Fitting a Linear Model
+
+The `lm` function is used to fit linear models
+```{r lm}
+prostate.lm = lm(lpsa ~ ., data=Prostate)
+```
+where the first argument is a model formula.  Here `lpsa` is the log of PSA, a marker for Prostate cancer.  The `.` to the right of the `~` indicates that all variables are to be included in the model, while the `data=Prostate` provides the name of the dataframe for the data.
+
+The summaries of the MLEs are obtained using the summary function
+```{r sum}
+summary(prostate.lm)
+```
+
+The object `prostate.lm` has many summaries stored that you may extract. To see what is available use
+```{r obj}
+names(prostate.lm)
+```
+To find the residual degrees of freedom, for example, use `prostate.lm$df.residual`
+
+To obtain 95\% confidence intervals we may either use $\hat{\beta}_j \pm SE(\beta_j) t_{.025}$ 
+
+```{r man}
+prostate.coef = summary(prostate.lm)$coef
+t = qt(.975, df=prostate.lm$df.residual)
+cbind(prostate.coef[,1] - t*prostate.coef[,2], prostate.coef[,1] + t*prostate.coef[,2])
+```
+
+
+or with the `confint` function:
+```{r ci}
+
+confint(prostate.lm)
+```
+
+For predictions the `predict` function provides point estimates and SE.
+
+```{r predict}
+
+prostate.fit = predict(prostate.lm, se=T)
+prostate.fit
+```
+
+
+Rather than using Rmarkdown, explore using knitr to create pdf documents with nice tables.   (the packages `xtable` or `stargazer` are helpful!)
