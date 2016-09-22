@@ -1,0 +1,260 @@
+%\documentclass[handout]{beamer}
+\documentclass{beamer}
+%\usepackage[dvips]{color}
+\usepackage{graphicx}
+\usepackage{amsmath,amssymb,array,comment,eucal}
+\input{../macros}
+\usepackage{verbatim}
+
+\usetheme{Warsaw}
+\title{Sampling Distributions Continued}
+\subtitle{Merlise Clyde}
+\author{STA721 Linear Models}
+\institute{Duke University}
+\date{September 13, 2016}
+\logo{duke.eps}
+
+\begin{document}
+\maketitle
+
+\begin{frame}\frametitle{Outline}
+Topics 
+  \begin{itemize}
+  \item Student $t$ Distributions
+  \item Chi-squared Distributions
+  \end{itemize}
+
+\vspace{24pt}
+Readings:  Christensen Apendix C, Chapter 1-2 
+\end{frame}
+%\section{Models}
+
+\begin{frame}
+  \frametitle{Sampling Distribution of $\b$}
+If  $\Y \sim \N(\X\b, \sigma^2 \I_n)$
+
+Then $\hat{\b} \mid \sigma^2, \b \sim \N(\b, \sigma^2 (\X^T\X)^{-1})$
+\vfill
+
+\end{frame}
+
+
+\begin{frame} \frametitle{Unknown $\sigma^2$}
+
+  \begin{align*}
+    \hat{\beta}_j \mid \beta_j, \sigma^2 & \sim \N(\beta, { \sigma^2}
+                                           [(\X^T\X)^{-1}]_{jj})
+  \end{align*}  \pause
+
+If we substitute $\hat{\sigma}^2 = \e^t\e/(n-r(\X))$ in the above? \pause
+
+$$
+\frac{(\hat{\beta}_j - \beta_j)/ \sigma \sqrt{ [(\X^T\X)^{-1}]_{jj}}}
+{\sqrt{\e^T\e/ (\sigma^2 (n - r(\X))} } \eqindis
+\frac{N(0,1)}{\sqrt{\chi_{n-r(\X)}^2/(n - r(\X)}} \sim t(n - r(\X), 0 ,1)
+$$
+
+Need to show that $\e^T\e /\sigma^2$ has a $\chi^2$ distribution and
+is independent of the numerator!
+\end{frame}
+
+\begin{frame}
+  \frametitle{Central Student $t$ Distribution}
+  \begin{definition}
+    Let $Z \sim \N(0, 1)$ and $S \sim \chi^2_p$ with $Z$ and $S$
+    independent, \pause then
+$$ W = \frac{Z} {\sqrt{S/p}}$$
+has a (central) Student $t$ distribution with $p$ degrees of freedom
+  \end{definition}
+\pause
+ 
+See Casella \& Berger or DeGroot \& Schervish for derivation - nice change of variables and marginalization problem!
+\end{frame}
+
+
+
+
+
+
+\begin{frame}
+  \frametitle{Chi-Squared Distribution}
+  \begin{Definition}
+    If $Z \sim \N(0,1)$ then $Z^2 \sim \chi^2_1$ (A Chi-squared
+    distribution with one degree of freedom) \pause
+    \begin{itemize}
+    \item Density
+$$
+f(x) = \frac{1}{\Gamma(1/2)} (1/2)^{-1/2} x^{1/2 - 1} e^{-x/2} \qquad x
+> 0
+$$ \pause
+  \item  Characteristic Function
+$$
+\E[e^{itZ^2}] = \varphi(t) = (1 - 2 i t)^{-1/2}
+$$
+  \end{itemize}
+
+\end{Definition}
+\end{frame}
+
+\begin{frame}
+  \frametitle{Chi-Squared Distribution with $p$ Degrees of Freedom}
+If $Z_j \simiid \N(0,1)$ $j = 1, \ldots p$ then $X \equiv \Z^T\Z = \sum_j^p
+Z_j^2 \sim \chi^2_p$  \pause
+
+\begin{block}{Characteristic Function}
+\begin{eqnarray*}
+  \varphi_{X}(t) & = & \E[e^{it \sum_j^p
+Z_j^2}] \pause \\
+& = & \prod_{j=1}^p \E[e^{it Z_j^2 }] \pause \\
+& = &  \prod_{j=1}^p (1 - 2 i t)^{-1/2} \pause \\
+& = & (1 - 2 i t)^{-p/2} \pause
+\end{eqnarray*}
+A  Gamma distribution with shape $p/2$ and rate $1/2$, $G(p/2, 1/2)$ 
+
+$$
+f(x) = \frac{1}{\Gamma(p/2)} (1/2)^{-p/2} x^{p/2 - 1} e^{-x/2} \qquad x
+> 0
+$$
+ \end{block}
+\end{frame}
+\begin{frame}
+  \frametitle{Quadratic Forms}
+  \begin{theorem}
+  Let  $\Y \sim  \N(\mub, \sigma^2 \I_n)$ with $\mub \in C(\X)$ then if $\Q$ is
+  a rank $k$ orthogonal  projection on to $C(\X)^{\perp}$,
+$(\Y^T \Q \Y)/\sigma^2 \sim \chi^2_k$
+  \end{theorem}
+  \begin{proof}
+    For an orthogonal projection  $\Q = \U \Lambdab \U^T 
+    = \U_k \U_k^T$ where $C(\Q) = C(\U_k)$ and $\U_k^T\U_k = \I_k$
+    (Spectral Theorem) \pause
+    \begin{eqnarray*}
+\Y^T\Q \Y  &=& \Y^T\U_k \U_k^T \Y      \pause \\
+\Z & =  &\U_k^T \Y/ \sigma  \sim \N(\U_k^T\mub, \U_k^T\U_k) \pause \\
+\Z & \sim & \N(\zero, \I_k) \pause \\
+\Z^T\Z & \sim & \chi^2_k \pause 
+    \end{eqnarray*}
+Since $U^T\Y /\sigma \eqindis \Z$, $\frac{\Y^T\Q \Y}{\sigma^2} \sim
+\chi^2_k$
+
+
+  \end{proof}
+\end{frame}
+
+\begin{frame} \frametitle{Residual Sum of Squares Example}
+ 
+\begin{block}{Sum of Squares Error  (SSE)}
+Let $\Y \sim \N(\mub, \sigma^2 \I_n)$ with $\mub \in C(\X)$.
+
+
+Because $\mub \in C(\X)$, $\I - \P_{\X}$ is a projection on
+$C(\X)^{\perp}$ \pause $$\frac{\e^T\e}{\sigma^2} = \Y^T\frac{(\I_n - \P_\X)}\sigma^2 \Y  \sim
+ \chi^2_{n - r(\X)}$$ 
+\end{block}
+\end{frame}
+
+\begin{frame}
+\frametitle{ Estimated Coefficients and Residuals are Independent}
+If  $\Y \sim \N(\X\b, \sigma^2 \I_n)$
+
+Then $\Cov(\hat{\b}, \e) = \zero$ which implies independence 
+\vfill
+
+Functions of independent random variables are independent
+(show characteristic functions or densities factor)
+\end{frame}
+
+\begin{frame}\frametitle{Putting it all together}
+$\hat{\b} \sim \N(\b, \sigma^2 (\X^T\X)^{-1})$
+  \begin{itemize}
+  \item $(\hat{\beta}_j - \beta_j)/ \sigma [(\X^T\X)^{-1}]_{jj} \sim
+    \N(0,1)$
+\item $\e^T\e/ \sigma^2 \sim \chi^2_{n - r(\X)}$
+\item $\hat{\beta}$ and $\e$ are independent
+$$ \frac{(\hat{\beta}_j - \beta_j)/ \sigma [(\X^T\X)^{-1}]_{jj}}
+{\sqrt{\e^T\e/ ( \sigma^2 (n - r(\X)))}} \sim t(n - r(\X), 0, 1)$$
+  \end{itemize}
+\end{frame}
+
+\begin{frame}
+  \frametitle{Inference}
+\vspace{-.5in}
+
+  \begin{itemize}
+  \item 
+   95\% Confidence interval:  $\hat{\beta}_j \pm t_{\alpha/2}
+   \SE(\hat{\beta}_j)$  \pause use {\tt qt(a, df)} for $t_a$ quantile
+\item derive from pivotal quantity $t = (\hat{\beta}_j -
+  \beta_j)/\SE(\hat{\beta}_j)$ where 
+ $P(t \in (t_{\alpha/2}, t_{1 - \alpha/2}))  = 1 -\alpha$
+  \end{itemize}
+
+\vfill
+
+\end{frame}
+\begin{frame} \frametitle{Pivotal Quantities and CI}
+
+  
+\end{frame}
+
+\begin{frame} \frametitle{Other Quantities}
+  
+Linear Combinations:  $\lambda^T\hat{\beta}$  
+
+\end{frame}
+\begin{frame}\frametitle{Prostate Example}
+{\tt xtable(confint(prostate.lm))}  from library(MASS) and library(xtable)
+  \begin{table}[ht]
+\centering
+\begin{tabular}{rrr}
+  \hline
+ & 2.5 \% & 97.5 \% \\ 
+  \hline
+(Intercept) & -1.91 & 3.25 \\ 
+  lcavol & 0.41 & 0.76 \\ 
+  lweight & 0.12 & 0.79 \\ 
+  age & -0.04 & 0.00 \\ 
+  lbph & -0.01 & 0.22 \\ 
+  svi & 0.28 & 1.25 \\ 
+  lcp & -0.29 & 0.08 \\ 
+  gleason & -0.27 & 0.36 \\ 
+  pgg45 & -0.00 & 0.01 \\ 
+   \hline
+\end{tabular}
+\end{table}
+\end{frame}
+\begin{frame} \frametitle{interpretation}
+  \begin{itemize}
+  \item 
+  For a ``1'' unit increase in $\X_j$, expect $\Y$ to increase by $\hat{\beta}_j \pm t_{\alpha/2}
+   \SE(\hat{\beta}_j)$ 
+\item for log transforms
+$$\Y = \exp(\X\b + \eps) = \prod \exp(\X_j \beta_j) \exp(\eps)$$
+\item if $\X = \log(\W_j)$ then look at 2-fold or \%
+  increases in $\W$ to look at multiplicative increase in median of $\Y$
+\item if{\tt  cavol} increases by 10\%  then we expect {\tt PSA} to increase
+  by $1.10^{(CI)}$  = $( 1.0398 \%, 1.0751 \%)$ or by 3.98 to 7.51 percent
+  \end{itemize}
+For a 10\% increase in cancer volume, we are 95\% confident  that the PSA levels
+will increase by approximately 4 to 7.5 percent.
+\end{frame}
+\begin{frame}\frametitle{Derivation}
+  
+\end{frame}
+
+
+\begin{frame} \frametitle{Fitted Values}
+  
+Unknown Mean:   $\mu_i = \x_i^T \b$
+
+
+
+\vfill
+
+Use {\tt predict} function in {\tt R}
+\end{frame}
+
+\end{document}
+
+
+
