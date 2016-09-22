@@ -34,7 +34,7 @@ Appendix B as needed)
 
   \begin{itemize}
   \item Predict $Y_*$ at $\x_*^T$   (could be new point or existing
-    point) $\Y_* = \x_*^T + \epsilon_*$ \pause
+    point) $\Y_* = \x_*^T \b + \epsilon_*$ \pause
  \item $\E[Y_* \mid \x_*] = \x_*^{T} \b = \mu_*$ minimizes squared
    error loss for predicting $Y_*$ at $\X_*^T$ \pause
    \begin{eqnarray*}
@@ -47,7 +47,8 @@ Crossproduct term is 0:
 $$\E[\E[( Y_* -
        \mu_x)(\mu_* - f(x_*))\mid \x_*]] = \E[0 \cdot (\mu_* -
        f(x_*))]$$
-\item $E[Y_* \mid \x_*]$ is the ``best'' predictor of $Y_*$
+\item equality if $f(x) = E[Y_* \mid \x_*]$,  the ``best'' predictor
+  of $Y_*$ \pause
 \item MLE of $\mu_*$ is $\x_*^{T} \bhat  = \hat{Y}_*$ (is this
   unique?) \pause
 \item OLS Best Linear predictor of $\Y_*$

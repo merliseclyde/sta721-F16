@@ -14,10 +14,12 @@
   prediction intervals are wider than the confidence intervals for
   $\hat{\mub}$.  (See the function {\tt predict()} in \R.  Please
   label all axes with units and informative names, add a legend to
-  explain the multiple lines, and a caption).   
+  explain the multiple lines, and a caption).    (Post your
+  code/example from HW 3 on Piazza for participation points and vote
+  on the best solution!)
 
 \item Consider the linear model  model $\Y \sim \N(\mub, \sigma^2 \I_n)$
-  with  $\mub = \one \beta_0 + \X \b$ and $\X$ a full rank matrix with
+  with  $\mub =  \X \b$ and $\X$ a full rank matrix with
   rank $p$.  For a new observation $Y_*$ at $\x_*$ with $Y_* =
   \x_*^T\b + \epsilon_*$ and $\epsilon_*$ independent of $\eps$,  consider the
   predicted residual  $Y_* - \x^T_* \bhat$ where $\bhat$ is the MLE
@@ -26,7 +28,7 @@
   \item Find the distribution of the predicted residual $Y_* - \x^T_*
     \bhat$ given $\b$ and  $\sigma^2$. 
 \item Show that the standardized predicted residual (center so that
-  the mean is 1 and and scale (sd) is 
+  the mean is 0 and and scale (sd) is 
   1 with $\sigma^2$ replaced by the usual unbiased estimate
   $\hat{\sigma}^2 = \Y^T(\I-\P_{\X})\Y/ (n - p - 1)$ has a student $t$
   distribution.  What are the degrees of freedom?   
