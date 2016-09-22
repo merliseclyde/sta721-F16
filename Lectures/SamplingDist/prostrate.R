@@ -1,8 +1,0 @@
-library(lasso2)
-data(Prostate)    # n = 97, 9 variable
-names(Prostate)
-prostrate.lm = lm(lpsa ~ ., data=Prostate)
-summary(prostrate.lm)
-library(MASS)
-library(xtable)
-xtable(confint(prostrate.lm))
